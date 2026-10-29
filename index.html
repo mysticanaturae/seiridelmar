@@ -1225,7 +1225,7 @@ body.program-modal-open{overflow:hidden}
   </section>
 </div>
 
-<div class="wrap"><header class="topbar"><a class="brand" href="#home" aria-label="Seiri del Mar home"><img class="seiri-header-logo" src="assets/seiri/official-50.png" alt="" /><span class="seiri-brand-name">SEIRI DEL MAR</span></a><nav class="nav" id="nav">
+<div class="wrap site-header-wrap"><header class="topbar"><a class="brand" href="#home" aria-label="Seiri del Mar home"><img class="seiri-header-logo" src="assets/seiri/official-50.png" alt="" /><span class="seiri-brand-name">SEIRI DEL MAR</span></a><nav class="nav" id="nav">
 <a href="#stay">Stay</a>
 <a href="#offers">Offers</a>
 <a href="wellness.html">Wellness</a>
@@ -2623,6 +2623,13 @@ document.querySelectorAll(".nav-submenu a").forEach(function(link){
   });
 })();
 </script>
+<style id="seiri-sticky-navigation-fix">
+/* SEIRI STICKY NAVIGATION FIX */
+.site-header-wrap{position:sticky!important;top:0!important;z-index:1000!important;width:100%!important;max-width:none!important;margin:0!important;background:rgba(244,239,228,.97)!important;backdrop-filter:blur(12px)}
+.site-header-wrap>.topbar{width:min(1180px,calc(100% - 48px));margin:0 auto}
+html{scroll-padding-top:88px}
+:target{scroll-margin-top:88px}
+</style>
 </body></html>
 
 

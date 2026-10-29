@@ -124,5 +124,11 @@ document.getElementById('catalogSearch').addEventListener('input',renderCatalog)
 document.querySelectorAll('.save[data-experience]').forEach(button=>button.addEventListener('click',()=>saveExperience(button.dataset.experience,button)));
 renderFilters();renderCatalog();
 </script>
+<style id="seiri-sticky-navigation-fix">
+/* SEIRI STICKY NAVIGATION FIX */
+body>header.topbar{position:sticky!important;top:0!important;z-index:1000!important;background:rgba(9,31,30,.97)!important;backdrop-filter:blur(12px)}
+html{scroll-padding-top:78px}
+:target{scroll-margin-top:78px}
+</style>
 </body>
 </html>
