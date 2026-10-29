@@ -1237,6 +1237,15 @@ body.program-modal-open{overflow:hidden}
 .topbar #tzWidget .tz-widget-meta{gap:10px!important;margin-top:6px!important}
 @media(max-width:800px){.topbar #tzWidget{width:auto!important;max-width:145px!important;margin-right:0!important;padding:6px 8px!important}.topbar #tzWidget .tz-top{gap:5px!important;margin-bottom:3px!important}.topbar #tzWidget .tz-symbols{gap:7px!important}.topbar #tzWidget .tz-widget-meta{gap:5px!important;margin-top:4px!important}}
 </style>
+<style id="living-time-header-compact">
+/* Compact the header widget while retaining its date and date-planning action. */
+.topbar #tzWidget{width:136px!important;max-width:136px!important;margin-right:10px!important;padding:5px 8px!important}
+.topbar #tzWidget .tz-label,.topbar #tzWidget .tz-name{display:none!important}
+.topbar #tzWidget .tz-top{justify-content:flex-start!important;gap:0!important;margin-bottom:3px!important}
+.topbar #tzWidget .tz-symbols{justify-content:flex-start!important;gap:6px!important}
+.topbar #tzWidget .tz-widget-meta{justify-content:flex-start!important;gap:0!important;margin-top:3px!important}
+@media(max-width:800px){.topbar #tzWidget{width:136px!important;max-width:145px!important;margin-right:0!important;padding:5px 7px!important}.topbar #tzWidget .tz-symbols{gap:6px!important}.topbar #tzWidget .tz-widget-meta{margin-top:3px!important}}
+</style>
 </head>
 <body>
 
@@ -1282,7 +1291,7 @@ body.program-modal-open{overflow:hidden}
 <a href="#contact">Contact</a>
 <a href="#contact" class="nav-cta">Book Now</a>
 </nav><button class="mobile-menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button><button class="tz-widget" id="tzWidget" aria-label="Open Living Time and plan a date">
-  <div class="tz-top"><span class="tz-label" aria-hidden="true">LIVING TIME</span><span class="tz-date" id="tzDate">28 Oct 2026</span></div>
+  <div class="tz-top"><span class="tz-label" aria-hidden="true"></span><span class="tz-date" id="tzDate">28 Oct 2026</span></div>
   <div class="tz-symbols">
     <span class="tz-number" id="tzNumber" aria-label="Tzolk'in number"><img id="tzNumberImage" src="assets/tzolkin/tone-6.png" alt="" /></span>
     <span class="tz-glyph" id="tzGlyph" aria-label="Maya day sign"><img id="tzGlyphImage" src="assets/tzolkin/cauac.png" alt="" /></span>
