@@ -1201,6 +1201,18 @@ body.program-modal-open{overflow:hidden}
   }
 }
 </style>
+<style id="living-time-date-explorer-styles">
+.tz-date-explorer{margin:18px 0 22px;padding:17px 18px;background:#f3efe5;border:1px solid rgba(194,160,91,.35)}
+.tz-date-explorer-copy span{font-size:9px;letter-spacing:.18em;font-weight:700;color:#927740}
+.tz-date-explorer-copy p{margin:5px 0 13px;color:#586e6b;font-size:12px;line-height:1.5}
+.tz-date-controls{display:grid;grid-template-columns:42px minmax(130px,1fr) 42px auto;gap:8px;align-items:center}
+.tz-date-step{width:42px;height:42px;border:1px solid rgba(18,56,59,.22);background:#fffdf8;color:#12383b;font-size:25px;line-height:1;cursor:pointer}
+.tz-date-step:hover,.tz-date-today:hover{border-color:#b4975b;background:#fff}
+#tzDatePicker{min-width:0;width:100%;height:42px;padding:0 10px;border:1px solid rgba(18,56,59,.22);background:#fffdf8;color:#12383b;font:13px Arial,sans-serif;color-scheme:light}
+.tz-date-today{height:42px;padding:0 13px;border:1px solid rgba(18,56,59,.22);background:transparent;color:#34514a;font:10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.tz-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:440px){.tz-date-explorer{padding:14px}.tz-date-controls{grid-template-columns:38px minmax(0,1fr) 38px}.tz-date-step{width:38px;height:40px}.tz-date-today{grid-column:1/-1;height:36px}#tzDatePicker{height:40px}}
+</style>
 </head>
 <body>
 
@@ -1211,11 +1223,21 @@ body.program-modal-open{overflow:hidden}
     <button class="tz-close" id="tzClose" aria-label="Close reflection">×</button>
     <div class="tz-modal-kicker">SEIRI DEL MAR | LIVING TIME</div>
     <h2 class="tz-modal-title" id="tzModalTitle">6 Kawoq</h2>
-    <div class="tz-modal-date" id="tzModalDate"></div>
+    <div class="tz-modal-date" id="tzModalDate" aria-live="polite"></div>
+<div class="tz-date-explorer" aria-label="Explore Living Time for a travel date">
+  <div class="tz-date-explorer-copy"><span>PLAN WITH LIVING TIME</span><p>Choose a travel date to explore its energy.</p></div>
+  <div class="tz-date-controls">
+    <button class="tz-date-step" id="tzPreviousDate" type="button" aria-label="Previous day" title="Previous day">&lsaquo;</button>
+    <label class="tz-sr-only" for="tzDatePicker">Choose a travel date</label>
+    <input id="tzDatePicker" type="date" aria-label="Choose a travel date">
+    <button class="tz-date-step" id="tzNextDate" type="button" aria-label="Next day" title="Next day">&rsaquo;</button>
+    <button class="tz-date-today" id="tzTodayDate" type="button">Today</button>
+  </div>
+</div>
     <div class="tz-modal-art">
       <span class="tz-number" id="tzModalNumber" aria-label="Tzolk'in number 6"><img id="tzModalNumberImage" src="assets/tzolkin/tone-6.png" alt="" /></span>
       <span class="tz-glyph" id="tzModalGlyph" aria-label="Maya day sign"><img id="tzModalGlyphImage" src="assets/tzolkin/cauac.png" alt="" /></span>
-      <div><div class="tz-label">Today's energy</div><div class="tz-name">Kawoq | Community, care & renewal</div></div>
+      <div><div class="tz-label" id="tzEnergyLabel">Today's energy</div><div class="tz-name">Kawoq | Community, care & renewal</div></div>
     </div>
     <p class="tz-modal-copy">Let today remind you that a meaningful journey is shaped by the people and places that hold it. In Belize, connection can begin with a conversation, the rhythm of the sea, a shared meal or a moment of care. Give yourself space to notice what helps you feel welcome, restored and connected.</p>
     <div class="tz-reflection">What would make today feel more nourishing, connected or memorable?</div>
@@ -2162,6 +2184,8 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
   const glyphFiles=["imix","ik","akbal","kan","chicchan","cimi","manik","lamat","muluc","oc","chuen","eb","ben","ix","men","cib","caban","etznab","cauac","ahau"];
   const signIndex=((elapsed+19)%20+20)%20;
   const sign=signs[signIndex];
+  let selectedDate=new Date(today.getFullYear(),today.getMonth(),today.getDate(),12);
+  let selectedDateLabel=dateLabel,selectedNumber=number,selectedSign=sign;
   $('tzNumberImage').src='assets/tzolkin/tone-'+number+'.png';
   $('tzGlyphImage').src='assets/tzolkin/'+glyphFiles[signIndex]+'.png';
   const englishNames = {
@@ -2224,6 +2248,46 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
     'Ajpu':'What experience would make you feel more alive today?'
   };
   document.querySelector('.tz-reflection').textContent=reflectionQuestions[sign] || reflectionQuestions['Kawoq'];
+  function renderSelectedLivingDate(date){
+    if(!(date instanceof Date)||Number.isNaN(date.getTime()))return;
+    const chosen=new Date(date.getTime());
+    chosen.setHours(12,0,0,0);
+    const y=chosen.getFullYear(),m=chosen.getMonth()+1,d=chosen.getDate();
+    const a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;
+    const jdn=d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+    const elapsed=jdn-584283;
+    selectedNumber=((elapsed+3)%13+13)%13+1;
+    const chosenSignIndex=((elapsed+19)%20+20)%20;
+    selectedSign=signs[chosenSignIndex];
+    selectedDate=chosen;
+    selectedDateLabel=d+' '+shortMonths[m-1]+' '+y;
+    const weekdays=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    $('tzModalDate').textContent=weekdays[chosen.getDay()]+', '+d+' '+months[m-1]+' '+y;
+    $('tzModalTitle').textContent=selectedNumber+' '+selectedSign+' / '+(englishNames[selectedSign]||selectedSign);
+    $('tzModalNumberImage').src='assets/tzolkin/tone-'+selectedNumber+'.png';
+    $('tzModalGlyphImage').src='assets/tzolkin/'+glyphFiles[chosenSignIndex]+'.png';
+    $('tzModalNumber').setAttribute('aria-label',"Tzolk'in number "+selectedNumber);
+    $('tzModalGlyph').setAttribute('aria-label',selectedSign+' day sign');
+    const sameAsToday=y===today.getFullYear()&&m===today.getMonth()+1&&d===today.getDate();
+    $('tzEnergyLabel').textContent=sameAsToday?"Today's energy":'Energy for your chosen date';
+    document.querySelector('.tz-modal-art .tz-name').textContent=selectedSign+' | Living Time reflection';
+    document.querySelector('.tz-modal-copy').textContent=reflections[selectedSign]||reflections['Kawoq'];
+    document.querySelector('.tz-reflection').textContent=reflectionQuestions[selectedSign]||reflectionQuestions['Kawoq'];
+    $('tzDatePicker').value=String(y).padStart(4,'0')+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+  }
+  function setLivingDateFromInput(value){
+    const parts=value.split('-').map(Number);
+    if(parts.length!==3||parts.some(part=>!Number.isFinite(part)))return;
+    const chosen=new Date(0);
+    chosen.setFullYear(parts[0],parts[1]-1,parts[2]);
+    chosen.setHours(12,0,0,0);
+    if(chosen.getFullYear()===parts[0]&&chosen.getMonth()===parts[1]-1&&chosen.getDate()===parts[2])renderSelectedLivingDate(chosen);
+  }
+  $('tzDatePicker').addEventListener('change',event=>setLivingDateFromInput(event.target.value));
+  $('tzPreviousDate').addEventListener('click',()=>{const next=new Date(selectedDate);next.setDate(next.getDate()-1);renderSelectedLivingDate(next);});
+  $('tzNextDate').addEventListener('click',()=>{const next=new Date(selectedDate);next.setDate(next.getDate()+1);renderSelectedLivingDate(next);});
+  $('tzTodayDate').addEventListener('click',()=>renderSelectedLivingDate(today));
+  renderSelectedLivingDate(selectedDate);
 
   function readNotes(){try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){return []}}
   const MEMORY_STORE='seiriPersonalMemories_v1';
@@ -2547,7 +2611,7 @@ close.addEventListener('click',closeModal);
   $('tzSave').addEventListener('click',()=>{
     const note=notes.value.trim();
     if(!note){status.textContent='Add a note first, then save it to My Seiri.';notes.focus();return;}
-    const saved=readNotes();saved.push({date:dateLabel,code:number+' '+sign,note,createdAt:new Date().toISOString()});
+    const saved=readNotes();saved.push({date:selectedDateLabel,code:selectedNumber+' '+selectedSign,note,createdAt:new Date().toISOString()});
     try{localStorage.setItem(STORE,JSON.stringify(saved));status.textContent='Saved to My Seiri ';renderNotes();notes.value='';}
     catch(e){status.textContent='This browser could not save the note. Try again or check storage settings.';}
   });
