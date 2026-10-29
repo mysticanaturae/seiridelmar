@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102d2b">
+<title>EMBER | Seiri del Mar</title>
+<style>
+:root{--ink:#102d2b;--deep:#0a201f;--cream:#f5f0e6;--gold:#c9a66b;--muted:#aebbb3;--line:rgba(245,240,230,.15)}
+*{box-sizing:border-box}body{margin:0;background:var(--deep);color:var(--cream);font-family:Georgia,"Times New Roman",serif}
+a{color:inherit}.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px clamp(20px,5vw,72px);border-bottom:1px solid var(--line);font:12px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.brand{color:var(--gold);text-decoration:none}.navlinks{display:flex;gap:22px;flex-wrap:wrap}.navlinks a{text-decoration:none}
+.hero{min-height:65vh;position:relative;display:flex;align-items:end;padding:clamp(28px,7vw,96px);background:#193b37;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.57}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,24,23,.92),rgba(6,24,23,.08))}
+.hero-copy{position:relative;z-index:1;max-width:800px}.eyebrow{font:11px Arial,sans-serif;letter-spacing:.23em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(56px,11vw,130px);font-weight:normal;letter-spacing:.08em;margin:15px 0}h2{font-weight:normal;font-size:clamp(30px,4vw,48px);margin:0 0 14px}.hero p,.section-intro{font-size:18px;line-height:1.7;max-width:620px;color:#e3e1d8}
+main{padding:64px clamp(20px,5vw,72px)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.tabs{display:flex;gap:9px;flex-wrap:wrap;margin:28px 0 32px}.tab,.btn{border:1px solid var(--gold);background:transparent;color:var(--cream);padding:12px 17px;border-radius:999px;cursor:pointer;font:12px Arial,sans-serif;letter-spacing:.05em}.tab.active,.btn.primary{background:var(--gold);color:#172b27}
+.search{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--cream);padding:13px 16px;border-radius:4px;min-width:min(100%,280px)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.dish{border:1px solid var(--line);background:rgba(255,255,255,.025);cursor:pointer;transition:transform .25s,border-color .25s;overflow:hidden}.dish:hover{transform:translateY(-4px);border-color:var(--gold)}
+.dish img{width:100%;height:220px;object-fit:cover;display:block}.dish-content{padding:20px}.dish-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.dish h3{font-size:22px;font-weight:normal;margin:0 0 9px}.price{white-space:nowrap;color:var(--gold);font:13px Arial,sans-serif}.dish p{color:var(--muted);font:14px/1.6 Arial,sans-serif;min-height:66px}.more{font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.note{color:var(--muted);font:12px/1.6 Arial,sans-serif;margin-top:30px}.saved-link{border-bottom:1px solid var(--gold);padding-bottom:3px;text-decoration:none}
+footer{padding:30px clamp(20px,5vw,72px);border-top:1px solid var(--line);font:12px/1.7 Arial,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:10;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.panel{width:min(720px,100%);max-height:90vh;overflow:auto;background:#112b29;border:1px solid rgba(201,166,107,.5);position:relative}.panel img{width:100%;height:280px;object-fit:cover;display:block}.panel-body{padding:clamp(22px,4vw,38px)}.close{position:absolute;top:12px;right:12px;background:#102d2b;color:white;border:1px solid var(--line);border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer}.panel h2{margin-top:12px}.panel p{font:15px/1.7 Arial,sans-serif;color:#d3dcd5}.modal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.status{font:12px Arial,sans-serif;color:var(--gold);margin-top:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dish img{height:190px}}@media(max-width:560px){.grid{grid-template-columns:1fr}.dish img{height:230px}.topbar{align-items:flex-start}.navlinks{gap:12px}.hero{min-height:58vh}.hero p{font-size:16px}}
+/* Hero image visibility fix */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#193b37;min-height:65vh}
+.hero img#heroImage{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.88;z-index:0}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,24,23,.72),rgba(6,24,23,.02))}
+.hero .hero-copy{position:relative;z-index:2}
+</style>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html">SEIRI DEL MAR</a>
+<nav class="navlinks" aria-label="Main navigation"><a href="index.html">Home</a><a href="#menus">Dining</a><a href="#menus">Menus</a><a href="#my-seiri" id="mySeiriLink">My Seiri</a></nav>
+</header>
+<section class="hero">
+<img id="heroImage" src="assets/seiri/official-47.webp" alt="Dining atmosphere at Ember">
+<div class="hero-copy"><div class="eyebrow">Dining at Seiri del Mar</div><h1>EMBER</h1><p>Where the Caribbean meets the table. Explore the menu, discover your favourites and save the dishes you want to remember in My Seiri.</p><a class="btn primary" href="#menus">Explore the menus ↓</a></div>
+</section>
+<main id="menus">
+<div class="section-head"><div><div class="eyebrow">A taste to remember</div><h2>Discover the menu</h2><p class="section-intro">Explore breakfast, lunch, dinner, desserts and drinks. Select any dish to view its details and save it to My Seiri.</p></div><input class="search" id="search" type="search" placeholder="Search dishes..." aria-label="Search dishes"></div>
+<div class="tabs" id="tabs" role="tablist" aria-label="Menu categories"></div>
+<div class="grid" id="dishGrid"></div>
+<p class="note">Menu preview based on supplied menu text. Prices shown in Belize dollars (BZD). USD estimates use BZ$2 = US$1. Taxes and service charges should be confirmed against the current menu before publication.</p>
+</main>
+<footer id="my-seiri"><span>EMBER · SEIRI DEL MAR</span><span>Saved favourites are stored in this browser on this device.</span><a class="saved-link" href="index.html#my-seiri">Open My Seiri on the main page ↗</a></footer>
+<div class="modal" id="dishModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="panel"><button class="close" id="closeModal" aria-label="Close">×</button><img id="modalImage" src="" alt=""><div class="panel-body"><div class="eyebrow" id="modalCategory"></div><h2 id="modalTitle"></h2><div class="price" id="modalPrice"></div><p id="modalDescription"></p><div class="modal-actions"><button class="btn primary" id="saveDish">♡ Save to My Seiri</button><button class="btn" id="closeModal2">Continue exploring</button></div><div class="status" id="saveStatus" aria-live="polite"></div></div></div>
+</div>
+<script>
+const imagePaths = ["assets/seiri/official-21.jpg","assets/seiri/official-22.jpg","assets/seiri/official-23.jpg","assets/seiri/official-24.jpg","assets/seiri/official-25.jpg","assets/seiri/official-26.jpg","assets/seiri/official-27.jpg","assets/seiri/official-28.jpg","assets/seiri/official-29.jpg","assets/seiri/official-30.jpg","assets/seiri/official-31.jpg","assets/seiri/official-32.jpg","assets/seiri/official-33.jpg","assets/seiri/official-34.jpg","assets/seiri/official-35.jpg","assets/seiri/official-36.jpg","assets/seiri/official-37.jpg","assets/seiri/official-38.jpg"];
+const dishes = [{"id":"breakfast-potato-hash","category":"Breakfast","name":"Potato Bacon Hash","price":30,"description":"Crispy potatoes, bacon, bell peppers and onions, topped with mozzarella, cherry tomatoes, kale and a soy-boiled egg.","image":0},{"id":"breakfast-yogurt-parfait","category":"Breakfast","name":"Yogurt Parfait","price":22,"description":"Creamy yogurt, crunchy granola, cantaloupe, strawberries and blueberries.","image":1},{"id":"breakfast-pancakes","category":"Breakfast","name":"Pancakes","price":20,"description":"Fluffy buttery pancakes with blueberries, banana, maple syrup, bacon onion jam and powdered sugar.","image":2},{"id":"breakfast-waffles","category":"Breakfast","name":"Waffles","price":20,"description":"Golden waffles with blueberries, coconut flakes, maple syrup, bacon onion jam and powdered sugar.","image":3},{"id":"breakfast-eggs-benedict","category":"Breakfast","name":"Eggs Benedict","price":28,"description":"Poached eggs on homemade muffins with ham, kale and hollandaise sauce.","image":4},{"id":"breakfast-french-toast","category":"Breakfast","name":"French Toast","price":20,"description":"Homemade cinnamon bread filled with mascarpone and strawberries, with tropical fruit compote.","image":5},{"id":"breakfast-bagels","category":"Breakfast","name":"Bagels","price":30,"description":"Homemade sesame bagels with herb cream cheese, pepperoni, prosciutto and fresh fruit.","image":6},{"id":"lunch-fish-tacos","category":"Lunch","name":"Baja California Fish Tacos","price":22,"description":"Beer-battered fish strips in tortillas with cabbage slaw and chipotle mayonnaise.","image":11},{"id":"lunch-beef-sliders","category":"Lunch","name":"Beef Sliders","price":25,"description":"Prime beef, melted cheese, kale and tomato jelly on brioche, served with fries.","image":15},{"id":"lunch-guacamole","category":"Lunch","name":"Holy Guacamole Dip","price":25,"description":"Guacamole dip served with assorted chips.","image":9},{"id":"lunch-hummus","category":"Lunch","name":"Trio of Hummus","price":25,"description":"Herb, sundried tomato and saffron hummus with infused olive oil, artisan pita and vegetables.","image":16},{"id":"lunch-ceviche","category":"Lunch","name":"Seafood Ceviche","price":55,"description":"Fresh seafood with tomatoes, purple onion, coriander, habanero Agua de Chile and assorted chips.","image":11},{"id":"lunch-margherita","category":"Lunch","name":"Margherita Pizza","price":32,"description":"Tuscan-style pizza with fresh basil, pomodoro and mozzarella.","image":12},{"id":"lunch-seafood-pizza","category":"Lunch","name":"Seafood Lovers Pizza","price":70,"description":"Shrimp, fish and octopus with mozzarella, pomodoro and garlic-infused oil.","image":13},{"id":"lunch-fish-bowl","category":"Lunch","name":"Fish Taco Bowl","price":44,"description":"Coconut brown rice, salsa verde, cabbage, radish, coriander, tortilla strips and blackened snapper.","image":14},{"id":"lunch-caesar","category":"Lunch","name":"Classic Caesar Salad","price":35,"description":"Romaine lettuce with Caesar dressing, focaccia toast, roasted cherry tomatoes and Parmesan.","image":15},{"id":"dinner-frutti-mare","category":"Dinner","name":"Tuscan Frutti di Mare","price":55,"description":"Lobster when in season, octopus, shrimp and mussels in garlic-lime butter, served with baguette.","image":16},{"id":"dinner-chicken-ballotine","category":"Dinner","name":"Chicken Ballotine","price":45,"description":"Chicken breast stuffed with Italian sausage, ground beef, broccoli and mushrooms, with yellow squash purée.","image":17},{"id":"dinner-ribeye","category":"Dinner","name":"Ribeye Steak","price":75,"description":"Ribeye with cauliflower purée, fondant potatoes and Hennessy cognac peppercorn sauce.","image":17},{"id":"dinner-snapper","category":"Dinner","name":"Lemongrass Snapper","price":60,"description":"Snapper with lemongrass, potato purée, broccoli, cherry tomatoes and cilantro-green pepper sauce.","image":5},{"id":"dessert-truffle-cake","category":"Desserts","name":"Chocolate Truffle Cake","price":20,"description":"Chocolate cake with truffle centre, chocolate meringue buttercream, dried raspberries and gold flakes.","image":9},{"id":"dessert-coconut-mousse","category":"Desserts","name":"Coconut Mousse \u0026 Lime Sphere","price":22,"description":"Coconut mousse with lime compote, coconut-vanilla chiffon, toasted coconut and candied lime zest.","image":0},{"id":"dessert-brownie","category":"Desserts","name":"Peanut Butter Crunch Brownie","price":18,"description":"Warm chocolate fudge brownie with peanut butter crunch, chocolate ganache and cacao nibs.","image":11},{"id":"drink-rum-punch","category":"Drinks \u0026 Happy Hour","name":"Rum Punch","price":8,"description":"White and dark rum with fruit punch mix.","image":12},{"id":"drink-mojito","category":"Drinks \u0026 Happy Hour","name":"Classic Mojito","price":14,"description":"Rum, lime juice, simple syrup and mint.","image":13},{"id":"drink-caribbean-romance","category":"Drinks \u0026 Happy Hour","name":"Caribbean Romance","price":15,"description":"White and dark rum, orange and pineapple juice, and amaretto.","image":14}];
+const categories = ["All menus","Breakfast","Lunch","Dinner","Desserts","Drinks & Happy Hour"];
+const grid = document.getElementById("dishGrid");
+const tabs = document.getElementById("tabs");
+const search = document.getElementById("search");
+const modal = document.getElementById("dishModal");
+const memoryKey = "seiriPersonalMemories_v1";
+let activeCategory = "All menus";
+let selectedDish = null;
+
+
+
+function escapeHtml(value) {
+ return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+}
+function money(value) {
+ return "BZ$" + Number(value).toFixed(2).replace(/\.00$/,"") + " · approx. US$" + (Number(value)/2).toFixed(2).replace(/\.00$/,"");
+}
+function savedItems() {
+ try { return JSON.parse(localStorage.getItem(memoryKey) || "[]"); } catch(e) { return []; }
+}
+function isSaved(dish) {
+ return savedItems().some(item => item.menuItemId === dish.id || item.title === "EMBER: " + dish.name);
+}
+function renderTabs() {
+ tabs.innerHTML = "";
+ categories.forEach(category => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "tab" + (category === activeCategory ? " active" : "");
+  button.textContent = category;
+  button.setAttribute("aria-pressed", category === activeCategory ? "true" : "false");
+  button.addEventListener("click", () => { activeCategory = category; renderTabs(); renderDishes(); });
+  tabs.appendChild(button);
+ });
+}
+function renderDishes() {
+ const term = search.value.trim().toLowerCase();
+ const filtered = dishes.filter(dish =>
+  (activeCategory === "All menus" || dish.category === activeCategory) &&
+  (dish.name + " " + dish.description + " " + dish.category).toLowerCase().includes(term)
+ );
+ grid.innerHTML = "";
+ if (!filtered.length) {
+  grid.innerHTML = '<p class="note">No dishes found. Try another search.</p>';
+  return;
+ }
+ filtered.forEach(dish => {
+  const card = document.createElement("article");
+  card.className = "dish";
+  card.tabIndex = 0;
+  card.setAttribute("role","button");
+  card.setAttribute("aria-label","View " + dish.name);
+  card.innerHTML = '<img src="' + escapeHtml(imagePaths[dish.image] || imagePaths[0]) + '" alt="' + escapeHtml(dish.name) + '" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>' + escapeHtml(dish.name) + '</h3><span class="price">BZ$' + escapeHtml(dish.price) + '</span></div><p>' + escapeHtml(dish.description) + '</p><span class="more">' + (isSaved(dish) ? "♥ Saved in My Seiri" : "View dish & save ↗") + '</span></div>';
+  card.addEventListener("click", () => openDish(dish));
+  card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openDish(dish); } });
+  grid.appendChild(card);
+ });
+}
+function openDish(dish) {
+ selectedDish = dish;
+ document.getElementById("modalImage").src = imagePaths[dish.image] || imagePaths[0];
+ document.getElementById("modalImage").alt = dish.name;
+ document.getElementById("modalCategory").textContent = dish.category;
+ document.getElementById("modalTitle").textContent = dish.name;
+ document.getElementById("modalPrice").textContent = money(dish.price);
+ document.getElementById("modalDescription").textContent = dish.description;
+ document.getElementById("saveStatus").textContent = isSaved(dish) ? "Already saved in My Seiri." : "";
+ document.getElementById("saveDish").textContent = isSaved(dish) ? "♥ Saved to My Seiri" : "♡ Save to My Seiri";
+ modal.classList.add("open");
+ document.body.style.overflow = "hidden";
+ document.getElementById("closeModal").focus();
+}
+function closeDish() {
+ modal.classList.remove("open");
+ document.body.style.overflow = "";
+}
+function saveSelectedDish() {
+ if (!selectedDish) return;
+ const items = savedItems();
+ if (items.some(item => item.menuItemId === selectedDish.id || item.title === "EMBER: " + selectedDish.name)) {
+  document.getElementById("saveStatus").textContent = "This dish is already in My Seiri.";
+  return;
+ }
+ const image = imagePaths[selectedDish.image] || imagePaths[0];
+ items.push({
+  id: "ember-" + selectedDish.id,
+  menuItemId: selectedDish.id,
+  title: "EMBER: " + selectedDish.name,
+  note: selectedDish.category + " · " + money(selectedDish.price) + "\n" + selectedDish.description,
+  photo: image,
+  date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),
+  createdAt: new Date().toISOString(),
+  type: "menu-item"
+ });
+ try {
+  localStorage.setItem(memoryKey, JSON.stringify(items));
+  document.getElementById("saveStatus").textContent = "Saved. Your favourite is now in My Seiri on this browser.";
+  document.getElementById("saveDish").textContent = "♥ Saved to My Seiri";
+  renderDishes();
+ } catch(e) {
+  document.getElementById("saveStatus").textContent = "Unable to save in this browser. Check your browser storage settings.";
+ }
+}
+search.addEventListener("input", renderDishes);
+document.getElementById("saveDish").addEventListener("click", saveSelectedDish);
+document.getElementById("closeModal").addEventListener("click", closeDish);
+document.getElementById("closeModal2").addEventListener("click", closeDish);
+modal.addEventListener("click", event => { if (event.target === modal) closeDish(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeDish(); });
+document.getElementById("mySeiriLink").addEventListener("click", () => {
+ // My Seiri is shared with the main page using the same browser storage.
+});
+renderTabs();
+renderDishes();
+</script>
+</body>
+</html>

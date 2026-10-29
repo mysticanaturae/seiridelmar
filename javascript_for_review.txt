@@ -1,0 +1,249 @@
+﻿
+const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
+if(menuBtn&&nav){menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));}
+
+(function(){
+  const $ = id => document.getElementById(id);
+  const backdrop=$('tzBackdrop'), widget=$('tzWidget'), close=$('tzClose'), notes=$('tzNotes'), status=$('tzSaveStatus');
+  const STORE='seiriLivingTimeNotes_v1';
+  const today = new Date();
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const shortMonths=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateLabel=today.getDate()+' '+shortMonths[today.getMonth()]+' '+today.getFullYear();
+  const longDate=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][today.getDay()]+', '+today.getDate()+' '+months[today.getMonth()]+' '+today.getFullYear();
+  $('tzDate').textContent=dateLabel;
+  $('tzModalDate').textContent=longDate;
+
+  // Gregorian date -> Julian Day Number -> Tzolk'in using the 584283 correlation.
+  // Day sign names use the Guatemalan spelling set; 0.0.0.0.0 anchors at 4 Ajaw.
+  const y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate();
+  const a=Math.floor((14-m)/12), yy=y+4800-a, mm=m+12*a-3;
+  const jdn=d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+  const elapsed=jdn-584283;
+  const number=((elapsed+3)%13+13)%13+1;
+  
+  const signs=["Imox","Iq","Aq'ab'al","K'at","Kan","Kame","Kej","Q'anil","Toj","Tz'i","B'atz","E","Aj","I'x","Tz'ikin","Ajmaq","Noj","Tijax","Kawoq","Ajpu"];
+  const glyphFiles=["imix","ik","akbal","kan","chicchan","cimi","manik","lamat","muluc","oc","chuen","eb","ben","ix","men","cib","caban","etznab","cauac","ahau"];
+  const signIndex=((elapsed+19)%20+20)%20;
+  const sign=signs[signIndex];
+  $('tzNumberImage').src='assets/tzolkin/tone-'+number+'.png';
+  $('tzGlyphImage').src='assets/tzolkin/'+glyphFiles[signIndex]+'.png';
+  const meanings = {"Kej":"Deer","Tz\u0027i":"Dog","Noj":"Wisdom","Toj":"Offering","Imox":"Crocodile","Tijax":"Flint","Kan":"Seed","Q\u0027anil":"Seed / Abundance","B\u0027atz":"Thread / Weaver","E":"Path","K\u0027at":"Net","Ajmaq":"Owl / Forgiveness","Tz\u0027ikin":"Bird","Aj":"Cane","Ajpu":"Sun / Lord","I\u0027x":"Jaguar","Iq\u0027":"Wind","Kawoq":"Community / Storm","Kame":"Death","Aq\u0027ab\u0027al":"Dawn"};
+  // The short reflection copy is intentionally editorial and can be refined with the full approved content catalogue.
+  const reflections={
+    'Kawoq':'Let today remind you that a meaningful journey is shaped by the people and places that hold it. In Belize, connection can begin with a conversation, the rhythm of the sea, a shared meal or a moment of care. Give yourself space to notice what helps you feel welcome, restored and connected.',
+    'Imox':'Let the day begin with curiosity. The Caribbean invites you to loosen your grip on the plan, listen to the water and leave room for an unexpected discovery.',
+    "Iq":"Notice what moves through the day: the sea breeze, a new idea, a conversation. Give yourself a moment to breathe before choosing what comes next.",
+    "Aq'ab'al":"Welcome the in-between moments: first light, dusk, the pause between an outing and rest. Sometimes the most memorable part of a journey begins quietly.",
+    "K'at":"Gather what matters today. Choose one small experience, conversation or intention you want to carry with you from Belize.",
+    'Kan':'Follow your curiosity with care. Let the landscape invite discovery while giving yourself time to notice what feels alive and meaningful.',
+    'Kame':'Make room for what you are ready to set down. A quiet walk by the sea can be a simple way to close one chapter and make space for another.',
+    'Kej':'Let the natural world set the pace. Walk slowly, notice the trees and shoreline, and give your attention to the place you came to experience.',
+    "Q'anil":"Notice what is growing. A memorable stay is often made from small moments that receive your attention: a taste, a view, a shared laugh.",
+    'Toj':'Pause and appreciate what has been offered today: time, care, hospitality or a beautiful view. Let gratitude become part of the experience.',
+    "Tz'i":"Choose one thing to give your full attention to today. A meaningful connection often grows from presence, trust and listening.",
+    "B'atz":"Your journey is a thread in a larger story. Make something, write something or share a moment that gives today your own signature.",
+    'E':'Let the journey unfold one step at a time. You do not need to fit everything into one day; leave space for the path itself.',
+    'Aj':'Find a moment to stand tall in your own choices. What would help you feel grounded and supported during your time here?',
+    "I'x":"Seek a little stillness in nature. Let the quiet strength of the forest, sea or evening light bring you back to your own centre.",
+    "Tz'ikin":"Look beyond the familiar view. What new perspective, local story or small adventure might make today stay with you?",
+    'Ajmaq':'Make space for compassion, including toward yourself. A gentle moment of reflection can change how you remember a whole day.',
+    'Noj':'Give one thought room to become clear. A journal, a conversation or a quiet pause can help you hear what matters.',
+    'Tijax':'Choose what restores clarity. Let today include one simple boundary, a refreshing pause or a decision that makes the rest of your stay feel lighter.',
+    'Ajpu':'Let the day hold a little courage and joy. Choose an experience that reminds you why you made room for this journey.'
+  };
+   $("tzNumber").setAttribute("aria-label","Tzolk'in number "+number);
+  $('tzName').textContent=number+' '+sign; $('tzGlyph').setAttribute('aria-label',sign+' day sign');
+  $('tzModalTitle').textContent=number+' '+sign; $('tzModalNumber').textContent=number;
+  const copy=reflections[sign] || reflections['Kawoq'];
+  document.querySelector('.tz-modal-copy').textContent=copy;
+  document.querySelector('.tz-modal-art .tz-name').textContent=sign+' | Living Time reflection';
+  const reflectionQuestions={
+    'Kawoq':'What would make today feel more nourishing, connected or memorable?',
+    'Imox':'What could you discover today if you left a little room for the unexpected?',
+    "Iq":"What do you want to breathe in, and what are you ready to let pass?",
+    "Aq'ab'al":"What new beginning might be hiding in a quiet moment?",
+    "K'at":"What is worth gathering, keeping or giving your attention to today?",
+    'Kan':'What is calling your curiosity, and how can you explore it with care?',
+    'Kame':'What are you ready to leave behind so you can enjoy this moment more fully?',
+    'Kej':'Where could nature help you slow down and feel grounded today?',
+    "Q'anil":"What small thing is growing in your life that deserves your attention?",
+    'Toj':'What part of today do you want to appreciate before it passes?',
+    "Tz'i":"Who or what deserves your full attention today?",
+    "B'atz":"What small moment would you like to weave into your Belize story?",
+    'E':'What would change if you focused on the next step instead of the whole journey?',
+    'Aj':'What helps you feel supported and grounded while you are away?',
+     "I'x":"Where can you find a little stillness in the natural world today?",
+     "Tz'ikin":"What new perspective would you like to take home from this journey?",
+    'Ajmaq':'Where could you offer yourself a little more compassion today?',
+    'Noj':'What thought deserves a quiet moment to become clearer?',
+    'Tijax':'What could you simplify to make more room for what matters?',
+    'Ajpu':'What experience would make you feel more alive today?'
+  };
+  document.querySelector('.tz-reflection').textContent=reflectionQuestions[sign] || reflectionQuestions['Kawoq'];
+
+  function readNotes(){try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){return []}}
+  const MEMORY_STORE='seiriPersonalMemories_v1';
+  function readMemories(){try{return JSON.parse(localStorage.getItem(MEMORY_STORE)||'[]')}catch(e){return []}}
+  function renderNotes(){
+    const container=$('savedNotes'), reflections=readNotes(), memories=readMemories();
+    container.innerHTML='';
+    if(!reflections.length&&!memories.length){container.innerHTML='<div class="empty-note">Your saved reflections and memories will appear here.</div>';return;}
+    const combined=[...reflections.map((item,index)=>({...item,_kind:'reflection',_key:'r'+index,_time:item.createdAt||''})),...memories.map(item=>({...item,_kind:'memory',_key:item.id,_time:item.createdAt||''}))].sort((a,b)=>b._time.localeCompare(a._time)).slice(0,12);
+    combined.forEach(item=>{
+      const el=document.createElement('div');el.className='saved-note';
+      const label=document.createElement('small');label.textContent=(item._kind==='memory'?'MEMORY | ':'LIVING TIME | ')+(item.date||new Date(item.createdAt).toLocaleDateString());
+      const del=document.createElement('button');del.className='memory-delete';del.type='button';del.textContent='Delete';del.addEventListener('click',()=>{
+        if(item._kind==='memory'){const next=readMemories().filter(m=>m.id!==item.id);localStorage.setItem(MEMORY_STORE,JSON.stringify(next));}
+        else {const all=readNotes();const target=all.findIndex(n=>n.createdAt===item.createdAt&&n.note===item.note);if(target>=0){all.splice(target,1);localStorage.setItem(STORE,JSON.stringify(all));}}
+        renderNotes();
+      });
+      const body=document.createElement('div');
+      if(item._kind==='memory'){
+        const title=document.createElement('div');title.className='memory-title';title.textContent=item.title||'Saved memory';body.appendChild(title);
+        const copy=document.createElement('div');copy.textContent=item.note||'';body.appendChild(copy);
+        if(item.photo){const img=document.createElement('img');img.src=item.photo;img.alt='Saved memory photo';body.appendChild(img);}
+      }else body.textContent=item.note;
+      el.append(del,label,body);container.appendChild(el);
+    });
+  }
+  function imageToCompressedData(file){return new Promise((resolve,reject)=>{
+    const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.72));};img.src=reader.result;};reader.readAsDataURL(file);
+  });}
+  const memoryForm=$('memoryForm');
+  if(memoryForm){memoryForm.addEventListener('submit',async e=>{
+    e.preventDefault();const title=$('memoryTitle').value.trim(),note=$('memoryBody').value.trim(),file=$('memoryPhoto').files[0],memoryStatus=$('memoryStatus');
+    if(!title||!note){memoryStatus.textContent='Add a title and a few words first.';return;}
+    memoryStatus.textContent='Saving your memoryĂ˘â‚¬Â¦';
+    try{
+      let photo='';if(file){if(!file.type.startsWith('image/'))throw new Error('Choose an image file.');photo=await imageToCompressedData(file);}
+      const items=readMemories();items.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title,note,photo,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),createdAt:new Date().toISOString()});
+      localStorage.setItem(MEMORY_STORE,JSON.stringify(items));memoryForm.reset();memoryStatus.textContent='Saved on this device. Your memory now appears below.';renderNotes();
+    }catch(err){memoryStatus.textContent='Could not save this item. Try a smaller photo or remove the photo and save again.';}
+  });}
+  const catalogItems=[
+    {c:'bodywork',cat:'Bodywork & massage',n:'Classic Massage',d:'A restorative full-body massage, available in several session lengths.',time:'30 / 60 / 90 / 120 min',price:'$50 / $100 / $150 / $200',group:'Private appointment'},
+    {c:'bodywork',cat:'Bodywork & massage',n:'Deep Tissue Massage',d:'Focused bodywork for guests who prefer more sustained pressure on areas of tension.',time:'90 minutes',price:'$175 individual',group:'Private appointment'},
+    {c:'bodywork',cat:'Bodywork & massage',n:'Foot Reflexology',d:'A focused session working with reflex points in the feet.',time:'60 minutes',price:'$110 individual',group:'Private appointment'},
+    {c:'bodywork',cat:'Bodywork & massage',n:'Intuitive Energy Massage',d:'A personalized massage guided by the needs and feedback of your body.',time:'90 minutes',price:'$150 individual',group:'Private appointment'},
+    {c:'bodywork',cat:'Bodywork & massage',n:'Maya Tzolk'in Massage | 26 Points of Light',d:'A distinctive bodywork session centered on the activation of 26 Points of Light.',time:'90 minutes',price:'$175 individual',group:'Private appointment'},
+    {c:'bodywork',cat:'Bodywork & massage',n:'Maya Abdominal Massage & Spiritual Wellbeing',d:'Grounding abdominal bodywork for deeper reconnection with your body.',time:'90 min bodywork / 120 min self-care learning',price:'$175 / $225 individual',group:'Private appointment'},
+    {c:'bodywork',cat:'Bodywork & massage',n:'Maya Spiritual Herbal Bath',d:'A restorative bathing ritual using a spiritual and herbal approach.',time:'60 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Aqua Lemu Reiki',d:'An ocean-inspired Reiki experience accompanied by the resonant sound of shells. In-person and distance sessions may be available.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Ask about distance format'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Jin Shin Jyutsu',d:'A gentle, attentive session inspired by the Japanese art of harmonizing the body's energy.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Munay Ki',d:'A personal energy and spiritual practice focused on connection, intention and transformation.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Maya Tzolk'in Personal Time Reading',d:'Explore your birth energy through the traditional Maya calendar, with reflection on your day sign, tone and relationship with time.',time:'90 minutes',price:'$175 individual | $87.50 group per guest',group:'In person or online'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Intuitive Guidance & Tarot',d:'A thoughtful session for moments of decision, transition or when you would welcome a fresh perspective.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Lemurian Astrology',d:'Explore a personal astrological perspective through the BLINKITA Lemurian approach.',time:'60 minutes',price:'$150 individual | $75 group per guest',group:'Ask about format'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'13 Zodiac Astrology',d:'A personal exploration using a 13-zodiac framework.',time:'60 minutes',price:'$150 individual | $75 group per guest',group:'Ask about format'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Pleiadian Astrology',d:'A personal session exploring themes through Pleiadian astrology.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Ask about format'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Star Essence | Flower, Crystal & Animal Essences',d:'A personalized session with selected flower, crystal and animal essences, including Bach flower remedies.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'wisdom',cat:'Energy & ancient wisdom',n:'Sacred Tzite Seed Divination',d:'A personal reading using sacred tzite seeds.',time:'90 minutes',price:'$250 individual only',group:'No group format listed'},
+    {c:'coaching',cat:'Personal transformation',n:'The Magickal Vitality',d:'A supportive session exploring your relationship with your body, vitality and the way you want to live.',time:'90 minutes',price:'$175 individual | $87.50 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Hypnotherapy',d:'A guided session using hypnosis for personal exploration and change. Online appointments may be available.',time:'90 minutes',price:'$175 individual | $87.50 group per guest',group:'Online by arrangement'},
+    {c:'coaching',cat:'Personal transformation',n:'Hypnoregression / Hypnoprogression',d:'A guided hypnotic exploration of past- or future-oriented personal themes.',time:'90 minutes',price:'$175 individual | $87.50 group per guest',group:'Ask about format'},
+    {c:'coaching',cat:'Personal transformation',n:'Akashic Records',d:'A reflective spiritual session exploring personal questions and themes.',time:'90 minutes',price:'$175 individual | $87.50 group per guest',group:'In person or online by arrangement'},
+    {c:'coaching',cat:'Personal transformation',n:'Spiritual Healing',d:'A personal spiritual wellbeing session shaped around your needs.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Reverse Healing',d:'A guided personal wellbeing practice.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Moon Medicine',d:'A reflective practice inspired by lunar cycles.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Sun Medicine',d:'A reflective practice inspired by solar energy and cycles.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Earth Medicine',d:'A grounding practice centered on connection with the natural world.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Women's Medicine',d:'A supportive practice exploring women's wisdom, cycles and lived experience.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Life Coaching',d:'Personal guidance shaped around your goals, questions and next steps.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'coaching',cat:'Personal transformation',n:'Business Coaching',d:'Guidance for business vision, decisions and development.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Cacao Ceremony',d:'A heart-centered gathering for connection, presence and conscious reflection.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Sunrise Ritual',d:'A gentle awakening with the elements and ceremonial cacao. Set an intention and open to the new day.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Sunset Ritual',d:'A sunset gathering with storytelling, reflection, nature and Living Time. Includes ceremonial cacao.',time:'60 minutes',price:'$110 individual | $55 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Full Moon Ceremony',d:'A group or private gathering for reflection and intention around the full moon.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Private or group gathering'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'New Moon Ceremony',d:'A group or private gathering for reflection and intention around the new moon.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Private or group gathering'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'The Shaman's Path | Power Animal',d:'A guided practice exploring connection with a power animal.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Shamanic Journey | Lower, Middle & Upper Worlds',d:'A guided shamanic journey through three worlds, offered in a suitable private or group setting.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Eternal Youth Rites',d:'A guided ritual practice offered by arrangement.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'Light Language & Grid Work',d:'Explore Light Language and 7-, 49- or 144-grid systems through guided practice.',time:'60 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'ceremony',cat:'Ceremony & ritual',n:'BLINKITA Cosmovision',d:'A broader guided experience bringing together BLINKITA's perspectives and practices.',time:'90 minutes',price:'$150 individual | $75 group per guest',group:'Group format available'},
+    {c:'creative',cat:'Creative & take-home',n:'NLG QWave Art',d:'An original BLINKITA neurographic art practice for creative exploration and reflection.',time:'120 minutes',price:'$175 individual | $87.50 group per guest',group:'Special materials fee to be confirmed'},
+    {c:'creative',cat:'Creative & take-home',n:'Dot Painting',d:'A guided dot-painting workshop inspired by pattern, color and focused creative time.',time:'120 minutes',price:'$175 individual | $87.50 group per guest',group:'Special materials fee to be confirmed'},
+    {c:'creative',cat:'Creative & take-home',n:'Fluid Painting',d:'An exploratory painting session working with movement, color and flow.',time:'120 minutes',price:'$175 individual | $87.50 group per guest',group:'Special materials fee to be confirmed'},
+    {c:'creative',cat:'Creative & take-home',n:'Dreamcatcher Workshop',d:'Create a personal dreamcatcher in a relaxed, guided setting.',time:'120 minutes',price:'$175 individual | $87.50 group per guest',group:'Special materials fee to be confirmed'},
+    {c:'creative',cat:'Creative & take-home',n:'Personal Digital E-books',d:'Digital reading material created for personal exploration and continued learning.',time:'Made to order',price:'$175 individual only',group:'Personalized digital book'},
+    {c:'creative',cat:'Creative & take-home',n:'Personal Audio Hypnotherapy',d:'A personal audio experience created to support continued practice after your session.',time:'Made to order',price:'$175 individual only',group:'Personalized audio'}
+  ];
+  const catalogGrid=$('catalogGrid');
+  function renderCatalog(filter='all'){
+    if(!catalogGrid)return;catalogGrid.innerHTML='';
+    catalogItems.filter(item=>filter==='all'||item.c===filter).forEach(item=>{
+      const card=document.createElement('article');card.className='catalog-item';
+      const category=document.createElement('div');category.className='catalog-category';category.textContent=item.cat;
+      const h=document.createElement('h3');h.textContent=item.n;
+      const desc=document.createElement('p');desc.textContent=item.d;
+      const meta=document.createElement('div');meta.className='catalog-meta';
+      const duration=document.createElement('span');duration.textContent=item.time;
+      const price=document.createElement('strong');price.textContent=item.price;
+      const group=document.createElement('span');group.textContent=item.group;
+      const save=document.createElement('button');save.className='save-experience';save.type='button';save.dataset.experience=item.n;save.textContent='Save to My Seiri +';
+      save.addEventListener('click',()=>saveExperience(item.n,save));
+      meta.append(duration,price,group);card.append(category,h,desc,meta,save);catalogGrid.appendChild(card);
+    });
+  }
+  function saveExperience(title,btn){
+    const items=readMemories();if(items.some(item=>item.title==='Saved experience: '+title)){btn.textContent='Already saved Ă˘Ĺ›â€ś';return;}
+    items.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:'Saved experience: '+title,note:'I'm interested in learning more about this experience. Availability, inclusions and final pricing should be confirmed with Seiri del Mar.',photo:'',date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),createdAt:new Date().toISOString()});
+    try{localStorage.setItem(MEMORY_STORE,JSON.stringify(items));btn.textContent='Saved to My Seiri Ă˘Ĺ›â€ś';renderNotes();}catch(e){btn.textContent='Unable to save';}
+  }
+  renderCatalog();
+  document.querySelectorAll('.catalog-filter').forEach(tab=>tab.addEventListener('click',()=>{
+    document.querySelectorAll('.catalog-filter').forEach(t=>t.classList.toggle('active',t===tab));renderCatalog(tab.dataset.catalogFilter);
+  }));
+  document.querySelectorAll('.save-experience:not(#catalogGrid .save-experience)').forEach(btn=>btn.addEventListener('click',()=>saveExperience(btn.dataset.experience,btn)));
+  const finderButton=$('findJourney');
+  if(finderButton){finderButton.addEventListener('click',()=>{
+    const intent=$('journeyIntent').value, length=$('journeyLength').value, result=$('finderResult');
+    let title,body,detail,experience;
+    if(intent==='time'||length==='13'){
+      title='Living Time Journeys';body='Explore a continuous journey inspired by the traditional Tzolk'in matrix, with daily practices and planned excursions.';detail='13, 20 and 33 days | journey dates, inclusions and pricing require confirmation.';experience='Living Time Journeys';
+    }else if(intent==='transform'){
+      const retreat=length==='7'?'BLINKITA Rebirth':length==='9'?'BLINKITA Transformation':'BLINKITA Reset';
+      const fee=retreat==='BLINKITA Rebirth'?'$1,050':retreat==='BLINKITA Transformation'?'$1,350':'$750';
+      title=retreat;body='A structured retreat with selected BLINKITA practices and space for reflection, integration and renewal.';detail=fee+' per guest for the BLINKITA program and facilitation fee; accommodation and resort operations are separate.';experience=retreat;
+    }else if(intent==='discover'){
+      const stay=length==='1'?'The BLINKITA Day':length==='3'?'The Caribbean Escape':length==='5'?'The Belize Signature Stay':length==='7'?'The Island & Inland Journey':'The Complete Belize Experience';
+      const price={'The BLINKITA Day':'$444 individual | $399 group','The Caribbean Escape':'from $1,250 individual | $1,125 group','The Belize Signature Stay':'from $1,950 individual | $1,755 group','The Island & Inland Journey':'from $2,650 individual | $2,385 group','The Complete Belize Experience':'from $3,350 individual | $3,015 group'}[stay];
+      title=stay;body='A flexible BLINKITA program to explore Belize with selected experiences arranged around your interests and travel rhythm.';detail=price+' per guest as listed in the catalogue. Final itinerary and availability need confirmation.';experience=stay;
+    }else{
+      const stay=length==='1'?'The BLINKITA Day':length==='3'?'The Caribbean Escape':length==='5'?'The Belize Signature Stay':length==='7'?'The Island & Inland Journey':'The Complete Belize Experience';
+      const price={'The BLINKITA Day':'$444 individual | $399 group','The Caribbean Escape':'from $1,250 individual | $1,125 group','The Belize Signature Stay':'from $1,950 individual | $1,755 group','The Island & Inland Journey':'from $2,650 individual | $2,385 group','The Complete Belize Experience':'from $3,350 individual | $3,015 group'}[stay];
+      title=stay;body='A considered starting point for restoration, with selected BLINKITA experiences arranged around your time in Belize.';detail=price+' per guest as listed in the catalogue. Accommodation and meals are not included unless confirmed in the itinerary.';experience=stay;
+    }
+    result.innerHTML='';const kicker=document.createElement('div');kicker.className='finder-result-kicker';kicker.textContent='A DIRECTION TO EXPLORE';const h=document.createElement('h3');h.textContent=title;const p=document.createElement('p');p.textContent=body;const save=document.createElement('button');save.className='finder-save';save.textContent='Save this direction to My Seiri +';save.addEventListener('click',()=>{
+      const items=readMemories();if(items.some(item=>item.title==='Suggested experience: '+experience)){save.textContent='Already saved to My Seiri Ă˘Ĺ›â€ś';return;}
+      items.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:'Suggested experience: '+experience,note:body+' '+detail,photo:'',date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),createdAt:new Date().toISOString()});
+      try{localStorage.setItem(MEMORY_STORE,JSON.stringify(items));save.textContent='Saved to My Seiri Ă˘Ĺ›â€ś';renderNotes();}catch(e){save.textContent='Unable to save in this browser';}
+    });const d=document.createElement('p');d.className='finder-detail';d.textContent=detail;result.append(kicker,h,p,save,d);
+    result.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });}
+  document.querySelectorAll('.program-tab').forEach(tab=>tab.addEventListener('click',()=>{
+    document.querySelectorAll('.program-tab').forEach(t=>t.classList.toggle('active',t===tab));const filter=tab.dataset.filter;
+    document.querySelectorAll('.program-card').forEach(card=>card.hidden=filter!=='all'&&card.dataset.type!==filter);
+  }));
+  function openModal(){backdrop.classList.add('open');document.body.style.overflow='hidden';notes.value='';status.textContent='Your note stays in this browser in this prototype.';close.focus();}
+  function closeModal(){backdrop.classList.remove('open');document.body.style.overflow='';widget.focus();}
+  widget.addEventListener('click',function(e){
+  e.preventDefault();
+  openModal();
+});
+close.addEventListener('click',closeModal);
+  backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))closeModal()});
+  $('tzSave').addEventListener('click',()=>{
+    const note=notes.value.trim();
+    if(!note){status.textContent='Add a note first, then save it to My Seiri.';notes.focus();return;}
+    const saved=readNotes();saved.push({date:dateLabel,code:number+' '+sign,note,createdAt:new Date().toISOString()});
+    try{localStorage.setItem(STORE,JSON.stringify(saved));status.textContent='Saved to My Seiri on this device.';renderNotes();notes.value='';}
+    catch(e){status.textContent='This browser could not save the note. Try again or check storage settings.';}
+  });
+  renderNotes();
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  }
+})();
+
