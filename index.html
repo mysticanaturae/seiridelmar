@@ -1173,7 +1173,7 @@ body.program-modal-open{overflow:hidden}
 
 <div class="tz-modal-backdrop" id="tzBackdrop" role="dialog" aria-modal="true" aria-labelledby="tzModalTitle">
   <section class="tz-modal">
-    <button class="tz-close" id="tzClose" aria-label="Close reflection">Ä‚â€”</button>
+    <button class="tz-close" id="tzClose" aria-label="Close reflection">×</button>
     <div class="tz-modal-kicker">SEIRI DEL MAR | LIVING TIME</div>
     <h2 class="tz-modal-title" id="tzModalTitle">6 Kawoq</h2>
     <div class="tz-modal-date" id="tzModalDate">Wednesday, 28 October 2026</div>
@@ -1284,7 +1284,7 @@ body.program-modal-open{overflow:hidden}
 </section>
 <section class="journey-finder" id="journey-finder"><div class="wrap journey-finder-grid"><div class="finder-intro"><div class="eyebrow">Your stay, your rhythm</div><h2>What are you<br>ready to experience?</h2><p>Begin with what you need most. This short guide suggests a direction to explore, then you can save it to My Seiri and ask about availability.</p><div class="finder-note">A thoughtful starting point, not a booking or a promise of availability.</div></div><div class="finder-panel"><div class="finder-step"><span>01</span><div><label for="journeyIntent">What are you most drawn to?</label><select id="journeyIntent"><option value="restore">Rest, care and renewed energy</option><option value="discover">Explore Belize in a meaningful way</option><option value="transform">A deeper personal reset</option><option value="time">A longer journey through Living Time</option></select></div></div><div class="finder-step"><span>02</span><div><label for="journeyLength">How much time would you like to make space for?</label><select id="journeyLength"><option value="1">One day</option><option value="3">A few days | 3 days</option><option value="5">Five days</option><option value="7">Seven days</option><option value="9">Nine days</option><option value="13">13, 20 or 33 days</option></select></div></div><button class="btn dark finder-button" id="findJourney">Find my direction </button><div class="finder-result" id="finderResult" aria-live="polite"><div class="finder-result-kicker">YOUR PERSONAL STARTING POINT</div><h3>Your journey begins with a question.</h3><p>Choose what you want more of, then reveal a direction to explore.</p></div></div></div></section>
 
-<section class="experiences" id="experiences"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Curated for your stay</div><h2>Experiences with<br>a sense of place.</h2></div><p>Private moments, shared rituals and local discoveries Ă˘â‚¬â€ś thoughtfully woven into the natural rhythm of the resort.</p></div><div class="experience-grid">
+<section class="experiences" id="experiences"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Curated for your stay</div><h2>Experiences with<br>a sense of place.</h2></div><p>Private moments, shared rituals and local discoveries – thoughtfully woven into the natural rhythm of the resort.</p></div><div class="experience-grid">
 <article class="experience-card"><div class="card-image" style="background-image:url('assets/seiri/official-04.jpg')"></div><div class="card-body"><div class="card-number">01 / RESTORE</div><h3>Private Wellness</h3><p>Restorative bodywork and individual sessions designed around your needs, your pace and your time at Seiri.</p><a class="card-link" href="#wellness">Explore wellness </a></div></article>
 <article class="experience-card"><div class="card-image" style="background-image:url('assets/seiri/cacao-ceremony-concept.jpg')"></div><div class="card-body"><div class="card-number">02 / CONNECT</div><h3>Cacao & Ceremony</h3><p>A gentle, guided gathering with cacao, reflection and the beauty of being present in a Caribbean setting.</p><a class="card-link" href="#rhythm">Discover the rhythm </a></div></article>
 <article class="experience-card"><div class="card-image" style="background-image:url('assets/seiri/belize-shell-concept.jpg')"></div><div class="card-body"><div class="card-number">03 / DISCOVER</div><h3>Belize, More Personally</h3><p>Meet the living culture of the region through respectful, locally connected experiences and time outdoors.</p><a class="card-link" href="#contact">Shape your stay </a></div></article>
@@ -1785,7 +1785,7 @@ body.program-modal-open{overflow:hidden}
     </div>
     <div class="ember-actions">
       <p class="ember-note">Breakfast, lunch, dinner, desserts and drinks. Your Ember favourites, all in one place.</p>
-      <a class="ember-cta" href="ember.html">Discover the Ember Experience <span aria-hidden="true">Ă˘â€ â€”</span></a>
+      <a class="ember-cta" href="ember.html">Discover the Ember Experience <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -2207,7 +2207,7 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>nav.classList.toggle('open
   };
    $("tzNumber").setAttribute("aria-label","Tzolk'in number "+number);
   $('tzName').textContent=number+' '+sign; $('tzGlyph').setAttribute('aria-label',sign+' day sign');
-  $('tzModalTitle').textContent=number+' '+sign+' / '+(englishNames[sign] || sign); $('tzModalNumberImage').src='assets/tzolkin/tone-'+number+'.png';
+  $('tzModalTitle').textContent=number+' '+sign+' / '+(englishNames[sign] || sign); $('tzModalNumberImage').src='assets/tzolkin/tone-'+number+'.png'; tzModalGlyphImage.src='assets/tzolkin/'+glyphFiles[signIndex]+'.png';
   const copy=reflections[sign] || reflections['Kawoq'];
   document.querySelector('.tz-modal-copy').textContent=copy;
   document.querySelector('.tz-modal-art .tz-name').textContent=sign+' | Living Time reflection';
