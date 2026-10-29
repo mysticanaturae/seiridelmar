@@ -1213,6 +1213,21 @@ body.program-modal-open{overflow:hidden}
 .tz-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:440px){.tz-date-explorer{padding:14px}.tz-date-controls{grid-template-columns:38px minmax(0,1fr) 38px}.tz-date-step{width:38px;height:40px}.tz-date-today{grid-column:1/-1;height:36px}#tzDatePicker{height:40px}}
 </style>
+<style id="living-time-header-polish">
+/* LIVING TIME HEADER POLISH */
+.topbar #tzWidget{border-left:1px solid rgba(194,160,91,.48)!important;padding:6px 0 6px 10px!important;background:transparent!important;text-align:left!important;transition:background .2s ease,border-color .2s ease!important}
+.topbar #tzWidget:hover{border-left-color:#b4975b!important;background:rgba(255,253,248,.48)!important}
+.topbar #tzWidget:focus-visible{outline:2px solid rgba(180,151,91,.7);outline-offset:4px}
+.topbar #tzWidget .tz-top{justify-content:space-between!important;gap:7px!important;margin:0 0 4px!important}
+.topbar #tzWidget .tz-label{display:block!important;color:#9b7b3b!important;font-size:.49rem!important;font-weight:700;letter-spacing:.15em!important}
+.topbar #tzWidget .tz-date{color:#68766f!important;font-size:.56rem!important;letter-spacing:.015em}
+.topbar #tzWidget .tz-symbols{justify-content:space-between!important;gap:8px!important}
+.topbar #tzWidget .tz-number,.topbar #tzWidget .tz-glyph{width:34px!important;height:34px!important;flex:0 0 34px!important}
+.topbar #tzWidget .tz-widget-meta{display:flex;align-items:baseline;justify-content:space-between;gap:7px;margin-top:4px}
+.topbar #tzWidget .tz-name{display:block!important;margin:0!important;color:#173c37!important;font:400 .78rem/1.1 Georgia,'Times New Roman',serif!important;letter-spacing:.01em}
+.topbar #tzWidget .tz-calendar-link{display:block!important;margin:0!important;color:#927740!important;font:700 .47rem/1.2 Arial,sans-serif!important;letter-spacing:.11em!important;text-align:right!important;text-decoration:none!important;white-space:nowrap}
+@media(max-width:800px){.topbar #tzWidget{max-width:145px!important;padding:4px 0 4px 7px!important}.topbar #tzWidget .tz-label{font-size:.45rem!important;letter-spacing:.12em!important}.topbar #tzWidget .tz-date{font-size:.51rem!important}.topbar #tzWidget .tz-number,.topbar #tzWidget .tz-glyph{width:29px!important;height:29px!important;flex-basis:29px!important}.topbar #tzWidget .tz-name{font-size:.69rem!important}.topbar #tzWidget .tz-calendar-link{font-size:.42rem!important}}
+</style>
 </head>
 <body>
 
@@ -1257,14 +1272,13 @@ body.program-modal-open{overflow:hidden}
 <a href="#my-seiri">My Seiri</a>
 <a href="#contact">Contact</a>
 <a href="#contact" class="nav-cta">Book Now</a>
-</nav><button class="mobile-menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button><button class="tz-widget" id="tzWidget" aria-label="Open today's Living Time reflection">
-  <div class="tz-top"><span class="tz-label" aria-hidden="true"></span><span class="tz-date" id="tzDate">28 Oct 2026</span></div>
+</nav><button class="mobile-menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button><button class="tz-widget" id="tzWidget" aria-label="Open Living Time and plan a date">
+  <div class="tz-top"><span class="tz-label" aria-hidden="true">LIVING TIME</span><span class="tz-date" id="tzDate">28 Oct 2026</span></div>
   <div class="tz-symbols">
     <span class="tz-number" id="tzNumber" aria-label="Tzolk'in number"><img id="tzNumberImage" src="assets/tzolkin/tone-6.png" alt="" /></span>
     <span class="tz-glyph" id="tzGlyph" aria-label="Maya day sign"><img id="tzGlyphImage" src="assets/tzolkin/cauac.png" alt="" /></span>
   </div>
-  <div class="tz-calendar-link">LIVING TIME</div>
-  <div class="tz-name" id="tzName">6 Kawoq</div>
+  <div class="tz-widget-meta"><span class="tz-name" id="tzName">6 Kawoq</span><span class="tz-calendar-link">PLAN A DATE &rarr;</span></div>
   <div class="tz-sub"></div>
   <div class="tz-open">Open today's reflection</div>
 </button>
