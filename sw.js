@@ -1,16 +1,6 @@
-const CACHE_NAME = 'seiri-static-v3';
+const CACHE_NAME = 'seiri-assets-v4';
 const CORE_ASSETS = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 const STATIC_ASSET = /\.(?:avif|gif|ico|jpe?g|js|png|svg|webp|woff2?)$/i;
-
-function cacheWithLongLifetime(response) {
-  const headers = new Headers(response.headers);
-  headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers
-  });
-}
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -49,15 +39,16 @@ self.addEventListener('fetch', event => {
   }
 
   if (!STATIC_ASSET.test(url.pathname)) return;
-  event.respondWith(
-    caches.open(CACHE_NAME).then(async cache => {
-      const cached = await cache.match(event.request);
-      if (cached) return cached;
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(event.request);
+    if (cached) return cached;
+    try {
       const response = await fetch(event.request);
-      if (!response.ok) return response;
-      const cacheable = cacheWithLongLifetime(response);
-      event.waitUntil(cache.put(event.request, cacheable.clone()));
-      return cacheable;
-    }).catch(() => caches.match(event.request))
-  );
+      if (response.ok) await cache.put(event.request, response.clone());
+      return response;
+    } catch {
+      return cache.match(event.request);
+    }
+  })());
 });
