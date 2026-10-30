@@ -28,13 +28,13 @@ footer{padding:30px clamp(20px,5vw,72px);border-top:1px solid var(--line);font:1
 .hero img#heroImage{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.88;z-index:0}
 .hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,24,23,.72),rgba(6,24,23,.02))}
 .hero .hero-copy{position:relative;z-index:2}
-</style>
+.brand{display:flex;align-items:center;gap:9px}.brand img{display:block;object-fit:contain}.header-date-link{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:var(--ink,#12383b);border:1px solid rgba(194,160,91,.5);padding:8px 10px;font-size:.59rem;letter-spacing:.08em;text-transform:uppercase}.header-date-link span:first-child{font-size:1rem;color:var(--gold,#c2a05b)}@media(max-width:900px){.header-date-link{font-size:.55rem;padding:7px 8px}}</style>
 </head>
 <body>
 <header class="topbar">
-<a class="brand" href="index.html">SEIRI DEL MAR</a>
+<a class="brand" href="index.html"><img src="assets/seiri/official-50.png" alt="" width="30" height="30"><span>SEIRI DEL MAR</span></a>
 <nav class="navlinks" aria-label="Main navigation"><a href="index.html">Home</a><a href="#menus">Dining</a><a href="#menus">Menus</a><a href="#my-seiri" id="mySeiriLink">My Seiri</a></nav>
-</header>
+<a class="header-date-link" href="index.html#tzWidget" aria-label="Plan a date with Living Time"><span aria-hidden="true">▦</span><span>Plan a date</span></a></header>
 <section class="hero">
 <img id="heroImage" src="assets/seiri/official-47.webp" alt="Dining atmosphere at Ember">
 <div class="hero-copy"><div class="eyebrow">Dining at Seiri del Mar</div><h1>EMBER</h1><p>Where the Caribbean meets the table. Explore the menu, discover your favourites and save the dishes you want to remember in My Seiri.</p><a class="btn primary" href="#menus">Explore the menus ↓</a></div>
