@@ -3032,6 +3032,7 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
   openModal();
 });
 close.addEventListener('click',closeModal);
+  if(location.hash==='#tzWidget'){setTimeout(openModal,50);}
   backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))closeModal()});
   $('tzSave').addEventListener('click',()=>{
@@ -3362,7 +3363,7 @@ body>header.topbar{position:fixed!important;top:0!important;left:0!important;rig
 <script id="online-heart-save-script">
 (()=>{const key='seiriPersonalMemories_v1',defaultNote="I'm interested in learning more about this experience. Availability, inclusions and final pricing should be confirmed with Seiri del Mar.";const read=()=>{try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}};document.querySelectorAll('.online-save-heart').forEach(button=>{const title='Saved experience: '+button.dataset.experience,icon=button.querySelector('span'),status=button.nextElementSibling;let timer;const flash=text=>{if(!status)return;status.textContent=text;clearTimeout(timer);timer=setTimeout(()=>{status.textContent=''},3200)};const sync=()=>{const found=read().some(item=>item.title===title);button.setAttribute('aria-pressed',found?'true':'false');button.setAttribute('aria-label',(found?'Remove':'Save')+' '+button.dataset.experience.replace('Online: ','')+(found?' from':' to')+' My Seiri');icon.textContent=String.fromCharCode(found?9829:9825)};sync();button.addEventListener('click',()=>{const items=read(),index=items.findIndex(item=>item.title===title);if(index>=0){if(items[index].note===defaultNote){items.splice(index,1);localStorage.setItem(key,JSON.stringify(items));sync();flash('Removed from My Seiri')}else{flash('Already saved in My Seiri; your note is preserved')}return}items.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title,note:defaultNote,photo:'',date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),createdAt:new Date().toISOString()});localStorage.setItem(key,JSON.stringify(items));sync();flash('Saved to My Seiri')});});})();
 </script>
-</body></html>
+<style id="seiri-widget-size-alignment">@media(min-width:801px){.topbar #tzWidget{transform:scale(.67);transform-origin:right center;margin-right:-18px!important}}</style></body></html>
 
 
 
