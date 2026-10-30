@@ -1458,7 +1458,29 @@ button.save-experience:hover,button.save-experience:focus-visible{text-decoratio
 </style><style id="index-widget-vertical-center">
 .wrap.site-header-wrap .topbar{position:relative!important}
 .wrap.site-header-wrap .topbar #tzWidget{position:absolute!important;top:50%!important;right:10px!important;bottom:auto!important;left:auto!important;align-self:unset!important;justify-self:unset!important;margin:0!important;transform:translateY(-50%)!important;transform-origin:right center!important;z-index:30!important}
-</style></head>
+</style>
+<style id="tablet-header-fit">
+@media (min-width: 761px) and (max-width: 1100px){
+ .wrap.site-header-wrap{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+ .site-header-wrap .topbar{display:grid!important;grid-template-columns:minmax(145px,180px) minmax(0,1fr) 100px!important;align-items:center!important;justify-content:stretch!important;gap:8px!important;width:100%!important;height:74px!important;min-height:74px!important;padding:0 10px 0 14px!important;box-sizing:border-box!important}
+ .site-header-wrap .brand{min-width:0!important;gap:7px!important}
+ .site-header-wrap .seiri-header-logo{width:24px!important;height:24px!important;flex:0 0 24px!important}
+ .site-header-wrap .brand .seiri-brand-name{font-size:clamp(.72rem,.95vw,.9rem)!important;letter-spacing:.06em!important;white-space:nowrap!important}
+ .site-header-wrap .topbar .nav{display:flex!important;grid-column:2!important;position:static!important;justify-self:stretch!important;align-items:center!important;justify-content:space-between!important;min-width:0!important;width:100%!important;flex-wrap:nowrap!important;white-space:nowrap!important;overflow:hidden!important;gap:clamp(3px,.42vw,6px)!important;font-size:clamp(.50rem,.74vw,.64rem)!important;letter-spacing:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important}
+ .site-header-wrap .topbar .nav>a{display:inline-flex!important;flex:0 0 auto!important;align-items:center!important}
+ .site-header-wrap .topbar .nav .nav-cta{padding:6px 8px!important;font-size:inherit!important;letter-spacing:.02em!important}
+ .site-header-wrap .topbar .mobile-menu{display:none!important}
+ .site-header-wrap .topbar #tzWidget{display:block!important;position:static!important;grid-column:3!important;justify-self:end!important;align-self:center!important;width:100px!important;min-width:100px!important;max-width:100px!important;margin:0!important;padding:4px 5px!important;transform:none!important;box-sizing:border-box!important}
+ .site-header-wrap .topbar #tzWidget .tz-top{justify-content:flex-end!important;gap:3px!important;margin:0 0 2px!important}
+ .site-header-wrap .topbar #tzWidget .tz-date{font-size:.46rem!important;white-space:nowrap!important}
+ .site-header-wrap .topbar #tzWidget .tz-symbols{justify-content:flex-end!important;gap:5px!important}
+ .site-header-wrap .topbar #tzWidget .tz-number,.site-header-wrap .topbar #tzWidget .tz-glyph{width:26px!important;height:26px!important;min-width:26px!important;flex:0 0 26px!important}
+ .site-header-wrap .topbar #tzWidget .tz-widget-meta{justify-content:flex-end!important;margin-top:2px!important}
+ .site-header-wrap .topbar #tzWidget .tz-name{display:none!important}
+ .site-header-wrap .topbar #tzWidget .tz-calendar-link{display:block!important;font-size:.43rem!important;white-space:nowrap!important}
+}
+</style>
+</head>
 <body>
 
 
