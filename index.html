@@ -1309,6 +1309,14 @@ body.program-modal-open{overflow:hidden}
   .passport-milestone p{color:#d4dfd9;font-size:10px;line-height:1.5;margin:0}
   .passport-note{color:#c2d0c8;font-size:9px;line-height:1.6;margin:14px 0 0}
   @media(max-width:600px){.journey-passport{padding:18px}.journey-passport-head{display:block}.passport-concept{display:inline-block;margin-top:12px}.passport-milestones{grid-template-columns:1fr}}
+
+  .passport-milestone[role="button"]{cursor:pointer;transition:transform .18s,border-color .18s,background .18s}
+  .passport-milestone[role="button"]:hover,.passport-milestone[role="button"]:focus-visible{transform:translateY(-2px);border-color:#d8c18a;background:rgba(255,255,255,.09);outline:2px solid transparent}
+  .passport-detail-card h3{font:400 1.5rem/1.2 Georgia,serif}
+  .passport-detail-card .passport-detail-progress{display:inline-block;padding:8px 11px;background:#e9eee8;color:#12383b;font-size:.78rem}
+  .passport-detail-subhead{margin:18px 0 7px;font:400 1.05rem Georgia,serif;color:#12383b}
+  .passport-detail-note{margin-top:14px;padding:12px;background:#f6e5d2;color:#6a5540;font-size:.75rem}
+  .passport-detail-actions{margin-top:18px}
 </style>
 <style id="my-seiri-interaction-styles">
   .memory-item{display:block;width:100%;text-align:left;color:inherit;font:inherit;cursor:pointer;transition:background .2s,border-color .2s}
@@ -2027,6 +2035,7 @@ body.program-modal-open{overflow:hidden}
     </div>
   </div>
 </section>
+
 <section class="programs" id="programs">
   <div class="programs-visual-intro">
   <img src="assets/seiri/belize-shell-concept.jpg" alt="Belize shell concept, a signature BLINKITA experience" loading="lazy">
@@ -2066,6 +2075,7 @@ body.program-modal-open{overflow:hidden}
     <p class="pricing-note">Catalogue pricing is for BLINKITA program experiences / facilitation as described. Resort accommodation, meals, transfers, excursions and operational costs are separate unless expressly included in a confirmed itinerary. Group pricing applies to group sessions arranged in advance; massage remains a private appointment.</p>
   </div>
 </section>
+<section class="retreat wrap" id="retreats"><div class="retreat-panel"><div class="eyebrow">For deeper journeys</div><h2>More than time away.</h2><p class="retreat-subtitle">A different pace. A deeper connection.</p><div class="retreat-lengths"><span>5 days</span><span>7 days</span><span>9 days</span><span>13 days</span><span>20 days</span><span>33 days</span></div><a class="btn gold" href="#programs">Explore retreat possibilities</a></div><div class="retreat-details" id="retreat-details" style="background:#FFF1DC;padding:clamp(28px,5vw,56px);color:#12383b;"><p style="max-width:850px;margin:0 auto 30px;">Small-group retreats and tailored stays bring bodywork, reflection, cultural learning, ceremony and time in nature together in a way that feels meaningful to each group. Every journey takes shape around its purpose, the people who join, and the experiences they wish to explore.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;max-width:1100px;margin:auto;"><div><h3 style="font-size:1.4rem;">Space to slow down</h3><p>Step away from everyday demands, reconnect with your own rhythm and enjoy the simplicity of being present.</p></div><div><h3 style="font-size:1.4rem;">Experiences with meaning</h3><p>Explore bodywork, local culture, guided reflection and nature-based experiences shaped around your stay.</p></div><div><h3 style="font-size:1.4rem;">Your journey, your pace</h3><p>From a short reset to a longer immersion, find room to discover what matters to you.</p></div></div></section>
 <style id="seiri-wellness-teaser-styles">
 #seiri-perspective-note.wellness-teaser{background:#102d2b;color:#f5f0e6;padding:0;display:grid;grid-template-columns:1.05fr .95fr;min-height:560px;align-items:stretch}
 #seiri-perspective-note .teaser-image{min-height:460px;overflow:hidden}
@@ -2116,7 +2126,7 @@ body.program-modal-open{overflow:hidden}
   </div>
 </section>
 <section class="rhythm" id="rhythm" style="background-color:#FFF1DC;"><div class="wrap"><div class="eyebrow">A possible daily rhythm</div><h2>From first light<br>to the last glow.</h2><p style="max-width:620px;color:var(--muted)">A flexible program concept — not a fixed daily schedule. Offerings can be piloted and refined around guest demand, space and season.</p><div class="rhythm-grid"><article class="rhythm-item"><div class="rhythm-time">Morning | Awaken</div><img class="rhythm-card-image" src="assets/blinkita/morning-ritual-experience.jpg" alt="Sunrise Ritual" loading="lazy"><h3>Sunrise Ritual</h3><p>Gentle movement, breath, cacao and rejuvenation to welcome the day with energy and presence.</p><button class="save-experience" type="button" data-experience="Sunrise Ritual">Save to My Seiri +</button></article><article class="rhythm-item"><div class="rhythm-time">Day | Restore</div><img class="rhythm-card-image" src="assets/blinkita/privateblinkita.jpg" alt="Private BLINKITA" loading="lazy"><h3>Private BLINKITA</h3><p>Individual treatments and personal sessions, scheduled around the guest rather than a one-size-fits-all timetable.</p><button class="save-experience" type="button" data-experience="Private BLINKITA">Save to My Seiri +</button></article><article class="rhythm-item"><div class="rhythm-time">Sunset | Discover</div><img class="rhythm-card-image" src="assets/blinkita/sunset-ritual-experience.jpg" alt="Sunset Ritual" loading="lazy"><h3>Sunset Ritual</h3><p>A personal introduction to the traditional 260-day Maya calendar, cacao and an experience shaped by time, place and the individual.</p><button class="save-experience" type="button" data-experience="Sunset Ritual">Save to My Seiri +</button></article></div></div></section>
-<section class="retreat wrap" id="retreats"><div class="retreat-panel"><div class="eyebrow">For deeper journeys</div><h2>More than time away.</h2><p class="retreat-subtitle">A different pace. A deeper connection.</p><div class="retreat-lengths"><span>5 days</span><span>7 days</span><span>9 days</span><span>13 days</span><span>20 days</span><span>33 days</span></div><a class="btn gold" href="#programs">Explore retreat possibilities</a></div><div class="retreat-details" id="retreat-details" style="background:#FFF1DC;padding:clamp(28px,5vw,56px);color:#12383b;"><p style="max-width:850px;margin:0 auto 30px;">Small-group retreats and tailored stays bring bodywork, reflection, cultural learning, ceremony and time in nature together in a way that feels meaningful to each group. Every journey takes shape around its purpose, the people who join, and the experiences they wish to explore.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;max-width:1100px;margin:auto;"><div><h3 style="font-size:1.4rem;">Space to slow down</h3><p>Step away from everyday demands, reconnect with your own rhythm and enjoy the simplicity of being present.</p></div><div><h3 style="font-size:1.4rem;">Experiences with meaning</h3><p>Explore bodywork, local culture, guided reflection and nature-based experiences shaped around your stay.</p></div><div><h3 style="font-size:1.4rem;">Your journey, your pace</h3><p>From a short reset to a longer immersion, find room to discover what matters to you.</p></div></div></section>
+
 <section class="landscape-band" aria-label="The Caribbean setting">
   <div class="landscape-heading">
     <span class="eyebrow">The spirit of Belize</span>
@@ -2313,7 +2323,7 @@ body.program-modal-open{overflow:hidden}
     <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px;">
       <a class="btn dark" href="mailto:info@belizehopkins.com?subject=Enquiry%20for%20Seiri%20del%20Mar">Email Seiri del Mar</a>
       <a class="btn dark" href="https://wa.me/5016647445" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a class="btn dark" href="https://seiridelmar.com/" target="_blank" rel="noopener noreferrer">Visit Seiri del Mar</a>
+      
     </div>
   </div>
 </section>
@@ -3296,6 +3306,43 @@ body>header.topbar{position:fixed!important;top:0!important;left:0!important;rig
     save.addEventListener('click',()=>{const rows=read(memoryKey);const savedTitle='Saved experience: Seiri highlight - '+button.dataset.highlightTitle;if(rows.some(row=>row.title===savedTitle)){save.textContent='Already in My Highlights';return;}rows.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:savedTitle,note:button.dataset.highlightCopy,photo:button.dataset.highlightImage,collection:'highlights',date:new Date().toLocaleDateString('en-GB'),createdAt:new Date().toISOString()});write(memoryKey,rows);save.textContent='Saved to My Highlights';});
     wrap.appendChild(save); content.appendChild(wrap); modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('my-seiri-modal-open'); modal.querySelector('.my-seiri-modal-close').focus();
   }
+  function openPassportMilestone(tile) {
+    previousFocus = tile;
+    currentCategory = 'passport';
+    const milestone = tile.querySelector('span')?.textContent.trim() || 'BLINKITA milestone';
+    const progress = tile.querySelector('strong')?.textContent.trim() || '0 / 0';
+    const benefit = tile.querySelector('p')?.textContent.trim() || '';
+    title.textContent = milestone + ' | Journey Passport';
+    description.textContent = 'A concept preview of how returning BLINKITA guests could be recognised over time.';
+    content.replaceChildren();
+    const card = el('article','my-seiri-entry passport-detail-card');
+    card.appendChild(el('div','my-seiri-entry-meta','CONCEPT MILESTONE'));
+    card.appendChild(el('h3','',milestone.replace(/^\d+\s*/, '') + ' milestone'));
+    const progressLine = el('p','passport-detail-progress','Prototype progress shown: ' + progress);
+    card.appendChild(progressLine);
+    if (benefit) card.appendChild(el('p','',benefit));
+    card.appendChild(el('h4','passport-detail-subhead','How it could work'));
+    card.appendChild(el('p','','If Seiri del Mar approves the programme, eligible completed experiences could count toward this milestone. Saved interests are not completed visits. Participation and any benefit would need to be confirmed by Seiri del Mar or BLINKITA.'));
+    card.appendChild(el('p','passport-detail-note','This prototype does not verify completed visits or issue rewards. Milestone rules and benefits are examples for discussion.'));
+    const actions = el('div','my-vibe-contact passport-detail-actions');
+    const subject = encodeURIComponent('Question about the BLINKITA Journey Passport');
+    const body = encodeURIComponent('Hello Seiri del Mar,\n\nI would like to ask about the BLINKITA Journey Passport and the ' + milestone + ' milestone.\n\nThank you.');
+    const email = document.createElement('a'); email.className='my-vibe-contact-link'; email.href='mailto:info@belizehopkins.com?subject='+subject+'&body='+body;
+    email.setAttribute('aria-label','Email Seiri del Mar about the Journey Passport');
+    email.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m4 7 8 6 8-6"/></svg><span>Email</span>';
+    const whatsapp = document.createElement('a'); whatsapp.className='my-vibe-contact-link'; whatsapp.href='https://wa.me/5016647445?text='+encodeURIComponent('Hello Seiri del Mar, I would like to ask about the BLINKITA Journey Passport and the '+milestone+' milestone.');
+    whatsapp.target='_blank'; whatsapp.rel='noopener noreferrer'; whatsapp.setAttribute('aria-label','Message Seiri del Mar on WhatsApp about the Journey Passport');
+    whatsapp.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L4 20l1.1-4A8.2 8.2 0 1 1 20.2 11.8Z"/><path d="M9 8.5c.4 2.5 2 4.1 4.5 4.7l1-1 2 .9c-.2 1.1-.9 1.8-2 1.8-3.7-.1-7.3-3.7-7.4-7.4 0-1 .7-1.8 1.8-2l.9 2Z"/></svg><span>WhatsApp</span>';
+    actions.append(email,whatsapp); card.appendChild(actions); content.appendChild(card);
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('my-seiri-modal-open');
+    modal.querySelector('.my-seiri-modal-close').focus();
+  }
+  document.querySelectorAll('.passport-milestone').forEach(tile => {
+    tile.setAttribute('role','button'); tile.setAttribute('tabindex','0'); tile.setAttribute('aria-haspopup','dialog');
+    tile.setAttribute('aria-label',(tile.querySelector('span')?.textContent.trim()||'Journey Passport milestone')+'; open details');
+    tile.addEventListener('click',()=>openPassportMilestone(tile));
+    tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openPassportMilestone(tile);}});
+  });
   modal.querySelector('.my-seiri-modal-close').addEventListener('click',close);
   modal.querySelectorAll('[data-my-seiri-close]').forEach(node=>node.addEventListener('click',close));
   document.addEventListener('keydown',event=>{if(event.key==='Escape')close();if(event.key==='Tab'&&modal.classList.contains('is-open')){const focusable=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(node=>node.offsetParent!==null);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}});
