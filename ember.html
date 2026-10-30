@@ -33,8 +33,8 @@ footer{padding:30px clamp(20px,5vw,72px);border-top:1px solid var(--line);font:1
 <body>
 <header class="topbar">
 <a class="brand" href="index.html"><img src="assets/seiri/official-50.png" alt="" width="24" height="24"><span>SEIRI DEL MAR</span></a>
-<nav class="navlinks" id="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About Our Resort</a><a href="#menus">Dining</a><a href="#menus">Menus</a><a href="#my-seiri" id="mySeiriLink">My Seiri</a></nav>
-<button class="mobile-menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button><a class="header-date-link" href="index.html#tzWidget" aria-label="Open Living Time calendar"><span class="calendar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 18h3"/></svg></span><span class="calendar-copy"><small>LIVING TIME</small><strong class="header-date-today"></strong></span></a></header>
+<nav class="navlinks" id="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="#menus">Dining</a><a href="#menus">Menus</a><a href="#my-seiri" id="mySeiriLink">My Seiri</a></nav>
+<button class="mobile-menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button><a class="header-date-link" href="index.html#tzWidget" aria-label="Plan a date with Living Time"><span aria-hidden="true">▦</span><span>Plan a date</span></a></header>
 <section class="hero">
 <img id="heroImage" src="assets/seiri/official-47.webp" alt="Dining atmosphere at Ember">
 <div class="hero-copy"><div class="eyebrow">Dining at Seiri del Mar</div><h1>EMBER</h1><p>Where the Caribbean meets the table. Explore the menu, discover your favourites and save the dishes you want to remember in My Seiri.</p><a class="btn primary" href="#menus">Explore the menus ↓</a></div>
@@ -167,5 +167,5 @@ document.getElementById("mySeiriLink").addEventListener("click", () => {
 renderTabs();
 renderDishes();
 </script>
-<script id="responsive-main-navigation">(function(){const b=document.getElementById('menuBtn'),n=document.getElementById('nav');if(b&&n){b.addEventListener('click',()=>{const open=n.classList.toggle('open');b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Close navigation':'Open navigation')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation')}))}const d=document.querySelector('.header-date-today');if(d){const x=new Date();d.textContent=x.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][x.getMonth()]}})();</script></body>
+</body>
 </html>
