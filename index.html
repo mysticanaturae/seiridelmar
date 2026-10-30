@@ -1246,6 +1246,141 @@ body.program-modal-open{overflow:hidden}
 .topbar #tzWidget .tz-widget-meta{justify-content:flex-start!important;gap:0!important;margin-top:3px!important}
 @media(max-width:800px){.topbar #tzWidget{width:136px!important;max-width:145px!important;margin-right:0!important;padding:5px 7px!important}.topbar #tzWidget .tz-symbols{gap:6px!important}.topbar #tzWidget .tz-widget-meta{margin-top:3px!important}}
 </style>
+<style id="blinkita-year-modal-styles">
+  .blinkita-year-modal[hidden]{display:none!important}
+  .by-year-intro{margin-bottom:22px;padding:22px;background:#f8f4e9;border:1px solid rgba(18,56,59,.1)}
+  .by-year-intro .eyebrow{margin-bottom:9px}
+  .by-year-intro h3{font:400 clamp(27px,4vw,38px)/1.1 Georgia,serif;margin:0 0 9px}
+  .by-year-intro p{max-width:760px;color:var(--muted);font-size:.83rem;line-height:1.7;margin:0}
+  .by-year-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .by-year-month{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:67px;padding:13px 16px;text-align:left;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+  .by-year-month:hover,.by-year-month.active{background:#f3eee2}
+  .by-year-month-name{color:#a9874b;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+  .by-year-experience-name{font-size:.82rem}
+  .by-year-detail{display:none;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:18px;background:#f3eee2;border-left:2px solid var(--gold)}
+  .by-year-detail.is-visible{display:flex}
+  .by-year-detail .eyebrow{margin:0 0 7px}
+  .by-year-detail h4{font:400 1.35rem Georgia,serif;margin:0 0 5px}
+  .by-year-detail p{color:var(--muted);font-size:.75rem;line-height:1.6;margin:0}
+  @media(max-width:600px){.by-year-grid{grid-template-columns:1fr}.by-year-month{min-height:60px;padding:12px}.by-year-detail.is-visible{align-items:flex-start;flex-direction:column}.by-year-intro{padding:17px}}
+  .by-year-grid.is-hidden{display:none}
+  .by-year-detail.is-visible{display:block;margin-top:0;padding:clamp(20px,4vw,32px);background:#f8f4e9;border:1px solid rgba(18,56,59,.12);border-left:2px solid var(--gold)}
+  .by-year-back{display:inline-flex;align-items:center;gap:8px;margin:0 0 24px;padding:8px 0;border:0;background:transparent;color:#826b3f;font:inherit;font-size:.72rem;letter-spacing:.04em;cursor:pointer}
+  .by-year-back:hover{text-decoration:underline}
+  .by-year-detail h4{font-size:clamp(1.45rem,3vw,2rem);margin:8px 0 10px}
+  .by-year-detail p{max-width:680px;font-size:.88rem;line-height:1.75}
+  .by-year-detail .by-year-added-touch{margin-top:14px;padding-top:13px;border-top:1px solid rgba(18,56,59,.12);color:#826b3f}
+  .by-year-detail-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px}
+  .by-year-detail-actions .save-experience{margin-right:auto}
+  .by-year-contact-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:9px 13px;border:1px solid rgba(18,56,59,.2);color:var(--ink);background:transparent;text-decoration:none;font-size:.72rem;letter-spacing:.03em;transition:background .2s,color .2s,border-color .2s}
+  .by-year-contact-link:hover{background:#123f40;border-color:#123f40;color:#f8f4e9}
+  .by-year-contact-link span:first-child{font-size:1rem}
+  @media(max-width:600px){.by-year-detail-actions{align-items:stretch}.by-year-detail-actions .save-experience{width:100%;margin:0}.by-year-contact-link{flex:1}}
+
+  .by-year-month-nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;padding-top:14px;border-top:1px solid rgba(18,56,59,.12)}
+  .by-year-month-nav button{border:0;background:transparent;color:#826b3f;padding:8px 0;font:inherit;font-size:.76rem;cursor:pointer}
+  .by-year-month-nav button:hover{text-decoration:underline}
+  @media(max-width:600px){.by-year-month-nav button{padding:10px 4px}}
+
+  .program-modal-dialog.is-year-detail .program-modal-header>div{display:none}
+  .blinkita-year-modal.is-detail-view .by-year-intro{display:none}
+  .by-year-personal-note{display:grid;gap:9px;margin-top:20px;padding:17px;background:#fffdf8;border:1px solid rgba(18,56,59,.12)}
+  .by-year-personal-note label{color:#826b3f;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+  .by-year-personal-note textarea{width:100%;resize:vertical;min-height:76px;padding:11px 12px;border:1px solid rgba(18,56,59,.2);background:#fff;color:var(--ink);font:inherit;font-size:.82rem;line-height:1.55}
+  .by-year-personal-note textarea:focus{outline:2px solid #c9a66b;outline-offset:1px}
+  .by-year-note-save{justify-self:start;padding:9px 13px;border:1px solid #123f40;background:#123f40;color:#f8f4e9;font:inherit;font-size:.72rem;cursor:pointer}
+  .by-year-note-save:hover{background:#1b5553}
+  .by-year-note-status{min-height:1em;color:#826b3f;font-size:.68rem}
+</style>
+<style id="journey-passport-styles">
+  .by-year-detail .by-year-added-touch{color:#826b3f;margin-top:8px}
+  .journey-passport{margin:28px 0;padding:24px;background:#123f40;color:#f8f5ec;border:1px solid rgba(216,193,138,.4)}
+  .journey-passport-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+  .journey-passport .eyebrow{color:#d8c18a;margin:0 0 8px}
+  .journey-passport h3{font:400 clamp(22px,3vw,30px)/1.15 Georgia,serif;margin:0}
+  .passport-concept{flex:none;color:#d8c18a;border:1px solid rgba(216,193,138,.45);padding:6px 8px;font-size:8px;letter-spacing:.14em}
+  .passport-intro{max-width:700px;color:#d4dfd9;font-size:.78rem;line-height:1.7;margin:14px 0 18px}
+  .passport-milestones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .passport-milestone{padding:15px;background:rgba(255,255,255,.055);border:1px solid rgba(216,193,138,.2)}
+  .passport-milestone>span{display:block;color:#d8c18a;font-size:8px;letter-spacing:.12em;margin-bottom:10px}
+  .passport-milestone strong{font:400 20px Georgia,serif}
+  .passport-track{height:3px;background:rgba(255,255,255,.2);margin:10px 0}
+  .passport-track i{display:block;height:100%;background:#d8c18a}
+  .passport-milestone p{color:#d4dfd9;font-size:10px;line-height:1.5;margin:0}
+  .passport-note{color:#c2d0c8;font-size:9px;line-height:1.6;margin:14px 0 0}
+  @media(max-width:600px){.journey-passport{padding:18px}.journey-passport-head{display:block}.passport-concept{display:inline-block;margin-top:12px}.passport-milestones{grid-template-columns:1fr}}
+</style>
+<style id="my-seiri-interaction-styles">
+  .memory-item{display:block;width:100%;text-align:left;color:inherit;font:inherit;cursor:pointer;transition:background .2s,border-color .2s}
+  .memory-item:hover,.memory-item:focus-visible{background:rgba(255,255,255,.13);border-color:rgba(216,193,138,.65);outline:2px solid transparent}
+  .seiri-highlights{margin-top:32px;padding-top:23px;border-top:1px solid var(--line)}
+  .seiri-highlights h3{font:400 1.65rem/1.15 var(--serif);margin:0 0 9px}
+  .highlights-intro{font-size:.8rem!important;line-height:1.65!important;color:var(--muted)!important;margin:0 0 15px!important}
+  .highlight-list{display:grid;gap:9px}
+  .highlight-card{display:grid;grid-template-columns:86px 1fr;gap:13px;align-items:center;width:100%;padding:8px;text-align:left;background:#fffdf8;border:1px solid var(--line);color:var(--ink);cursor:pointer;transition:transform .18s,border-color .18s}
+  .highlight-card:hover,.highlight-card:focus-visible{transform:translateY(-1px);border-color:var(--gold);outline:2px solid transparent}
+  .highlight-card img{width:86px;height:72px;object-fit:cover;display:block}
+  .highlight-card span{display:block;min-width:0}
+  .highlight-card small{display:block;color:#a9874b;font-size:.55rem;letter-spacing:.14em;margin-bottom:4px}
+  .highlight-card strong{display:block;font:400 1rem/1.2 var(--serif);margin-bottom:4px}
+  .highlight-card em{display:block;color:var(--muted);font-size:.68rem;font-style:normal;line-height:1.4}
+  .my-seiri-modal{position:fixed;inset:0;z-index:12000;display:none;align-items:center;justify-content:center;padding:22px}
+  .my-seiri-modal.is-open{display:flex}
+  .my-seiri-modal-backdrop{position:absolute;inset:0;background:rgba(7,28,30,.78);backdrop-filter:blur(5px)}
+  .my-seiri-modal-dialog{position:relative;z-index:1;width:min(820px,100%);max-height:90vh;overflow:auto;background:#e9eee8;color:#12383b;padding:clamp(22px,4vw,40px);box-shadow:0 24px 80px rgba(0,0,0,.3)}
+  .my-seiri-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}
+  .my-seiri-modal-head h2{font:400 clamp(30px,4vw,43px)/1.05 var(--serif);margin:7px 0 8px}
+  .my-seiri-modal-head p{max-width:620px;color:var(--muted);font-size:.82rem;line-height:1.65;margin:0}
+  .my-seiri-modal-close{flex:none;width:42px;height:42px;border:1px solid rgba(18,56,59,.3);background:transparent;color:#12383b;font-size:28px;line-height:1;cursor:pointer}
+  .my-seiri-modal-close:hover{background:#12383b;color:#fff}
+  .my-seiri-modal-content{display:grid;gap:12px}
+  .my-seiri-entry{background:var(--paper);border:1px solid var(--line);padding:17px}
+  .my-seiri-entry-meta{color:#a9874b;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 7px}
+  .my-seiri-entry h3{font:400 1.35rem/1.2 var(--serif);margin:0 0 7px;overflow-wrap:anywhere}
+  .my-seiri-entry p{font-size:.8rem;line-height:1.65;color:#566d67;margin:0 0 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+  .my-seiri-entry img{display:block;width:min(100%,420px);max-height:260px;object-fit:cover;margin:12px 0}
+  .my-seiri-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+  .my-seiri-actions button,.my-seiri-primary{border:0;border-bottom:1px solid var(--gold);padding:0 0 4px;background:transparent;color:var(--ink);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
+  .my-seiri-actions .delete-action{color:#8d4a3f;border-color:#b77c70}
+  .my-seiri-form{display:grid;gap:9px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+  .my-seiri-form label{color:var(--muted);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
+  .my-seiri-form input,.my-seiri-form textarea{width:100%;border:1px solid rgba(18,56,59,.22);background:#fffdf8;color:var(--ink);font:inherit;padding:10px 11px}
+  .my-seiri-form textarea{min-height:82px;resize:vertical}
+  .my-seiri-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .my-seiri-empty{padding:24px;background:rgba(255,253,248,.65);border:1px solid var(--line);color:var(--muted);font-size:.82rem;line-height:1.7}
+  .my-seiri-storage-note{color:var(--muted);font-size:.65rem;line-height:1.5;margin:18px 0 0}
+  .my-seiri-highlight-view img{display:block;width:100%;max-height:420px;object-fit:cover;margin:0 0 18px}
+  body.my-seiri-modal-open{overflow:hidden}
+  @media(max-width:600px){.seiri-highlights{margin-top:25px}.highlight-card{grid-template-columns:76px 1fr}.highlight-card img{width:76px;height:68px}.my-seiri-modal{padding:10px}.my-seiri-modal-dialog{max-height:94vh;padding:20px 15px}.my-seiri-modal-head{gap:12px}.my-seiri-form-row{grid-template-columns:1fr}}
+
+  .my-story-add{display:flex;align-items:center;gap:13px;width:100%;margin-top:14px;padding:14px 15px;text-align:left;background:#123f40;color:#f8f4e9;border:1px solid rgba(201,166,107,.6);cursor:pointer;transition:background .2s}
+  .my-story-add:hover{background:#1b5553}
+  .my-story-add>span:first-child{font:300 25px Georgia,serif;color:#d8c18a}
+  .my-story-add strong,.my-story-add small{display:block}
+  .my-story-add strong{font:400 1rem Georgia,serif}
+  .my-story-add small{margin-top:4px;color:#d4dfd9;font-size:.68rem;line-height:1.45}
+  .my-story-collections{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+  .my-story-collection{min-height:112px}
+  .my-story-media{display:block;width:100%;max-height:440px;object-fit:contain;background:#102d2b;margin:12px 0}
+  .my-story-composer{display:grid;gap:14px}
+  .my-story-composer label{display:grid;gap:7px;color:#826b3f;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}
+  .my-story-composer input,.my-story-composer textarea{width:100%;padding:11px 12px;border:1px solid rgba(18,56,59,.2);background:#fffdf8;color:#12383b;font:inherit;font-size:.82rem;letter-spacing:normal;text-transform:none}
+  .my-story-status{color:#6f735f;font-size:.7rem;line-height:1.5}
+  @media(max-width:680px){.my-story-collections{grid-template-columns:1fr}.my-story-collection{min-height:88px}}
+
+  .my-story-collections{grid-template-columns:1fr;margin-top:18px}
+  .my-story-collection{min-height:84px;text-align:left;transition:transform .18s,background .18s,border-color .18s}
+  .my-story-collection:hover,.my-story-collection:focus-visible{transform:translateY(-2px);outline:2px solid transparent}
+  .my-story-collection[data-my-seiri="story"]{background:#e4eee8;border-color:#c4d7ca;color:#173c38}
+  .my-story-collection[data-my-seiri="story"] span{color:#55736a}
+  .my-story-collection[data-my-seiri="highlights"]{background:#f4ead5;border-color:#e3cfaa;color:#4a3923}
+  .my-story-collection[data-my-seiri="highlights"] span{color:#8a7044}
+  .my-story-collection[data-my-seiri="vibes"]{background:#e8e7df;border-color:#d1d0c3;color:#283c3a}
+  .my-story-collection[data-my-seiri="vibes"] span{color:#65736b}
+  .saved-notes{max-height:330px;overflow-y:auto;overscroll-behavior:contain;padding-right:8px;scrollbar-color:#c4ad7e transparent;scrollbar-width:thin}
+  .saved-note img{display:block;width:100%;max-height:180px;object-fit:cover;margin-top:10px}
+  .my-seiri-modal-dialog{max-height:min(88vh,820px);overflow-y:auto;overscroll-behavior:contain}
+</style>
 </head>
 <body>
 
@@ -1886,7 +2021,7 @@ body.program-modal-open{overflow:hidden}
 <div class="wrap">
     <div class="section-head"><div><div class="eyebrow">Choose your depth of experience</div><h2>One moment.<br>A whole journey.</h2></div><p>Explore the BLINKITA formats described in the current experience catalogue. Final availability and any complete resort package are confirmed directly with Seiri del Mar.</p></div>
     <div class="program-tabs" role="group" aria-label="Filter experience formats">
-      <button class="program-tab active" data-filter="all">All experiences</button><button class="program-tab" data-filter="stay">Signature Stays</button><button class="program-tab" data-filter="retreat">Retreats</button><button class="program-tab" data-filter="journey">Living Time Journeys</button>
+      <button class="program-tab active" data-filter="all">All experiences</button><button class="program-tab" data-filter="stay">Signature Stays</button><button class="program-tab" data-filter="retreat">Retreats</button><button class="program-tab" data-filter="journey">Living Time Journeys</button><button class="program-tab" data-filter="year" aria-haspopup="dialog">A Year of BLINKITA</button>
     </div>
     <div class="program-grid">
       <article class="program-card" data-type="stay"><div class="program-top"><span>01 DAY | PRIVATE OR GROUP</span><span class="program-price">$444 / individual</span></div><h3>The BLINKITA Day</h3><p>A full-day experience built around five signature elements: Sunrise Ritual, Signature Massage, Aqua Lemu Reiki, Sunset Ritual Reading and a Sunset Ritual with ceremonial cacao.</p><div class="program-foot"><span>Group: $399 per guest</span><button class="save-experience" data-experience="The BLINKITA Day">Save to My Seiri +</button></div></article>
@@ -2098,17 +2233,50 @@ body.program-modal-open{overflow:hidden}
       <p style="color:var(--muted);max-width:520px">My Seiri is a proposed personal space for the memories, experiences and reflections that make each stay your own. Save a thought from today's Living Time reflection and see it appear here.</p>
       <span class="concept-pill">Private concept preview</span>
       <p style="font-size:.85rem;color:var(--muted)">This prototype saves notes in the current browser only. A real account, synced memories and booking history would be developed separately after approval.</p>
+      <section class="seiri-highlights" aria-labelledby="seiriHighlightsTitle">
+        <div class="eyebrow">A little more to remember</div>
+        <h3 id="seiriHighlightsTitle">Seiri Highlights.</h3>
+        <p class="highlights-intro">A few moments from the place, the table and the experiences. Open one to take a closer look or save it to My Seiri.</p>
+        <div class="highlight-list">
+          <button class="highlight-card" type="button" data-highlight-title="Belize, beyond the shoreline" data-highlight-copy="A little space to reconnect with the sea and the natural rhythm of Belize." data-highlight-image="assets/seiri/official-13.png">
+            <img src="assets/seiri/official-13.png" alt="Belize coastline and sea" loading="lazy"><span><small>THE PLACE</small><strong>Belize, beyond the shoreline</strong><em>Explore a little more of Belize.</em></span>
+          </button>
+          <button class="highlight-card" type="button" data-highlight-title="At the table at Ember" data-highlight-copy="A taste of the Caribbean table at Ember. Explore the dining experience and save a favourite for your stay." data-highlight-image="assets/seiri/official-47.webp">
+            <img src="assets/seiri/official-47.webp" alt="Dining at Ember, Seiri del Mar" loading="lazy"><span><small>EMBER</small><strong>At the table at Ember</strong><em>Keep a dining idea for your stay.</em></span>
+          </button>
+          <button class="highlight-card" type="button" data-highlight-title="A moment to restore" data-highlight-copy="Make room for a private wellness experience during your time at Seiri." data-highlight-image="assets/seiri/wellness.jpg">
+            <img src="assets/seiri/wellness.jpg" alt="Wellness experience at Seiri del Mar" loading="lazy"><span><small>BLINKITA</small><strong>A moment to restore</strong><em>Explore wellness at Seiri.</em></span>
+          </button>
+        </div>
+              </section>
+      <div class="my-story-collections" id="my-story-collections" aria-label="Your saved Seiri collections">
+        <button class="memory-item my-story-collection" type="button" data-my-seiri="story" aria-haspopup="dialog"><span>01 | YOUR MOMENTS</span><strong>My Story</strong><span>Your photos and notes from Keep a moment</span></button>
+        <button class="memory-item my-story-collection" type="button" data-my-seiri="highlights" aria-haspopup="dialog"><span>02 | SEIRI FAVOURITES</span><strong>My Highlights</strong><span>Places, dining &amp; moments you love</span></button>
+        <button class="memory-item my-story-collection" type="button" data-my-seiri="vibes" aria-haspopup="dialog"><span>03 | BLINKITA</span><strong>My Vibes</strong><span>Experiences saved for your journey</span></button>
+      </div>
+
     </div>
     <div class="memory-preview">
       <div class="eyebrow">My Seiri | Personal dashboard</div>
       <h3>Your Belize story.</h3>
       <p>A place for your journeys, experiences and moments worth remembering.</p>
       <div class="memory-items">
-        <div class="memory-item"><span>01 | JOURNEYS</span><strong>My journeys</strong><span>Upcoming & past stays</span></div>
-        <div class="memory-item"><span>02 | EXPERIENCES</span><strong>My experiences</strong><span>Sessions & special moments</span></div>
-        <div class="memory-item"><span>03 | MEMORIES</span><strong>My memories</strong><span>Photos & personal notes</span></div>
-        <div class="memory-item"><span>04 | LIVING TIME</span><strong>Daily reflections</strong><span>Your moments of presence</span></div>
+        <button class="memory-item" type="button" data-my-seiri="journeys" aria-haspopup="dialog"><span>01 | JOURNEYS</span><strong>My journeys</strong><span>Upcoming &amp; past stays</span></button>
+        <button class="memory-item" type="button" data-my-seiri="experiences" aria-haspopup="dialog"><span>02 | EXPERIENCES</span><strong>My experiences</strong><span>Sessions &amp; special moments</span></button>
+        <button class="memory-item" type="button" data-my-seiri="memories" aria-haspopup="dialog"><span>03 | MEMORIES</span><strong>My memories</strong><span>Photos &amp; personal notes</span></button>
+        <button class="memory-item" type="button" data-my-seiri="reflections" aria-haspopup="dialog"><span>04 | LIVING TIME</span><strong>Daily reflections</strong><span>Your moments of presence</span></button>
       </div>
+      
+      <section class="journey-passport" aria-labelledby="journeyPassportTitle">
+        <div class="journey-passport-head"><div><div class="eyebrow">BLINKITA JOURNEY PASSPORT</div><h3 id="journeyPassportTitle">Your experiences, gathered over time.</h3></div><span class="passport-concept">CONCEPT PREVIEW</span></div>
+        <p class="passport-intro">Completed eligible experiences can build toward thoughtful milestones. Interests saved in My Seiri are not counted as completed visits.</p>
+        <div class="passport-milestones">
+          <article class="passport-milestone"><span>03 EXPERIENCES</span><strong>0 / 3</strong><div class="passport-track"><i style="width:0%"></i></div><p>A personal digital reflection.</p></article>
+          <article class="passport-milestone"><span>05 EXPERIENCES</span><strong>0 / 5</strong><div class="passport-track"><i style="width:0%"></i></div><p>A considered added touch or priority access.</p></article>
+          <article class="passport-milestone"><span>10 EXPERIENCES</span><strong>0 / 10</strong><div class="passport-track"><i style="width:0%"></i></div><p>A signature experience credit.</p></article>
+        </div>
+        <p class="passport-note">Milestone examples only. Eligibility, rewards and visit verification would be agreed with Seiri del Mar before launch.</p>
+      </section>
       <div class="memory-capture">
         <div class="eyebrow">Keep a moment</div><h3>Add to your story.</h3>
         <form id="memoryForm">
@@ -2135,6 +2303,14 @@ body.program-modal-open{overflow:hidden}
     </div>
   </div>
 </section>
+<div class="my-seiri-modal" id="mySeiriHistoryModal" aria-hidden="true">
+  <div class="my-seiri-modal-backdrop" data-my-seiri-close></div>
+  <section class="my-seiri-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="mySeiriModalTitle" aria-describedby="mySeiriModalDescription" tabindex="-1">
+    <header class="my-seiri-modal-head"><div><div class="eyebrow">MY SEIRI | YOUR PRIVATE SPACE</div><h2 id="mySeiriModalTitle">Your collection</h2><p id="mySeiriModalDescription"></p></div><button class="my-seiri-modal-close" type="button" aria-label="Close My Seiri window">&times;</button></header>
+    <div class="my-seiri-modal-content" id="mySeiriModalContent"></div>
+    <p class="my-seiri-storage-note">Your entries are saved in this browser in this prototype.</p>
+  </section>
+</div>
 </main>
 <footer class="seiri-footer">
   <div class="wrap footer-inner">
@@ -2346,6 +2522,7 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
       el.append(del,label,body);container.appendChild(el);
     });
   }
+  document.addEventListener('my-seiri:data-changed',renderNotes);
   function imageToCompressedData(file){return new Promise((resolve,reject)=>{
     const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.72));};img.src=reader.result;};reader.readAsDataURL(file);
   });}
@@ -2426,12 +2603,21 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
       meta.append(duration,price,group);card.append(category,h,desc,meta,save);catalogGrid.appendChild(card);
     });
   }
-  function saveExperience(title,btn){
-    const items=readMemories();if(items.some(item=>item.title==='Saved experience: '+title)){btn.textContent='Already saved ';return;}
-    items.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:'Saved experience: '+title,note:"I'm interested in learning more about this experience. Availability, inclusions and final pricing should be confirmed with Seiri del Mar.",photo:'',date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),createdAt:new Date().toISOString()});
-    try{localStorage.setItem(MEMORY_STORE,JSON.stringify(items));btn.textContent='Saved to My Seiri ';renderNotes();}catch(e){btn.textContent='Unable to save';}
-  }
-  const catalogModal = $('catalogModal');
+  function saveExperience(title,btn,noteOverride){
+    const items=readMemories();
+    const savedTitle='Saved experience: '+title;
+    const noteText=noteOverride||"I'm interested in learning more about this experience. Availability, inclusions and final pricing should be confirmed with Seiri del Mar.";
+    const existing=items.find(item=>item.title===savedTitle);
+    if(existing){
+      if(!noteOverride){btn.textContent='Already saved';return;}
+      existing.note=noteText;
+      existing.updatedAt=new Date().toISOString();
+    }else{
+      items.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:savedTitle,note:noteText,photo:'',date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),createdAt:new Date().toISOString()});
+    }
+    try{localStorage.setItem(MEMORY_STORE,JSON.stringify(items));btn.textContent=noteOverride?'Note saved to My Seiri':'Saved to My Seiri';renderNotes();}
+    catch(e){btn.textContent='Unable to save';}
+  }  const catalogModal = $('catalogModal');
   const catalogModalPanel = catalogModal.querySelector('.catalog-modal-panel');
   const catalogModalTitle = $('catalogModalTitle');
   const catalogModalDescription = $('catalogModalDescription');
@@ -2561,6 +2747,10 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
     journey: {
       title: 'Living Time Journeys',
       description: 'Discover date-scheduled journeys inspired by the traditional Tzolk’in matrix.'
+    },
+    year: {
+      title: 'A Year of BLINKITA',
+      description: 'Discover one featured BLINKITA experience for each month of the year.'
     }
   };
 
@@ -2568,6 +2758,163 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
     console.error('BLINKITA program modal could not initialise: required element missing.');
   } else {
     programModalContent.appendChild(programGrid);
+
+    const yearPanel = document.createElement('div');
+    yearPanel.className = 'blinkita-year-modal';
+    yearPanel.hidden = true;
+    yearPanel.innerHTML = '<div class="by-year-intro"><div class="eyebrow">BLINKITA | THE CARIBBEAN SIGNATURE EXPERIENCES</div><h3>A Year of BLINKITA</h3><p>Each month, one BLINKITA experience is featured across guest channels. Guests may receive a special seasonal rate or added benefit. The full menu remains available year-round; ask Seiri del Mar about this month&#39;s offer and availability.</p></div><div class="by-year-grid" aria-label="Monthly BLINKITA experiences"></div><div class="by-year-detail" aria-live="polite"></div>';
+    programModalContent.appendChild(yearPanel);
+    const yearGrid = yearPanel.querySelector('.by-year-grid');
+    const yearDetail = yearPanel.querySelector('.by-year-detail');
+    const yearItems = [
+      { month: 'January', experience: 'Maya Abdominal Massage', description: 'A private session with space to slow down and focus on what you would like from your time at Seiri.', addedTouch: 'A short preparation and reflection guide to save in My Seiri.' },
+      { month: 'February', experience: "Maya Tzolk'in & Living Time Reading", description: 'Explore a personal Tzolk’in reading and reflect on the dates you are considering for your journey.', addedTouch: 'Save a personal travel-date reflection in My Seiri.' },
+      { month: 'March', experience: 'Aqua Lemu Reiki', description: 'Discover an individual Aqua Lemu Reiki session in a calm, attentive setting.', addedTouch: 'A short digital reflection to revisit after the session.' },
+      { month: 'April', experience: 'Tarot & Card Reading', description: 'Use the cards as a starting point for a thoughtful conversation about the questions you bring.', addedTouch: 'One follow-up reflection prompt to keep in My Seiri.' },
+      { month: 'May', experience: 'Munay Ki', description: 'Explore the Munay Ki offering with a BLINKITA practitioner and learn whether it feels right for you.', addedTouch: 'A brief practitioner-approved reflection guide.' },
+      { month: 'June', experience: 'Magickal Vitality', description: 'Discover the Magickal Vitality experience and the format available during your stay.', addedTouch: 'A short digital companion to take into your week.' },
+      { month: 'July', experience: 'Shamanic Healing Journeys', description: 'Explore a guided journey shaped around the experience offered and the time you have in Belize.', addedTouch: 'Early access to enquire about selected future dates.' },
+      { month: 'August', experience: 'Jin Shin Jyutsu', description: 'Make room for an individual Jin Shin Jyutsu session and a quieter moment in your day.', addedTouch: 'A practitioner-approved take-home reflection card.' },
+      { month: 'September', experience: "Women's Medicine", description: 'Discover the BLINKITA Women’s Medicine offering in a personal, thoughtfully held setting.', addedTouch: 'A set of optional journaling prompts for My Seiri.' },
+      { month: 'October', experience: 'Eternal Youth Rites', description: 'Explore the Eternal Youth Rites offering and ask the Seiri team about its current format.', addedTouch: 'A short digital reflection to continue at home.' },
+      { month: 'November', experience: 'Dot-Painting Workshop', description: 'Enjoy a creative, hands-on workshop and make time to explore dot painting.', addedTouch: 'A small take-home art piece or materials to continue creating, if confirmed.' },
+      { month: 'December', experience: 'BLINKITA Cosmovision', description: 'Explore the wider BLINKITA perspective through a guided Cosmovision experience.', addedTouch: 'A year-end reflection page to save in My Seiri.' }
+    ];
+    yearItems.forEach(item => {
+      const monthButton = document.createElement('button');
+      monthButton.type = 'button';
+      monthButton.className = 'by-year-month';
+      const monthName = document.createElement('span');
+      monthName.className = 'by-year-month-name';
+      monthName.textContent = item.month;
+      const experienceName = document.createElement('span');
+      experienceName.className = 'by-year-experience-name';
+      experienceName.textContent = item.experience;
+      monthButton.append(monthName, experienceName);
+      monthButton.addEventListener('click', () => {
+        let currentIndex = yearItems.indexOf(item);
+        const monthButtons = Array.from(yearGrid.querySelectorAll('.by-year-month'));
+
+        function renderMonthDetail() {
+          const current = yearItems[currentIndex];
+          monthButtons.forEach((button, index) => button.classList.toggle('active', index === currentIndex));
+          yearDetail.replaceChildren();
+
+          const back = document.createElement('button');
+          back.type = 'button';
+          back.className = 'by-year-back';
+          back.textContent = '← Back to all months';
+          back.addEventListener('click', () => {
+            yearDetail.classList.remove('is-visible');
+            yearPanel.classList.remove('is-detail-view');
+            programModalDialog.classList.remove('is-year-detail');            yearGrid.classList.remove('is-hidden');
+            monthButtons.forEach(button => button.classList.remove('active'));
+            yearPanel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            monthButtons[currentIndex].focus();
+          });
+
+          const copy = document.createElement('div');
+          const label = document.createElement('div');
+          label.className = 'eyebrow';
+          label.textContent = current.month.toUpperCase() + ' | MONTHLY FEATURE';
+          const title = document.createElement('h4');
+          title.textContent = current.experience;
+          const description = document.createElement('p');
+          description.textContent = current.description;
+          const added = document.createElement('p');
+          added.className = 'by-year-added-touch';
+          added.textContent = 'This month’s added touch: ' + current.addedTouch + ' Subject to confirmation.';
+          copy.append(label, title, description, added);
+
+          const navigation = document.createElement('div');
+          navigation.className = 'by-year-month-nav';
+          const previous = document.createElement('button');
+          previous.type = 'button';
+          previous.textContent = '← Previous';
+          previous.setAttribute('aria-label', 'Previous monthly BLINKITA experience');
+          previous.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + yearItems.length) % yearItems.length;
+            renderMonthDetail();
+            yearDetail.querySelector('.by-year-month-nav button:first-child').focus();
+          });
+          const next = document.createElement('button');
+          next.type = 'button';
+          next.textContent = 'Next →';
+          next.setAttribute('aria-label', 'Next monthly BLINKITA experience');
+          next.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % yearItems.length;
+            renderMonthDetail();
+            yearDetail.querySelector('.by-year-month-nav button:last-child').focus();
+          });
+          navigation.append(previous, next);
+
+          const actions = document.createElement('div');
+          actions.className = 'by-year-detail-actions';
+          const save = document.createElement('button');
+          save.type = 'button';
+          save.className = 'save-experience';
+          save.textContent = 'Save to My Seiri +';
+          save.addEventListener('click', () => saveExperience(current.month + ': ' + current.experience, save));
+
+          const noteBox = document.createElement('div');
+          noteBox.className = 'by-year-personal-note';
+          const noteLabel = document.createElement('label');
+          noteLabel.textContent = 'A note for your Seiri story';
+          const noteInput = document.createElement('textarea');
+          noteInput.rows = 3;
+          noteInput.maxLength = 500;
+          noteInput.placeholder = 'Add a date you are considering, a question, or a note for your stay…';
+          noteInput.setAttribute('aria-label', 'A personal note about this monthly experience');
+          const noteStatus = document.createElement('span');
+          noteStatus.className = 'by-year-note-status';
+          noteStatus.setAttribute('aria-live', 'polite');
+          const noteSave = document.createElement('button');
+          noteSave.type = 'button';
+          noteSave.className = 'by-year-note-save';
+          noteSave.textContent = 'Save a note to My Seiri';
+          noteSave.addEventListener('click', () => {
+            const personalNote = noteInput.value.trim();
+            if (!personalNote) {
+              noteStatus.textContent = 'Add a note first, then save it.';
+              noteInput.focus();
+              return;
+            }
+            const combinedNote = "I'm interested in learning more about this experience.\n\nMy note: " + personalNote;
+            saveExperience(current.month + ': ' + current.experience, noteSave, combinedNote);
+            noteStatus.textContent = 'Your note is saved in this browser.';
+          });
+          noteBox.append(noteLabel, noteInput, noteSave, noteStatus);
+          const subject = encodeURIComponent('Seiri del Mar enquiry: ' + current.experience);
+          const body = encodeURIComponent('Hello Seiri del Mar,\n\nI would like to enquire about ' + current.experience + ', featured in ' + current.month + '. Please let me know about the current format, availability and any seasonal offer.\n\nThank you.');
+          const email = document.createElement('a');
+          email.className = 'by-year-contact-link';
+          email.href = 'mailto:info@belizehopkins.com?subject=' + subject + '&body=' + body;
+          email.setAttribute('aria-label', 'Email Seiri del Mar about ' + current.experience);
+          email.innerHTML = '<span aria-hidden="true">✉</span><span>Email</span>';
+
+          const whatsapp = document.createElement('a');
+          whatsapp.className = 'by-year-contact-link by-year-whatsapp';
+          whatsapp.href = 'https://wa.me/5016647445?text=' + encodeURIComponent('Hello Seiri del Mar, I would like to enquire about ' + current.experience + ', featured in ' + current.month + '.');
+          whatsapp.target = '_blank';
+          whatsapp.rel = 'noopener noreferrer';
+          whatsapp.setAttribute('aria-label', 'Message Seiri del Mar on WhatsApp about ' + current.experience);
+          whatsapp.innerHTML = '<span aria-hidden="true">◉</span><span>WhatsApp</span>';
+
+          actions.append(save, email, whatsapp);
+          yearDetail.append(back, copy, navigation, noteBox, actions);
+          yearGrid.classList.add('is-hidden');
+          yearDetail.classList.add('is-visible');
+          yearPanel.classList.add('is-detail-view');
+          programModalDialog.classList.add('is-year-detail');        }
+
+        renderMonthDetail();
+        yearPanel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        yearDetail.querySelector('.by-year-back').focus();
+      });
+
+
+      yearGrid.appendChild(monthButton);
+    });
 
     function openProgramModal(filter, trigger) {
       const view = programViews[filter] || programViews.all;
@@ -2578,6 +2925,18 @@ if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const isOpen=nav.classLis
       programGrid.querySelectorAll('.program-card').forEach(card => {
         card.hidden = filter !== 'all' && card.dataset.type !== filter;
       });
+
+      const showingYear = filter === 'year';
+      programGrid.style.display = showingYear ? 'none' : '';
+      yearPanel.hidden = !showingYear;
+      // Reset A Year of BLINKITA to month grid whenever the year view opens.
+      if (showingYear) {
+        yearGrid.classList.remove('is-hidden');
+        yearDetail.classList.remove('is-visible');
+        yearDetail.replaceChildren();
+        yearPanel.classList.remove('is-detail-view');
+        programModalDialog.classList.remove('is-year-detail');        yearGrid.querySelectorAll('.by-year-month').forEach(button => button.classList.remove('active'));
+      }
 
       document.querySelectorAll('.program-tab').forEach(tab => {
         const active = tab.dataset.filter === filter;
@@ -2734,6 +3093,180 @@ body>header.topbar{position:fixed!important;top:0!important;left:0!important;rig
 </style>
 <script id="seiri-fixed-navigation-space">
 (function(){const nav=document.querySelector('.site-header-wrap')||document.querySelector('body>header.topbar');if(!nav)return;const sync=function(){const h=Math.ceil(nav.getBoundingClientRect().height);document.body.style.paddingTop=h+'px';document.documentElement.style.scrollPaddingTop=(h+8)+'px';};sync();window.addEventListener('resize',sync,{passive:true});if(window.ResizeObserver){new ResizeObserver(sync).observe(nav);}})();
+</script>
+<script id="my-seiri-dashboard-script">
+(() => {
+  const modal = document.getElementById('mySeiriHistoryModal');
+  const dialog = modal && modal.querySelector('.my-seiri-modal-dialog');
+  const content = document.getElementById('mySeiriModalContent');
+  if (!modal || !dialog || !content) return;
+  const title = document.getElementById('mySeiriModalTitle');
+  const description = document.getElementById('mySeiriModalDescription');
+  const memoryKey = 'seiriPersonalMemories_v1';
+  const reflectionKey = 'seiriLivingTimeNotes_v1';
+  const journeyKey = 'seiriPlannedJourneys_v1';
+  let previousFocus = null;
+  let currentCategory = '';
+  const labels = {
+    journeys: ['My journeys', 'Your planned journeys and, later, confirmed stay history.'],
+    experiences: ['My experiences', 'Saved interests and experiences you may want to explore.'],
+    memories: ['My memories', 'Personal notes and photographs you have saved.'],
+    reflections: ['Daily reflections', 'Your saved Living Time notes, arranged by date.'],
+    story: ['My Story', 'Your photos, videos and notes from moments worth remembering.'],
+    highlights: ['My Highlights', 'The Seiri places, dining moments and experiences you have saved.'],
+    vibes: ['My Vibes', 'BLINKITA experiences you are curious to explore.']
+  };
+  const read = key => { try { const value = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; } catch (_) { return []; } };
+  const write = (key, value) => { localStorage.setItem(key, JSON.stringify(value)); document.dispatchEvent(new Event('my-seiri:data-changed')); };
+  const el = (tag, className, text) => { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
+  const open = (category, trigger) => {
+    currentCategory = category;
+    previousFocus = trigger || document.activeElement;
+    const copy = labels[category];
+    title.textContent = copy[0]; description.textContent = copy[1];
+    render(category);
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('my-seiri-modal-open');
+    modal.querySelector('.my-seiri-modal-close').focus();
+  };
+  const close = () => {
+    if (!modal.classList.contains('is-open')) return;
+    modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('my-seiri-modal-open');
+    if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+  };
+  function renderStory() {
+    content.replaceChildren();
+    const rows=read(memoryKey).map((item,index)=>({kind:/^(Saved experience: |Suggested experience: )/i.test(item.title||'')?'experience':'memory',item,index,time:item.createdAt||''})).filter(row=>row.kind==='memory');
+    rows.sort((a,b)=>b.time.localeCompare(a.time));
+    if(!rows.length){content.appendChild(el('div','my-seiri-empty','Your saved moments from Keep a moment will appear here. Add a title, a few words and an optional photo using the form on the right.'));return;}
+    rows.forEach(row=>content.appendChild(recordCard('memories',row)));
+  }
+  function render(category) {
+    content.replaceChildren();
+    if (category === 'journeys') { renderJourneys(); return; }
+    if (category === 'story') { renderStory(); return; }
+    let records = [];
+    if (category === 'reflections') {
+      records = read(reflectionKey).map((item, index) => ({kind:'reflection', item, index, time:item.createdAt || ''}));
+    } else {
+      records = read(memoryKey).map((item, index) => {
+        const titleText = item.title || '';
+        const isExperience = /^(Saved experience: |Suggested experience: )/i.test(titleText);
+        return {kind:isExperience ? 'experience' : 'memory', item, index, time:item.createdAt || ''};
+      }).filter(row => { const isHighlight = /^Saved experience: Seiri highlight -/i.test(row.item.title || ''); if (category === 'highlights') return row.kind === 'experience' && isHighlight; if (category === 'vibes') return row.kind === 'experience' && !isHighlight; return category === 'experiences' ? row.kind === 'experience' : row.kind === 'memory'; });
+    }
+    records.sort((a,b) => b.time.localeCompare(a.time));
+    if (!records.length) {
+      const emptyCopy = category === 'experiences' || category === 'vibes'
+        ? 'Your saved BLINKITA ideas will appear here. Open an experience and save it to My Seiri.'
+        : category === 'highlights'
+          ? 'Your favourite Seiri places, dining moments and highlights will appear here when you save them.'
+          : 'Your saved Living Time reflections will appear here. Open Plan a Date and save a reflection to begin your history.';
+      const empty = el('div','my-seiri-empty', emptyCopy);
+      content.appendChild(empty); return;
+    }
+    records.forEach(record => content.appendChild(recordCard(category, record)));
+  }
+  function recordCard(category, record) {
+    const item = record.item;
+    const card = el('article','my-seiri-entry');
+    const dateText = item.date || (item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'Saved on this device');
+    card.appendChild(el('div','my-seiri-entry-meta', (record.kind === 'reflection' ? 'LIVING TIME' : record.kind === 'experience' ? 'SAVED EXPERIENCE' : 'MEMORY') + ' | ' + dateText));
+    const prefixMatch = record.kind === 'experience' ? (item.title || '').match(/^(Saved experience: |Suggested experience: )/i) : null;
+    const prefix = prefixMatch ? prefixMatch[0] : '';
+    const heading = el('h3','', prefix ? item.title.slice(prefix.length) : (item.title || (record.kind === 'reflection' ? (item.code || 'Living Time reflection') : 'Saved memory')));
+    card.appendChild(heading);
+    if (item.code && record.kind === 'reflection') card.appendChild(el('p','',item.code));
+    if (item.note) card.appendChild(el('p','',item.note));
+    if (item.photo) { const image = el('img'); image.src = item.photo; image.alt = 'Saved memory'; card.appendChild(image); }
+    const actions = el('div','my-seiri-actions');
+    const edit = el('button','',record.kind === 'experience' || record.kind === 'reflection' ? 'Edit note' : 'Edit');
+    edit.type = 'button'; edit.addEventListener('click',() => editRecord(card,category,record,prefix));
+    const remove = el('button','delete-action','Delete'); remove.type = 'button';
+    remove.addEventListener('click',() => confirmDelete(card,record));
+    actions.append(edit,remove); card.appendChild(actions);
+    return card;
+  }
+  function editRecord(card,category,record,prefix) {
+    card.querySelector('.my-seiri-form')?.remove();
+    const form = el('form','my-seiri-form');
+    const titleInput = el('input'); titleInput.maxLength = 90;
+    const noteInput = el('textarea'); noteInput.maxLength = 1200;
+    const canEditTitle = record.kind === 'memory' || record.kind === 'journey';
+    if (canEditTitle) { const label = el('label','',record.kind === 'journey' ? 'Journey name' : 'Memory title'); label.appendChild(titleInput); form.appendChild(label); titleInput.value = record.item.title || ''; }
+    const noteLabel = el('label','',record.kind === 'reflection' ? 'Reflection' : 'A few words'); noteLabel.appendChild(noteInput); form.appendChild(noteLabel); noteInput.value = record.item.note || '';
+    const buttons = el('div','my-seiri-actions');
+    const save = el('button','','Save changes'); save.type = 'submit';
+    const cancel = el('button','','Cancel'); cancel.type = 'button'; cancel.addEventListener('click',() => form.remove());
+    buttons.append(save,cancel); form.appendChild(buttons);
+    form.addEventListener('submit',event => {
+      event.preventDefault();
+      if (record.kind === 'reflection') {
+        const rows = read(reflectionKey); if (!rows[record.index]) return;
+        rows[record.index].note = noteInput.value.trim(); write(reflectionKey,rows);
+      } else {
+        const key = record.kind === 'journey' ? journeyKey : memoryKey;
+        const rows = read(key); const idx = rows.findIndex(row => row.id === record.item.id); if (idx < 0) return;
+        if (canEditTitle) rows[idx].title = titleInput.value.trim();
+        else rows[idx].title = prefix + (record.item.title || '').slice(prefix.length);
+        rows[idx].note = noteInput.value.trim(); write(key,rows);
+      }
+      render(category);
+    });
+    card.appendChild(form); titleInput.focus();
+  }
+  function confirmDelete(card,record) {
+    card.querySelector('.delete-confirm')?.remove();
+    const box = el('div','my-seiri-form delete-confirm');
+    box.appendChild(el('p','', 'Delete this saved item from this browser?'));
+    const actions = el('div','my-seiri-actions');
+    const yes = el('button','delete-action','Confirm delete'); yes.type='button';
+    yes.addEventListener('click',() => {
+      if (record.kind === 'reflection') { const rows=read(reflectionKey); rows.splice(record.index,1); write(reflectionKey,rows); }
+      else { const key=record.kind==='journey'?journeyKey:memoryKey; const rows=read(key); const idx=rows.findIndex(row=>row.id===record.item.id); if(idx>=0){rows.splice(idx,1);write(key,rows);} }
+      render(currentCategory);
+    });
+    const keep = el('button','','Keep it'); keep.type='button'; keep.addEventListener('click',()=>box.remove());
+    actions.append(yes,keep); box.appendChild(actions); card.appendChild(box);
+  }
+  function renderJourneys() {
+    const rows = read(journeyKey).sort((a,b)=>(a.startDate||'').localeCompare(b.startDate||''));
+    if (!rows.length) content.appendChild(el('div','my-seiri-empty','No trips saved yet. Add a private trip idea here while you explore possible dates. Confirmed booking history can be connected later.'));
+    rows.forEach((item,index)=>content.appendChild(recordCard('journeys',{kind:'journey',item,index,time:item.startDate||''})));
+    const toggle = el('button','my-seiri-primary','Add a journey idea +'); toggle.type='button';
+    toggle.addEventListener('click',()=>showJourneyForm()); content.appendChild(toggle);
+  }
+  function showJourneyForm() {
+    content.querySelector('.journey-form')?.remove();
+    const form=el('form','my-seiri-form journey-form');
+    const name=el('input'); name.required=true; name.maxLength=90; name.placeholder='A name for this journey';
+    const start=el('input'); start.type='date';
+    const end=el('input'); end.type='date';
+    const note=el('textarea'); note.maxLength=1200; note.placeholder='What would you like to remember or explore?';
+    const nameLabel=el('label','','Journey name'); nameLabel.appendChild(name); form.appendChild(nameLabel);
+    const dateRow=el('div','my-seiri-form-row');
+    const startLabel=el('label','','Possible arrival'); startLabel.appendChild(start);
+    const endLabel=el('label','','Possible departure'); endLabel.appendChild(end);
+    dateRow.append(startLabel,endLabel); form.appendChild(dateRow);
+    const noteLabel=el('label','','Notes'); noteLabel.appendChild(note); form.appendChild(noteLabel);
+    const actions=el('div','my-seiri-actions'); const save=el('button','','Save idea'); save.type='submit'; const cancel=el('button','','Cancel'); cancel.type='button'; cancel.addEventListener('click',()=>form.remove()); actions.append(save,cancel); form.appendChild(actions);
+    form.addEventListener('submit',event=>{event.preventDefault();end.setCustomValidity('');if(start.value&&end.value&&end.value<start.value){end.setCustomValidity('Departure must be after arrival.');end.reportValidity();return;}const rows=read(journeyKey);rows.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:name.value.trim(),startDate:start.value,endDate:end.value,note:note.value.trim(),createdAt:new Date().toISOString(),status:'planning'});write(journeyKey,rows);render('journeys');});
+    content.appendChild(form); name.focus();
+  }
+  document.querySelectorAll('.memory-item[data-my-seiri]').forEach(button=>button.addEventListener('click',()=>open(button.dataset.mySeiri,button)));
+  document.querySelectorAll('.highlight-card').forEach(button=>button.addEventListener('click',()=>openHighlight(button)));
+  function openHighlight(button) {
+    previousFocus=button; currentCategory='highlights'; title.textContent=button.dataset.highlightTitle; description.textContent=button.dataset.highlightCopy; content.replaceChildren();
+    const wrap=el('div','my-seiri-highlight-view'); const image=el('img'); image.src=button.dataset.highlightImage; image.alt=button.dataset.highlightTitle; wrap.appendChild(image); wrap.appendChild(el('p','',button.dataset.highlightCopy));
+    const save=el('button','my-seiri-primary','♡ Save to My Highlights'); save.type='button';
+    save.addEventListener('click',()=>{const rows=read(memoryKey);const savedTitle='Saved experience: Seiri highlight - '+button.dataset.highlightTitle;if(rows.some(row=>row.title===savedTitle)){save.textContent='Already in My Highlights';return;}rows.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),title:savedTitle,note:button.dataset.highlightCopy,photo:button.dataset.highlightImage,collection:'highlights',date:new Date().toLocaleDateString('en-GB'),createdAt:new Date().toISOString()});write(memoryKey,rows);save.textContent='Saved to My Highlights';});
+    wrap.appendChild(save); content.appendChild(wrap); modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('my-seiri-modal-open'); modal.querySelector('.my-seiri-modal-close').focus();
+  }
+  modal.querySelector('.my-seiri-modal-close').addEventListener('click',close);
+  modal.querySelectorAll('[data-my-seiri-close]').forEach(node=>node.addEventListener('click',close));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')close();if(event.key==='Tab'&&modal.classList.contains('is-open')){const focusable=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(node=>node.offsetParent!==null);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}});
+})();
 </script>
 </body></html>
 
