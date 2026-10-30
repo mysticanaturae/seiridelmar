@@ -40,6 +40,32 @@
 @media(max-width:1100px){.site-header-wrap .topbar{padding-left:18px;padding-right:122px;gap:12px}.site-header-wrap .brand .seiri-brand-name{font-size:clamp(.82rem,1.05vw,1rem)}.site-header-wrap .nav{gap:clamp(6px,.7vw,10px);font-size:clamp(.64rem,.82vw,.76rem)}}
 @media(max-width:760px){.site-header-wrap .topbar{height:auto;min-height:82px;padding-left:12px;padding-right:112px;gap:8px}.site-header-wrap .seiri-header-logo{width:38px!important;height:38px!important;flex-basis:38px!important}.site-header-wrap .brand{gap:7px}.site-header-wrap .brand .seiri-brand-name{font-size:.74rem;letter-spacing:.06em}.site-header-wrap .nav{gap:5px;font-size:clamp(.55rem,1.2vw,.66rem)}.site-header-wrap .nav .nav-cta{padding:7px 8px}.site-header-wrap #tzWidget,.topbar #tzWidget{right:6px!important;width:96px!important;max-width:96px!important}.site-header-wrap #tzWidget .tz-number,.site-header-wrap #tzWidget .tz-glyph,.topbar #tzWidget .tz-number,.topbar #tzWidget .tz-glyph{width:24px!important;height:24px!important;flex-basis:24px!important}.tz-date-controls{grid-template-columns:36px minmax(100px,1fr) 36px auto;gap:5px}.tz-date-step{width:36px;height:38px}.tz-date-today{height:38px;padding:0 8px}}
 .topbar .navlinks{display:flex!important;flex-wrap:nowrap!important;white-space:nowrap;overflow-x:auto;scrollbar-width:none;gap:clamp(6px,.8vw,12px);font-size:clamp(.58rem,.8vw,.76rem);min-width:0}.topbar .navlinks::-webkit-scrollbar{display:none}
+</style><style id="index-header-final-layout">
+.wrap.site-header-wrap{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+.site-header-wrap .topbar{display:grid!important;grid-template-columns:minmax(175px,205px) minmax(0,1fr) 118px!important;align-items:center!important;justify-content:stretch!important;gap:clamp(10px,1.2vw,18px)!important;width:100%!important;height:86px!important;padding:0 10px 0 clamp(18px,2.5vw,32px)!important;box-sizing:border-box!important}
+.site-header-wrap .brand{justify-self:start!important;min-width:0}
+.site-header-wrap .nav{display:flex!important;grid-column:2!important;justify-self:stretch!important;align-items:center!important;justify-content:space-between!important;min-width:0!important;flex-wrap:nowrap!important;white-space:nowrap!important;overflow:hidden!important;gap:clamp(6px,.75vw,12px)!important;font-size:clamp(.68rem,calc(.61rem + .27vw),.82rem)!important;letter-spacing:.025em!important}
+.site-header-wrap .nav a{flex:0 0 auto!important}
+.site-header-wrap .nav .nav-cta{padding:9px clamp(10px,1vw,16px)!important;font-size:inherit!important}
+.site-header-wrap .mobile-menu{display:none!important}
+.site-header-wrap .topbar #tzWidget{position:static!important;grid-column:3!important;justify-self:end!important;align-self:center!important;width:108px!important;max-width:108px!important;min-width:108px!important;margin:0!important;transform:none!important;transform-origin:center!important;padding:4px 6px!important}
+.site-header-wrap .topbar #tzWidget .tz-top{justify-content:flex-end!important;margin-bottom:3px!important}
+.site-header-wrap .topbar #tzWidget .tz-symbols{justify-content:flex-end!important;gap:7px!important}
+.site-header-wrap .topbar #tzWidget .tz-number,.site-header-wrap .topbar #tzWidget .tz-glyph{width:32px!important;height:32px!important;flex:0 0 32px!important}
+.site-header-wrap .topbar #tzWidget .tz-calendar-link{display:block!important;font:700 .46rem/1.2 Arial,sans-serif!important;letter-spacing:.09em!important;text-align:right!important;white-space:nowrap!important}
+@media(max-width:1100px){.site-header-wrap .topbar{grid-template-columns:minmax(155px,185px) minmax(0,1fr) 108px!important;gap:10px!important;padding-left:16px!important}.site-header-wrap .nav{font-size:clamp(.62rem,.78vw,.72rem)!important;gap:clamp(4px,.55vw,8px)!important}}
+@media(max-width:760px){.site-header-wrap .topbar{grid-template-columns:minmax(128px,150px) minmax(0,1fr) 98px!important;gap:7px!important;height:78px!important;padding-left:10px!important}.site-header-wrap .brand{gap:6px!important}.site-header-wrap .seiri-header-logo{width:36px!important;height:36px!important;flex-basis:36px!important}.site-header-wrap .brand .seiri-brand-name{font-size:.68rem!important;letter-spacing:.04em!important}.site-header-wrap .nav{justify-content:flex-start!important;overflow-x:auto!important;scrollbar-width:none;gap:6px!important;font-size:.58rem!important}.site-header-wrap .nav::-webkit-scrollbar{display:none}.site-header-wrap .nav .nav-cta{padding:6px 7px!important}.site-header-wrap .topbar #tzWidget{width:94px!important;max-width:94px!important;min-width:94px!important}.site-header-wrap .topbar #tzWidget .tz-number,.site-header-wrap .topbar #tzWidget .tz-glyph{width:27px!important;height:27px!important;flex-basis:27px!important}}
+@media(max-width:520px){.site-header-wrap .topbar{grid-template-columns:118px minmax(0,1fr) 84px!important;gap:5px!important;padding-left:7px!important}.site-header-wrap .brand .seiri-brand-name{font-size:.61rem!important}.site-header-wrap .nav{font-size:.53rem!important;gap:4px!important}.site-header-wrap .topbar #tzWidget{min-width:80px!important;width:80px!important}.site-header-wrap .topbar #tzWidget .tz-number,.site-header-wrap .topbar #tzWidget .tz-glyph{width:23px!important;height:23px!important;flex-basis:23px!important}}
+</style>
+<style id="index-widget-vertical-center">
+.wrap.site-header-wrap .topbar{position:relative!important}
+.wrap.site-header-wrap .topbar #tzWidget{position:absolute!important;top:50%!important;right:10px!important;bottom:auto!important;left:auto!important;align-self:unset!important;justify-self:unset!important;margin:0!important;transform:translateY(-50%)!important;transform-origin:right center!important;z-index:30!important}
+</style>
+<style id="living-time-date-explorer-visibility-fix">
+#tzBackdrop .tz-date-explorer{display:block!important;visibility:visible!important;opacity:1!important}
+#tzBackdrop .tz-date-controls{display:grid!important;visibility:visible!important;opacity:1!important;grid-template-columns:42px minmax(120px,1fr) 42px auto!important;align-items:center!important}
+#tzBackdrop #tzDatePicker{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;appearance:auto!important;min-width:0!important;width:100%!important;min-height:42px!important;color-scheme:light!important}
+@media(max-width:560px){#tzBackdrop .tz-date-controls{grid-template-columns:38px minmax(0,1fr) 38px!important;gap:5px!important}#tzBackdrop #tzDatePicker{height:40px!important}.tz-date-today{grid-column:1/-1!important}}
 </style></head><body>
 <div class="tz-modal-backdrop" id="tzBackdrop" role="dialog" aria-modal="true" aria-labelledby="tzModalTitle">
   <section class="tz-modal">
@@ -70,14 +96,14 @@
   </section>
 </div>
 
-<div class="site-header-wrap"><header class="topbar"><a class="brand" href="index.html#home" aria-label="Seiri del Mar home"><img class="seiri-header-logo" src="assets/seiri/official-50.png" alt="" /><span class="seiri-brand-name">SEIRI DEL MAR</span></a><nav class="nav" id="nav">
-<a href="stay.html">Stay</a>
+<div class="wrap site-header-wrap"><header class="topbar"><a class="brand" href="index.html#home" aria-label="Seiri del Mar home"><img class="seiri-header-logo" src="assets/seiri/official-50.png" alt="" /><span class="seiri-brand-name">SEIRI DEL MAR</span></a><nav class="nav" id="nav">
+<a href="./stay.html">Stay</a>
 
-<a href="offers.html">Offers</a>
+<a href="./offers.html">Offers</a>
 <a href="wellness.html">Wellness</a>
 <a href="ember.html">Ember</a>
-<a href="belize-life.html">Belize Life</a>
-<a href="getting-here.html">Getting Here</a>
+<a href="./belize-life.html">Belize Life</a>
+<a href="./getting-here.html">Getting Here</a>
 <a href="index.html#my-seiri">My Seiri</a>
 <a href="index.html#contact">Contact</a>
 <a href="index.html#contact" class="nav-cta">Book Now</a>
@@ -87,11 +113,11 @@
     <span class="tz-number" id="tzNumber" aria-label="Tzolk'in number"><img id="tzNumberImage" src="assets/tzolkin/tone-6.png" alt="" /></span>
     <span class="tz-glyph" id="tzGlyph" aria-label="Maya day sign"><img id="tzGlyphImage" src="assets/tzolkin/cauac.png" alt="" /></span>
   </div>
-  <div class="tz-widget-meta"><span class="tz-name" id="tzName">6 Kawoq</span><span class="tz-calendar-link">PLAN A DATE &rarr;</span></div>
+  <div class="tz-widget-meta"><span class="tz-name" id="tzName">6 Kawoq</span><span class="tz-calendar-link">LIVING TIME</span></div>
   <div class="tz-sub"></div>
   <div class="tz-open">Open today's reflection</div>
 </button>
-</header><</div>
+</header><<</div>
 <main>
 <section class="hero"><div class="wrap"><div class="eyebrow">Beachfront villas / Hopkins, Belize</div><h1>Stay close<br>to the <em>Caribbean.</em></h1><p>Wake to the sea, settle into your own spacious villa, and let the pace of Hopkins shape the days ahead.</p></div></section>
 <section class="section intro"><div class="wrap intro-grid"><div><div class="eyebrow">Your own place by the water</div><h2>Room to breathe.<br>Space to belong.</h2></div><div><p class="lead">A private villa, a quiet shoreline and the Caribbean just beyond your veranda.</p><div class="copy"><p>Seiri del Mar's beachfront resort in Hopkins brings together 30 villas across one, two and three-bedroom stays. The villas are set between 5 and 75 feet from the Caribbean Sea, with landscaped gardens, pools and a 212-foot dock close at hand.</p><p>Choose a compact coastal retreat, extra room for family and friends, or a spacious penthouse with room to spread out. Villa layouts and features vary, so confirm the details that matter to your stay directly with the resort.</p></div></div></div><div class="stats"><div class="stat"><strong>30</strong><span>Beachside villas</span></div><div class="stat"><strong>5–75 ft</strong><span>From the Caribbean</span></div><div class="stat"><strong>1–3</strong><span>Bedrooms</span></div><div class="stat"><strong>212 ft</strong><span>Private dock</span></div></div></section>
