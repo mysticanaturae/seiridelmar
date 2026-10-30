@@ -1380,6 +1380,20 @@ body.program-modal-open{overflow:hidden}
   .saved-notes{max-height:330px;overflow-y:auto;overscroll-behavior:contain;padding-right:8px;scrollbar-color:#c4ad7e transparent;scrollbar-width:thin}
   .saved-note img{display:block;width:100%;max-height:180px;object-fit:cover;margin-top:10px}
   .my-seiri-modal-dialog{max-height:min(88vh,820px);overflow-y:auto;overscroll-behavior:contain}
+
+  .my-vibe-contact{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .my-vibe-contact-link{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(18,56,59,.18);color:#315c54;background:transparent;text-decoration:none;font-size:.68rem;transition:background .18s,color .18s,border-color .18s}
+  .my-vibe-contact-link svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .my-vibe-contact-link:hover,.my-vibe-contact-link:focus-visible{background:#123f40;border-color:#123f40;color:#f8f4e9;outline:2px solid transparent}
+
+  /* memory-capture-warm-tone */
+  .memory-capture{background:#f6e5d2!important;border:1px solid #ead0b3!important;color:#263b38!important}
+  .memory-capture .eyebrow{color:#9b6a36!important}
+  .memory-capture h3{color:#173c38!important}
+  .memory-capture label{color:#465c54!important}
+  .memory-capture input:not([type="file"]),.memory-capture textarea{background:#fffaf3!important;border-color:#dfc5a7!important;color:#243a36!important}
+  .memory-capture input[type="file"]{color:#465c54}
+  .memory-capture .photo-hint,.memory-capture .memory-status{color:#6a7067!important}
 </style>
 </head>
 <body>
@@ -3180,6 +3194,25 @@ body>header.topbar{position:fixed!important;top:0!important;left:0!important;rig
     if (item.code && record.kind === 'reflection') card.appendChild(el('p','',item.code));
     if (item.note) card.appendChild(el('p','',item.note));
     if (item.photo) { const image = el('img'); image.src = item.photo; image.alt = 'Saved memory'; card.appendChild(image); }
+    if (category === 'vibes' && record.kind === 'experience') {
+      const contact = el('div','my-vibe-contact');
+      const experienceName = prefix ? (item.title || '').slice(prefix.length) : (item.title || 'BLINKITA experience');
+      const subject = encodeURIComponent('Seiri del Mar enquiry: ' + experienceName);
+      const body = encodeURIComponent('Hello Seiri del Mar,\n\nI saved ' + experienceName + ' to My Vibes and would like to ask about current details and availability.\n\nThank you.');
+      const email = document.createElement('a');
+      email.className = 'my-vibe-contact-link';
+      email.href = 'mailto:info@belizehopkins.com?subject=' + subject + '&body=' + body;
+      email.setAttribute('aria-label','Email Seiri del Mar about ' + experienceName);
+      email.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m4 7 8 6 8-6"/></svg><span>Email</span>';
+      const whatsapp = document.createElement('a');
+      whatsapp.className = 'my-vibe-contact-link';
+      whatsapp.href = 'https://wa.me/5016647445?text=' + encodeURIComponent('Hello Seiri del Mar, I saved ' + experienceName + ' to My Vibes and would like to ask about current details and availability.');
+      whatsapp.target = '_blank'; whatsapp.rel = 'noopener noreferrer';
+      whatsapp.setAttribute('aria-label','Message Seiri del Mar on WhatsApp about ' + experienceName);
+      whatsapp.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L4 20l1.1-4A8.2 8.2 0 1 1 20.2 11.8Z"/><path d="M9 8.5c.4 2.5 2 4.1 4.5 4.7l1-1 2 .9c-.2 1.1-.9 1.8-2 1.8-3.7-.1-7.3-3.7-7.4-7.4 0-1 .7-1.8 1.8-2l.9 2Z"/></svg><span>WhatsApp</span>';
+      contact.append(email, whatsapp);
+      card.appendChild(contact);
+    }
     const actions = el('div','my-seiri-actions');
     const edit = el('button','',record.kind === 'experience' || record.kind === 'reflection' ? 'Edit note' : 'Edit');
     edit.type = 'button'; edit.addEventListener('click',() => editRecord(card,category,record,prefix));
