@@ -137,7 +137,7 @@ function updateStayField(){jpStayWrap.hidden=!(jpFormat.value.includes('Belize')
 jpFormat.addEventListener('change',updateStayField);updateStayField();
 function journeyMessage(){
  const get=id=>document.getElementById(id).value.trim();
- const lines=['Hello Blanka, I would like to explore a BLINKITA experience.','', 'What I would like to explore: '+get('jp-interest'),'Preferred format: '+get('jp-format'),'Experience type: '+get('jp-depth)];
+ const lines=['Hello Blanka, I would like to explore a BLINKITA experience.','', 'What I would like to explore: '+get('jp-interest'),'Preferred format: '+get('jp-format'),'Experience type: '+get('jp-depth')];
  if(!jpStayWrap.hidden) lines.push('Accommodation: '+get('jp-stay'));
  if(get('jp-when')) lines.push('When: '+get('jp-when'));
  if(get('jp-name')) lines.push('Name: '+get('jp-name'));
