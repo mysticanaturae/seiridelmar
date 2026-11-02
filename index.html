@@ -24,14 +24,18 @@
 @media(max-width:850px){.wrap{width:calc(100% - 34px)}.header-inner{height:70px}.menu{display:block}.nav{display:none;position:absolute;top:70px;left:0;right:0;padding:22px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.nav.open{display:flex}.hero{min-height:620px;background-position:58% center}.hero-content{padding:75px 0}.pathway-grid,.intro-grid,.stay-grid,.about-grid{grid-template-columns:1fr;gap:24px}.pathway{min-height:220px}.section-head{display:block}.section-head>p{margin-top:15px}.discover-grid,.online-grid{grid-template-columns:1fr 1fr}.belize-grid{grid-template-columns:1fr}.belize-card{min-height:340px}.steps-grid{grid-template-columns:1fr 1fr}.step:nth-child(3){border-left:0;padding-left:0;border-top:1px solid var(--line)}.step:nth-child(4){border-top:1px solid var(--line)}}
 @media(max-width:560px){.wrap{width:calc(100% - 30px)}.brand{font-size:.85rem}.hero{min-height:610px}.hero h1{font-size:clamp(3rem,15vw,4.7rem)}.hero-actions{flex-direction:column;align-items:stretch;max-width:310px}.pathway-grid{grid-template-columns:1fr}.discover-grid,.online-grid{grid-template-columns:1fr}.discover-card{min-height:0}.steps-grid{grid-template-columns:1fr}.step,.step+.step,.step:nth-child(3){padding:22px 0;border-left:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.about-mark{min-height:260px}.about-mark span{width:150px;height:150px;font-size:1.3rem}.footer-inner{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* MY BLINKITA Journey Planner */
+.planner{background:#fffdf8}.planner-shell{display:grid;grid-template-columns:.78fr 1.22fr;gap:8%;align-items:start}.planner-intro p{color:var(--muted);max-width:390px}.planner-panel{padding:clamp(24px,4vw,42px);background:#f4efe4;border:1px solid var(--line)}.planner-panel label{display:block;margin:0 0 8px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#536b62}.planner-panel select,.planner-panel input,.planner-panel textarea{width:100%;min-height:48px;padding:12px 13px;margin:0 0 19px;border:1px solid rgba(18,56,59,.22);border-radius:0;background:#fffdf8;color:var(--ink);font: .9rem var(--sans)}.planner-panel textarea{min-height:76px;resize:vertical}.planner-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.planner-fields .full{grid-column:1/-1}.planner-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}.planner-actions .btn{cursor:pointer}.planner-note{font-size:.73rem;color:var(--muted);margin:17px 0 0}.planner-status{min-height:20px;margin-top:12px;font-size:.78rem;color:#536b62}
+@media(max-width:760px){.planner-shell{grid-template-columns:1fr;gap:22px}.planner-fields{grid-template-columns:1fr}.planner-fields .full{grid-column:auto}}
 </style>
 </head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
-<a class="brand" href="my-blinkita-home.html" aria-label="MY BLINKITA home">MY <span>BLINKITA</span></a>
+<a class="brand" href="index.html" aria-label="MY BLINKITA home">MY <span>BLINKITA</span></a>
 <button class="menu" id="menuButton" aria-expanded="false" aria-controls="mainNav">MENU</button>
 <nav class="nav" id="mainNav" aria-label="Main navigation">
-<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="#stay">Stay</a><a href="#about">About</a><a class="nav-cta" href="#begin">Begin your journey</a>
+<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="#stay">Stay</a><a href="#about">About</a><a class="nav-cta" href="#journey-planner">Begin your journey</a>
 </nav></div></header>
 
 <main>
@@ -77,11 +81,11 @@
 <div class="section-head"><div><div class="eyebrow">A different way to experience the Caribbean</div><h2>Experience BLINKITA in Belize.</h2></div><p>For those who feel called to travel, Belize can become more than a destination. It can be the setting for a personal experience shaped around your time, interests and chosen pace.</p></div>
 <div class="belize-grid">
 <article class="belize-card"><img src="assets/seiri/official-02-hero.webp" alt="Caribbean beachfront setting in Hopkins, Belize" loading="lazy"><div class="belize-card-copy"><div class="eyebrow">Primary in-person base · Hopkins</div><h3>Seiri del Mar</h3><p>A featured beachfront stay and the main location for selected in-person BLINKITA sessions and experiences in Hopkins.</p><a class="text-link" href="stay.html">Discover the stay ↗</a></div></article>
-<article class="belize-card"><img src="assets/seiri/optimized/official-42.webp" alt="Caribbean nature and tropical surroundings in Belize" loading="lazy"><div class="belize-card-copy"><div class="eyebrow">Another stay option</div><h3>Lee-Blue, Pomona</h3><p>An additional accommodation option to consider when planning your time in Belize. BLINKITA sessions are arranged separately and are not automatically delivered at every property.</p><a class="text-link" href="#begin">Ask about stay options ↗</a></div></article>
+<article class="belize-card"><img src="assets/seiri/optimized/official-42.webp" alt="Caribbean nature and tropical surroundings in Belize" loading="lazy"><div class="belize-card-copy"><div class="eyebrow">Another stay option</div><h3>Lee-Blue, Pomona</h3><p>An additional accommodation option to consider when planning your time in Belize. BLINKITA sessions are arranged separately and are not automatically delivered at every property.</p><a class="text-link" href="#journey-planner">Ask about stay options ↗</a></div></article>
 </div></div></section>
 
 <section class="section stay-section" id="stay"><div class="wrap stay-grid">
-<div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="#begin">Plan a Belize journey</a></div>
+<div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="#journey-planner">Plan a Belize journey</a></div>
 <div class="stay-options">
 <article class="stay-option"><div class="eyebrow">Featured beachfront stay</div><h3>Seiri del Mar · Hopkins</h3><p>The main in-person BLINKITA base in Belize, with selected experiences arranged by appointment.</p></article>
 <article class="stay-option"><div class="eyebrow">Additional accommodation</div><h3>Lee-Blue · Pomona</h3><p>An alternative place to stay while exploring Belize. Any BLINKITA sessions are arranged separately.</p></article>
@@ -97,7 +101,23 @@
 <article class="step"><div class="step-number">04 · BEGIN</div><h3>Make it real</h3><p>Send one enquiry. Details, availability and next steps are confirmed with you personally.</p></article>
 </div></div></section>
 
-<section class="section about" id="about"><div class="wrap about-grid">
+
+<section class="section planner" id="journey-planner"><div class="wrap planner-shell">
+<div class="planner-intro"><div class="eyebrow">MY BLINKITA · JOURNEY PLANNER</div><h2>Let's shape a journey that feels like yours.</h2><p>Start with what interests you. Choose how you would like to experience it, then add as much or as little detail as you already know. You do not need to have everything decided.</p><p class="lead">One clear starting point. Room for the journey to unfold.</p></div>
+<div class="planner-panel">
+<div class="planner-fields">
+<div class="full"><label for="jp-interest">What would you like to explore?</label><select id="jp-interest"><option value="Personal guidance, readings or hypnotherapy">Personal guidance, readings or hypnotherapy</option><option value="Traditional Maya Tzolk'in and Living Time">Traditional Maya Tzolk'in and Living Time</option><option value="Wellness and restorative experiences">Wellness and restorative experiences</option><option value="Personal transformation or a guided programme">Personal transformation or a guided programme</option><option value="A retreat or longer journey in Belize">A retreat or longer journey in Belize</option><option value="I am exploring and would like guidance">I am exploring and would like guidance</option></select></div>
+<div class="full"><label for="jp-format">Where would you like your journey to take place?</label><select id="jp-format"><option value="Online, from wherever I am">ONLINE · from wherever I am</option><option value="In person in Belize">BELIZE · in person</option><option value="A combination of online and Belize">A combination of online and Belize</option><option value="I am not sure yet">I am not sure yet</option></select></div>
+<div class="full"><label for="jp-depth">What kind of experience are you considering?</label><select id="jp-depth"><option value="One personal session or reading">One personal session or reading</option><option value="A focused programme or a series of sessions">A focused programme or a series of sessions</option><option value="A multi-day experience or retreat">A multi-day experience or retreat</option><option value="A longer personal journey">A longer personal journey</option><option value="I would like a recommendation">I would like a recommendation</option></select></div>
+<div class="full" id="jp-stay-wrap" hidden><label for="jp-stay">Would you like to include accommodation in Belize?</label><select id="jp-stay"><option value="Yes, please include accommodation options">Yes, please include accommodation options</option><option value="I have already arranged my accommodation">I have already arranged my accommodation</option><option value="I would like to explore Seiri del Mar in Hopkins">I would like to explore Seiri del Mar in Hopkins</option><option value="I would like to explore Lee-Blue in Pomona">I would like to explore Lee-Blue in Pomona</option><option value="Not sure yet">Not sure yet</option><option value="No accommodation needed">No accommodation needed</option></select></div>
+<div><label for="jp-when">When are you thinking of beginning?</label><input id="jp-when" type="text" placeholder="A date, month or simply 'flexible'"></div>
+<div><label for="jp-name">Your name</label><input id="jp-name" type="text" autocomplete="name" placeholder="Your name"></div>
+<div class="full"><label for="jp-notes">Anything else you would like me to know? (optional)</label><textarea id="jp-notes" placeholder="Your questions, intentions or ideas..."></textarea></div>
+</div>
+<div class="planner-actions"><button class="btn gold" id="jp-email" type="button">Send my enquiry</button><button class="btn dark" id="jp-whatsapp" type="button">Continue on WhatsApp</button></div>
+<p class="planner-note">This is a personal enquiry, not an instant booking. I will reply to discuss the right format, availability and next steps. Accommodation availability and reservations are confirmed directly with the selected property; BLINKITA sessions and programmes are arranged separately.</p><div class="planner-status" id="jp-status" aria-live="polite"></div>
+</div></div></section>
+\n<section class="section about" id="about"><div class="wrap about-grid">
 <div class="about-mark" aria-hidden="true"><span>BLINKITA</span></div>
 <div class="about-copy"><div class="eyebrow">The world behind MY BLINKITA</div><h2>Ancient wisdom. Living time. Personal transformation.</h2><p>MY BLINKITA brings together the work and experiences of Blanka Thomas, known as Maginja Blinkita: traditional Maya time wisdom, personal guidance, hypnotherapy, wellness and transformational journeys.</p><p>Rooted in years of study and practice, BLINKITA connects different ways of exploring life while respecting the distinct traditions and methods behind them. The intention is simple: to create space for a more conscious relationship with yourself, your time and the life you are shaping.</p><a class="text-link" href="about.html">Meet Blanka ↗</a></div>
 </div></section>
@@ -110,6 +130,31 @@ const menuButton=document.getElementById('menuButton');
 const mainNav=document.getElementById('mainNav');
 menuButton.addEventListener('click',()=>{const open=mainNav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
 mainNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mainNav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
+
+const jpFormat=document.getElementById('jp-format');
+const jpStayWrap=document.getElementById('jp-stay-wrap');
+const jpStatus=document.getElementById('jp-status');
+function updateStayField(){jpStayWrap.hidden=!(jpFormat.value.includes('Belize'));}
+jpFormat.addEventListener('change',updateStayField);updateStayField();
+function journeyMessage(){
+ const get=id=>document.getElementById(id).value.trim();
+ const lines=['Hello Blanka, I would like to explore a MY BLINKITA experience.','', 'What I would like to explore: '+get('jp-interest'),'Preferred format: '+get('jp-format'),'Experience type: '+get('jp-depth)];
+ if(!jpStayWrap.hidden) lines.push('Accommodation: '+get('jp-stay'));
+ if(get('jp-when')) lines.push('When: '+get('jp-when'));
+ if(get('jp-name')) lines.push('Name: '+get('jp-name'));
+ if(get('jp-notes')) lines.push('A little more about what I have in mind: '+get('jp-notes'));
+ lines.push('', 'I understand this is an enquiry and that availability and arrangements will be confirmed personally.');
+ return lines.join('\n');
+}
+document.getElementById('jp-email').addEventListener('click',()=>{
+ const subject='MY BLINKITA — Journey enquiry';
+ window.location.href='mailto:info@blinkita.si?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(journeyMessage());
+ jpStatus.textContent='Your email app will open with your journey enquiry ready to send.';
+});
+document.getElementById('jp-whatsapp').addEventListener('click',()=>{
+ window.open('https://wa.me/5016084121?text='+encodeURIComponent(journeyMessage()),'_blank','noopener');
+ jpStatus.textContent='WhatsApp will open with your journey enquiry ready to send.';
+});
 </script>
 </body>
 </html>
