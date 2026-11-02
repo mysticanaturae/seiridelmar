@@ -28,6 +28,31 @@
 /* BLINKITA Journey Planner */
 .planner{background:#fffdf8}.planner-shell{display:grid;grid-template-columns:.78fr 1.22fr;gap:8%;align-items:start}.planner-intro p{color:var(--muted);max-width:390px}.planner-panel{padding:clamp(24px,4vw,42px);background:#f4efe4;border:1px solid var(--line)}.planner-panel label{display:block;margin:0 0 8px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#536b62}.planner-panel select,.planner-panel input,.planner-panel textarea{width:100%;min-height:48px;padding:12px 13px;margin:0 0 19px;border:1px solid rgba(18,56,59,.22);border-radius:0;background:#fffdf8;color:var(--ink);font: .9rem var(--sans)}.planner-panel textarea{min-height:76px;resize:vertical}.planner-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.planner-fields .full{grid-column:1/-1}.planner-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}.planner-actions .btn{cursor:pointer}.planner-note{font-size:.73rem;color:var(--muted);margin:17px 0 0}.planner-status{min-height:20px;margin-top:12px;font-size:.78rem;color:#536b62}
 @media(max-width:760px){.planner-shell{grid-template-columns:1fr;gap:22px}.planner-fields{grid-template-columns:1fr}.planner-fields .full{grid-column:auto}}
+
+/* Featured cacao and Belize climate calendar */
+.cacao-feature{background:#102d2b;color:#f7f1e6;padding:clamp(58px,8vw,100px) 0}
+.cacao-feature-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:7%;align-items:center}
+.cacao-feature img{width:100%;height:430px;object-fit:cover}
+.cacao-feature p{color:#cbd6ce;line-height:1.9;max-width:570px}
+.cacao-feature .eyebrow{color:#dec28b}
+.climate-section{background:#f7f3eb;padding:clamp(60px,8vw,100px) 0}
+.climate-layout{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:start}
+.climate-intro p{color:#63736d;line-height:1.85}
+.climate-months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.climate-month{border:1px solid rgba(18,56,59,.18);background:#fffdf8;color:#12383b;padding:12px 8px;text-align:left;cursor:pointer;border-radius:2px}
+.climate-month[aria-pressed="true"]{background:#12383b;color:#fffdf8;border-color:#12383b}
+.climate-month span{display:block;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase}
+.climate-month strong{display:block;font:1.25rem var(--serif);margin-top:4px}
+.climate-detail{margin-top:14px;padding:22px;background:#e8eee7;border-left:2px solid #c2a05b}
+.climate-detail h3{margin:0 0 10px;font:1.5rem var(--serif)}
+.climate-stats{display:flex;gap:24px;flex-wrap:wrap;margin:10px 0}
+.climate-stats strong{display:block;font:1.8rem var(--serif);color:#12383b}
+.climate-stats span{font-size:.67rem;letter-spacing:.08em;text-transform:uppercase;color:#63736d}
+.climate-note{font-size:.72rem;color:#66766f;line-height:1.7;margin-top:16px}
+.climate-source{font-size:.72rem;color:#63736d;margin-top:12px}
+.climate-source a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.cacao-feature-grid,.climate-layout{grid-template-columns:1fr}.cacao-feature img{height:300px}}
+
 </style>
 </head>
 <body>
@@ -35,7 +60,7 @@
 <a class="brand" href="index.html" aria-label="BLINKITA home"><span>BLINKITA</span></a>
 <button class="menu" id="menuButton" aria-expanded="false" aria-controls="mainNav">MENU</button>
 <nav class="nav" id="mainNav" aria-label="Main navigation">
-<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="#journey-planner">Begin your journey</a>
+<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="cacao-ceremony.html">Cacao ceremony</a><a href="#climate">Climate</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="#journey-planner">Begin your journey</a>
 </nav></div></header>
 
 <main>
@@ -82,6 +107,31 @@
 <article class="belize-card"><img src="assets/seiri/official-02-hero.webp" alt="Caribbean beachfront setting in Hopkins, Belize" loading="lazy"><div class="belize-card-copy"><div class="eyebrow">Primary in-person base · Hopkins</div><h3>Seiri del Mar</h3><p>A featured beachfront stay and the main location for selected in-person BLINKITA sessions and experiences in Hopkins.</p><a class="text-link" href="stay.html">Discover the stay ↗</a></div></article>
 <article class="belize-card"><img src="assets/seiri/optimized/official-42.webp" alt="Caribbean nature and tropical surroundings in Belize" loading="lazy"><div class="belize-card-copy"><div class="eyebrow">Another stay option</div><h3>Lee-Blue, Pomona</h3><p>An additional accommodation option to consider when planning your time in Belize. BLINKITA sessions are arranged separately and are not automatically delivered at every property.</p><a class="text-link" href="#journey-planner">Ask about stay options ↗</a></div></article>
 </div></div></section>
+
+
+<section class="cacao-feature" aria-labelledby="cacao-feature-title">
+<div class="wrap cacao-feature-grid">
+<div><div class="eyebrow">A signature Caribbean gathering · BLINKITA</div><h2 id="cacao-feature-title">Cacao Ceremony.<br><em>A moment to arrive.</em></h2>
+<p>A warm cup of cacao, a shared intention and space to listen, reflect and connect. Experience a private ceremony or gather in a small circle, held with care and shaped around the people and the moment.</p>
+<a class="btn gold" href="cacao-ceremony.html">Discover the Cacao Ceremony ↗</a></div>
+<img src="assets/seiri/cacao-ceremony-concept.jpg" alt="A cacao ceremony setting prepared for a shared moment" loading="lazy">
+</div></section>
+
+<section class="climate-section" id="climate" aria-labelledby="climate-title">
+<div class="wrap climate-layout">
+<div class="climate-intro"><div class="eyebrow">Plan your Belize journey · Month by month</div><h2 id="climate-title">What is the weather like when you come?</h2>
+<p>Choose a month to explore typical daytime highs, nighttime lows and average rainfall around the Hopkins and Dangriga area. This makes it easier to choose when to visit, what to pack and what kind of journey you would like to plan.</p>
+<p>Belize is warm throughout the year, but rainfall changes considerably by season. The drier months are generally February to April; wetter conditions become more common from June through November.</p>
+<div class="climate-note">These are long-term climate averages, not a forecast for your travel dates. Local conditions can vary, and the wider Belize itinerary may include regions with different temperatures and rainfall.</div>
+<div class="climate-source">Climate reference: Belize National Meteorological Service, 1991–2020 normals, Melinda Forest Station near Dangriga. <a href="https://www.nms.gov.bz/climate-services/climatology/" target="_blank" rel="noopener">View official climate data ↗</a></div>
+</div>
+<div>
+<div class="climate-months" id="climateMonths" aria-label="Choose a month"></div>
+<div class="climate-detail" id="climateDetail" aria-live="polite">
+<h3>January · Hopkins region</h3><div class="climate-stats"><div><strong>28.3°C</strong><span>Average daytime high</span></div><div><strong>20.0°C</strong><span>Average nighttime low</span></div><div><strong>155 mm</strong><span>Average rainfall</span></div></div><p>Warm days and pleasantly cooler evenings. A light layer can be useful after sunset.</p>
+</div>
+</div>
+</div></section>
 
 <section class="section stay-section" id="stay"><div class="wrap stay-grid">
 <div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="#journey-planner">Plan a Belize journey</a></div>
@@ -155,5 +205,34 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
  jpStatus.textContent='WhatsApp will open with your journey enquiry ready to send.';
 });
 </script>
+
+<script id="belize-climate-calendar">
+(()=> {
+ const months=[
+  {n:'January',hi:28.3,lo:20.0,rain:155.1,note:'Warm days and pleasantly cooler evenings. A light layer can be useful after sunset.'},
+  {n:'February',hi:29.2,lo:20.4,rain:71.2,note:'One of the drier months, with warm days and generally less rainfall.'},
+  {n:'March',hi:30.2,lo:21.0,rain:60.3,note:'Typically warm and relatively dry, a popular time for outdoor exploration.'},
+  {n:'April',hi:31.5,lo:22.5,rain:53.5,note:'Hotter afternoons and usually low rainfall. Plan outdoor activities with shade and water breaks.'},
+  {n:'May',hi:32.3,lo:23.8,rain:130.2,note:'Hot and increasingly humid, with the transition toward the wetter season.'},
+  {n:'June',hi:31.7,lo:24.5,rain:251.8,note:'The rainy season is underway. Expect tropical showers and lush green landscapes.'},
+  {n:'July',hi:31.6,lo:24.1,rain:206.5,note:'Warm, humid conditions with regular rain. Some days include sunny breaks between showers.'},
+  {n:'August',hi:32.1,lo:24.0,rain:216.3,note:'Hot and humid, with a mix of sunshine and tropical rain.'},
+  {n:'September',hi:32.1,lo:23.8,rain:257.6,note:'A warm, wetter period. Keep plans flexible and check seasonal weather advisories.'},
+  {n:'October',hi:31.1,lo:23.1,rain:301.1,note:'One of the wettest months in the local climate record. Rain can affect road and excursion plans.'},
+  {n:'November',hi:29.6,lo:21.6,rain:254.5,note:'Rainfall often remains significant early in the month, with temperatures becoming a little milder.'},
+  {n:'December',hi:28.8,lo:20.7,rain:153.9,note:'Warm days and cooler evenings. Rainfall generally eases compared with October and November.'}
+ ];
+ const grid=document.getElementById('climateMonths'),detail=document.getElementById('climateDetail');
+ if(!grid||!detail)return;
+ const render=i=>{
+  const m=months[i];
+  grid.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
+  detail.innerHTML='<h3>'+m.n+' · Hopkins region</h3><div class="climate-stats"><div><strong>'+m.hi.toFixed(1)+'°C</strong><span>Average daytime high</span></div><div><strong>'+m.lo.toFixed(1)+'°C</strong><span>Average nighttime low</span></div><div><strong>'+Math.round(m.rain)+' mm</strong><span>Average rainfall</span></div></div><p>'+m.note+'</p>';
+ };
+ months.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='climate-month';b.setAttribute('aria-pressed',String(i===0));b.innerHTML='<span>'+m.n.slice(0,3)+'</span><strong>'+m.hi.toFixed(0)+'°</strong>';b.addEventListener('click',()=>render(i));grid.appendChild(b);});
+ render(0);
+})();
+</script>
+
 </body>
 </html>
