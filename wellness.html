@@ -212,6 +212,8 @@ document.getElementById('catalogModalClose').addEventListener('click',closeCatal
 document.querySelector('.catalog-modal-backdrop').addEventListener('click',closeCatalogModal);
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeCatalogModal()});
 renderFilters();
+renderPillarFilters();
+renderCatalog();
 
 </script>
 <style id="seiri-sticky-navigation-fix">
