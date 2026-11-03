@@ -207,18 +207,18 @@ const jpStayWrap=document.getElementById('jp-stay-wrap');
 const jpStatus=document.getElementById('jp-status');
 function updateStayField(){jpStayWrap.hidden=!(jpFormat.value.includes('Belize'));}
 jpFormat.addEventListener('change',updateStayField);updateStayField();
+const getPlannerValue=id=>document.getElementById(id).value.trim();
 function journeyMessage(){
- const get=id=>document.getElementById(id).value.trim();
- const lines=['Hello Blanka, I would like to enquire about: '+get('jp-interest')+'.','', 'What I would like to explore: '+get('jp-interest'),'Preferred format: '+get('jp-format'),'Experience type: '+get('jp-depth')];
- if(!jpStayWrap.hidden) lines.push('Accommodation: '+get('jp-stay'));
- if(get('jp-when')) lines.push('When: '+get('jp-when'));
- if(get('jp-name')) lines.push('Name: '+get('jp-name'));
- if(get('jp-notes')) lines.push('A little more about what I have in mind: '+get('jp-notes'));
+ const lines=['Hello Blanka, I would like to enquire about: '+getPlannerValue('jp-interest')+'.','', 'What I would like to explore: '+getPlannerValue('jp-interest'),'Preferred format: '+getPlannerValue('jp-format'),'Experience type: '+getPlannerValue('jp-depth')];
+ if(!jpStayWrap.hidden) lines.push('Accommodation: '+getPlannerValue('jp-stay'));
+ if(getPlannerValue('jp-when')) lines.push('When: '+getPlannerValue('jp-when'));
+ if(getPlannerValue('jp-name')) lines.push('Name: '+getPlannerValue('jp-name'));
+ if(getPlannerValue('jp-notes')) lines.push('A little more about what I have in mind: '+getPlannerValue('jp-notes'));
  lines.push('', 'I understand this is an enquiry and that availability and arrangements will be confirmed personally.');
  return lines.join('\n');
 }
 document.getElementById('jp-email').addEventListener('click',()=>{
- const subject='BLINKITA enquiry — '+get('jp-interest');
+ const subject='BLINKITA enquiry — '+getPlannerValue('jp-interest');
  window.location.href='mailto:info@blinkita.si?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(journeyMessage());
  jpStatus.textContent='Your email app will open with your journey enquiry ready to send.';
 });
