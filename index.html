@@ -139,12 +139,21 @@
 @media(max-width:1050px){.nav{gap:8px;font-size:.57rem}.tz-widget{flex-basis:82px;width:82px;min-width:82px;padding:6px}.tz-widget .tz-number,.tz-widget .tz-glyph{width:25px;height:25px;flex-basis:25px}}
 @media(max-width:850px){.header-inner{gap:8px}.nav{gap:7px;font-size:.55rem}.tz-widget{flex-basis:76px;width:76px;min-width:76px;padding:5px}.tz-widget-date{font-size:.46rem}.tz-widget .tz-number,.tz-widget .tz-glyph{width:22px;height:22px;flex-basis:22px}.tz-widget-action{font-size:.42rem}}
 @media(max-width:560px){.header-inner{height:auto;min-height:70px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}.header-inner .brand{margin-right:auto}.header-inner .menu{order:2}.header-inner .tz-widget{order:1;flex-basis:76px}.header-inner .nav{order:3;flex-basis:100%;width:100%;font-size:.62rem}.tz-date-controls{grid-template-columns:36px minmax(0,1fr) 36px}.tz-date-today{grid-column:1/-1;height:36px}.tz-modal-energy{align-items:flex-start;gap:12px}.tz-modal-art .tz-number,.tz-modal-art .tz-glyph{width:43px;height:43px}}
+
+/* Clear premium hamburger control */
+.site-header .menu{gap:10px!important;flex-direction:row!important}
+.site-header .menu-bars{display:flex!important;width:17px!important;flex:0 0 17px!important;flex-direction:column!important;gap:4px!important}
+.site-header .menu-bars span{display:block!important;width:17px!important;height:1px!important;background:currentColor!important;transition:transform .2s,opacity .2s!important}
+.site-header .menu[aria-expanded="true"] .menu-bars span:first-child{transform:translateY(5px) rotate(45deg)!important}
+.site-header .menu[aria-expanded="true"] .menu-bars span:nth-child(2){opacity:0!important}
+.site-header .menu[aria-expanded="true"] .menu-bars span:last-child{transform:translateY(-5px) rotate(-45deg)!important}
+.site-header .menu-label{font-size:.62rem!important;letter-spacing:.15em!important}
 </style>
 <style>.climate-teaser{display:flex;align-items:center;justify-content:space-between;gap:30px}.climate-teaser>div{max-width:700px}.climate-teaser p{color:#63736d;line-height:1.8}.climate-teaser .btn{flex:0 0 auto}@media(max-width:700px){.climate-teaser{display:block}.climate-teaser .btn{margin-top:18px;display:inline-flex}}</style></head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
 <a class="brand" href="index.html" aria-label="BLINKITA home"><span>BLINKITA</span></a>
-<button class="menu" id="menuButton" aria-expanded="false" aria-controls="mainNav">MENU</button>
+<button class="menu" id="menuButton" type="button" aria-expanded="false" aria-controls="mainNav"><span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="menu-label">MENU</span></button>
 <nav class="nav" id="mainNav" aria-label="Main navigation">
 <a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="plan-your-journey.html#climate">Climate</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="plan-your-journey.html">Plan your journey</a>
 </nav>
