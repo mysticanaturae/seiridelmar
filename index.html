@@ -148,7 +148,7 @@
 .site-header .menu[aria-expanded="true"] .menu-bars span:nth-child(2){opacity:0!important}
 .site-header .menu[aria-expanded="true"] .menu-bars span:last-child{transform:translateY(-5px) rotate(-45deg)!important}
 .site-header .menu-label{font-size:.62rem!important;letter-spacing:.15em!important}
-</style>
+.tz-modal-copy{margin:18px 0 14px;color:var(--muted);font-size:.9rem;line-height:1.8}.tz-reflection{margin:20px 0;padding:3px 0 3px 17px;border-left:2px solid var(--gold);font:1.2rem/1.5 var(--serif);color:var(--ink)}.tz-notes-label{display:block;margin:22px 0 8px;font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink)}.tz-notes{display:block;width:100%;min-height:104px;resize:vertical;padding:13px 14px;border:1px solid var(--line);border-radius:0;background:#fffefb;color:var(--ink);font:.85rem/1.6 var(--sans);outline-color:var(--gold)}.tz-save-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:11px}.tz-save-status{font-size:.72rem;line-height:1.5;color:var(--muted)}.tz-save{min-height:40px;padding:10px 17px;border:0;background:var(--ink);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.13em;cursor:pointer}.tz-save:hover{background:#987b43}@media(max-width:560px){.tz-save-row{align-items:stretch;flex-direction:column}.tz-save{width:100%}}</style>
 <style>.climate-teaser{display:flex;align-items:center;justify-content:space-between;gap:30px}.climate-teaser>div{max-width:700px}.climate-teaser p{color:#63736d;line-height:1.8}.climate-teaser .btn{flex:0 0 auto}@media(max-width:700px){.climate-teaser{display:block}.climate-teaser .btn{margin-top:18px;display:inline-flex}}</style></head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
@@ -179,8 +179,13 @@
     </div>
     <div class="tz-modal-energy">
       <span class="tz-modal-art"><span class="tz-number"><img id="tzModalNumberImage" src="assets/tzolkin/tone-1.png" alt=""></span><span class="tz-glyph"><img id="tzModalGlyphImage" src="assets/tzolkin/imix.png" alt=""></span></span>
-      <div><div class="tz-modal-kicker">YOUR LIVING TIME</div><div class="tz-modal-name" id="tzModalDayName">1 Imox</div><p class="tz-modal-note">A day within the traditional Maya Tzolk'in cycle of 13 numbers and 20 day signs.</p></div>
+      <div><div class="tz-modal-kicker" id="tzEnergyLabel">YOUR LIVING TIME</div><div class="tz-modal-name" id="tzModalDayName">1 Imox</div><p class="tz-modal-note">A day within the traditional 260-day Maya Tzolk'in cycle of 13 numbers and 20 day signs.</p></div>
     </div>
+    <p class="tz-modal-copy" id="tzModalCopy">Let the rhythm of this day offer a moment to pause, notice what is moving through your life and choose how you wish to meet the experience ahead.</p>
+    <div class="tz-reflection" id="tzReflection">What would you like to give your attention to today?</div>
+    <label class="tz-notes-label" for="tzNotes">A note for your Living Time journey</label>
+    <textarea class="tz-notes" id="tzNotes" rows="4" placeholder="Write a thought, an intention, a feeling or something you want to remember..."></textarea>
+    <div class="tz-save-row"><span class="tz-save-status" id="tzSaveStatus">Your note stays in this browser.</span><button class="tz-save" id="tzSave" type="button">SAVE NOTE</button></div>
     <div class="tz-modal-actions">
       <a class="tz-modal-link" href="maya-time-astrology.html">Explore Maya Time &amp; Living Time</a>
       <a class="tz-modal-journey" href="plan-your-journey.html">PLAN A JOURNEY <span aria-hidden="true">↗</span></a>
@@ -338,6 +343,8 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
  if(!widget||!backdrop||!close)return;
  const signs=["Imox","Iq","Aq'ab'al","K'at","Kan","Kame","Kej","Q'anil","Toj","Tz'i","B'atz","E","Aj","I'x","Tz'ikin","Ajmaq","Noj","Tijax","Kawoq","Ajpu"];
  const glyphs=["imix","ik","akbal","kan","chicchan","cimi","manik","lamat","muluc","oc","chuen","eb","ben","ix","men","cib","caban","etznab","cauac","ahau"];
+ const reflections={"Imox":"Begin with curiosity. Notice what is beneath the surface, listen to your intuition and leave room for an unexpected discovery.","Iq":"Notice what moves through the day: a breeze, a new idea or a conversation. Take a breath before choosing what comes next.","Aq'ab'al":"Welcome the in-between moments and the possibility of a new beginning. Sometimes a fresh perspective arrives quietly.","K'at":"Gather what matters. Choose one experience, conversation or intention you want to carry with you.","Kan":"Follow your curiosity with care. Let the world invite discovery while giving yourself time to notice what feels meaningful.","Kame":"Make room for what you are ready to set down. A quiet pause can help one chapter close and another begin.","Kej":"Let the natural world set the pace. Notice the trees, the shoreline and the ground beneath your feet.","Q'anil":"Notice what is growing. Small moments become meaningful when they receive your attention.","Toj":"Pause and appreciate what has been offered today: time, care, kindness or a beautiful view.","Tz'i":"Choose one thing to give your full attention to. Meaningful connection grows through presence, trust and listening.","B'atz":"Your day is a thread in a larger story. Write something, create something or share a moment that feels like your own.","E":"Let the journey unfold one step at a time. You do not need to fit everything into one day.","Aj":"Notice what helps you feel grounded, supported and clear in the choices you are making.","I'x":"Seek stillness in nature. Let the quiet strength of the forest, sea or evening light bring you back to yourself.","Tz'ikin":"Look beyond the familiar view. What new perspective or small adventure might stay with you?","Ajmaq":"Make space for compassion, including toward yourself. A gentle moment of reflection can change the shape of a day.","Noj":"Give one thought room to become clear. A journal or a quiet pause can help you hear what matters.","Tijax":"Choose what restores clarity. Simplify one thing and make more room for what matters.","Kawoq":"A meaningful journey is shaped by the people and places that hold it. Notice what helps you feel welcome, restored and connected.","Ajpu":"Let the day hold courage and joy. Choose an experience that reminds you why you made room for this journey."};
+ const questions={"Imox":"What could you discover if you left a little room for the unexpected?","Iq":"What do you want to breathe in, and what are you ready to let pass?","Aq'ab'al":"What new beginning might be waiting in a quiet moment?","K'at":"What is worth gathering, keeping or giving your attention to?","Kan":"What is calling your curiosity, and how can you explore it with care?","Kame":"What are you ready to leave behind to make space for what comes next?","Kej":"Where could nature help you slow down and feel grounded?","Q'anil":"What is growing in your life that deserves your attention?","Toj":"What part of today do you want to appreciate before it passes?","Tz'i":"Who or what deserves your full attention today?","B'atz":"What small moment would you like to weave into your story?","E":"What would change if you focused only on the next step?","Aj":"What helps you feel supported and grounded right now?","I'x":"Where can you find a little stillness in the natural world?","Tz'ikin":"What new perspective would you like to carry forward?","Ajmaq":"Where could you offer yourself a little more compassion?","Noj":"What thought deserves a quiet moment to become clearer?","Tijax":"What could you simplify to make more room for what matters?","Kawoq":"What would make today feel more nourishing, connected or memorable?","Ajpu":"What experience would make you feel more alive?"};
  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
  const shortMonths=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
  const today=new Date();today.setHours(12,0,0,0);let selected=new Date(today);
@@ -357,6 +364,12 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
   $('tzModalDate').textContent=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][selected.getDay()]+', '+day+' '+months[m]+' '+y;
   $('tzModalNumberImage').src=numberSrc;$('tzModalGlyphImage').src=glyphSrc;
   $('tzDatePicker').value=String(y).padStart(4,'0')+'-'+String(m+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+  const sign=signs[data.sign],same=day===today.getDate()&&m===today.getMonth()&&y===today.getFullYear();
+  $('tzEnergyLabel').textContent=same?"YOUR LIVING TIME":"LIVING TIME FOR YOUR CHOSEN DATE";
+  $('tzModalCopy').textContent=reflections[sign]||reflections.Kawoq;
+  $('tzReflection').textContent=questions[sign]||questions.Kawoq;
+  $('tzSaveStatus').textContent="Your note stays in this browser.";
+
  }
  function open(){backdrop.classList.add('open');document.body.style.overflow='hidden';close.focus()}
  function shut(){backdrop.classList.remove('open');document.body.style.overflow='';widget.focus()}
@@ -371,6 +384,12 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
  $('tzPreviousDate').addEventListener('click',()=>{const next=new Date(selected);next.setDate(next.getDate()-1);render(next)});
  $('tzNextDate').addEventListener('click',()=>{const next=new Date(selected);next.setDate(next.getDate()+1);render(next)});
  $('tzTodayDate').addEventListener('click',()=>render(today));
+ const note=$('tzNotes'),save=$('tzSave'),status=$('tzSaveStatus'),storeKey='blinkitaLivingTimeNotes_v1';
+ save.addEventListener('click',()=>{
+  const value=note.value.trim();if(!value){status.textContent="Write a note or intention before saving.";note.focus();return;}
+  try{const entries=JSON.parse(localStorage.getItem(storeKey)||'[]');entries.push({date:$('tzModalDate').textContent,calendar:$('tzModalDayName').textContent,note:value,createdAt:new Date().toISOString()});localStorage.setItem(storeKey,JSON.stringify(entries));note.value='';status.textContent="Saved on this device for your Living Time journey.";}
+  catch(error){status.textContent="This browser could not save the note. Check your storage settings.";}
+ });
  render(today);
 })();
 </script>
