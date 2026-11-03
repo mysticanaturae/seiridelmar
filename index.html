@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#102d2b">
-<meta name="description" content="BLINKITA — a holistic method bringing together BODY, MIND, TIME, LIFE and CIRCLE. Begin online from anywhere or experience BLINKITA in Belize.">
+<meta name="description" content="BLINKITA, a holistic method bringing together BODY, MIND, TIME, LIFE and CIRCLE. Begin online from anywhere or experience BLINKITA in Belize.">
 <title>BLINKITA | The method for a more meaningful life</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,16 +66,132 @@
 .product-line-copy .text-link{color:#f2dfb8;border-bottom:1px solid #c2a05b;padding-bottom:5px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-top:15px}
 @media(max-width:760px){.product-line-grid{grid-template-columns:1fr}.product-line-card img{height:240px}}
 
-</style>
-</head>
+
+/* BLINKITA Living Time date widget */
+.header-inner{gap:clamp(10px,1.4vw,20px)}
+.nav{flex:1 1 auto;min-width:0;justify-content:center;gap:clamp(9px,1.25vw,18px);font-size:clamp(.59rem,.68vw,.67rem)}
+.tz-widget{flex:0 0 92px;width:92px;min-width:92px;padding:7px 8px;border:1px solid rgba(194,160,91,.48);border-radius:2px;background:rgba(255,253,248,.9);color:var(--ink);cursor:pointer;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}
+.tz-widget:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 9px 22px rgba(8,40,45,.1)}
+.tz-widget-date{display:block;font-size:.52rem;line-height:1.2;color:var(--muted);white-space:nowrap;margin-bottom:5px}
+.tz-widget-symbols{display:flex;justify-content:center;align-items:center;gap:6px}
+.tz-widget .tz-number,.tz-widget .tz-glyph{display:flex;width:28px;height:28px;flex:0 0 28px;align-items:center;justify-content:center}
+.tz-widget .tz-number img{width:78%;height:78%;object-fit:contain}
+.tz-widget .tz-glyph img{width:100%;height:100%;object-fit:contain}
+.tz-widget-action{display:block;margin-top:5px;color:#927740;font-size:.47rem;font-weight:700;letter-spacing:.11em;white-space:nowrap}
+.tz-modal-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,23,26,.68)}
+.tz-modal-backdrop.open{display:flex}
+.tz-modal{position:relative;width:min(560px,100%);max-height:90vh;overflow:auto;padding:clamp(26px,5vw,42px);background:var(--paper);color:var(--ink);box-shadow:0 28px 90px rgba(0,0,0,.28)}
+.tz-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:1.35rem;cursor:pointer}
+.tz-modal h2{font-size:clamp(2rem,5vw,3rem);margin:13px 38px 8px 0}
+.tz-modal-intro,.tz-modal-date{color:var(--muted);font-size:.86rem}
+.tz-date-controls{display:grid;grid-template-columns:40px minmax(0,1fr) 40px auto;gap:7px;margin:20px 0;padding:14px;background:var(--sand);border:1px solid var(--line)}
+.tz-date-step,.tz-date-today{height:42px;border:1px solid rgba(18,56,59,.2);background:var(--paper);color:var(--ink);cursor:pointer}
+#tzDatePicker{min-width:0;width:100%;height:42px;padding:0 9px;border:1px solid rgba(18,56,59,.2);background:var(--paper);color:var(--ink);font:13px var(--sans);color-scheme:light}
+.tz-date-today{padding:0 12px;font-size:.58rem;letter-spacing:.1em}
+.tz-modal-energy{display:flex;align-items:center;gap:20px;padding:20px 0}
+.tz-modal-art{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.tz-modal-art .tz-number,.tz-modal-art .tz-glyph{display:flex;width:54px;height:54px;align-items:center;justify-content:center}
+.tz-modal-art .tz-number img{width:78%;height:78%;object-fit:contain}
+.tz-modal-art .tz-glyph img{width:100%;height:100%;object-fit:contain}
+.tz-modal-kicker{font-size:.57rem;font-weight:700;letter-spacing:.16em;color:#987b43}
+.tz-modal-name{font:1.7rem var(--serif);margin-top:4px}
+.tz-modal-note{font-size:.76rem;color:var(--muted);margin:5px 0 0}
+.tz-modal-link{display:inline-block;margin-top:10px;padding-bottom:4px;border-bottom:1px solid var(--gold);font-size:.65rem;letter-spacing:.09em;text-transform:uppercase}
+.tz-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Header visibility and menu behavior: explicit overrides for all screen sizes */
+.site-header .header-inner{display:flex!important;position:relative!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;min-height:78px!important;height:78px!important;gap:12px!important}
+.site-header .brand{display:inline-flex!important;flex:0 1 auto!important;align-items:center!important;visibility:visible!important}
+.site-header .menu{display:inline-flex!important;flex:0 0 auto!important;visibility:visible!important;align-items:center!important;justify-content:center!important;min-width:82px!important;min-height:42px!important;padding:9px 15px!important;border:1px solid rgba(194,160,91,.65)!important;background:var(--paper)!important;color:var(--ink)!important;font-size:.62rem!important;letter-spacing:.15em!important;text-transform:uppercase!important;cursor:pointer!important}
+.site-header .tz-widget{display:flex!important;flex:0 0 92px!important;width:92px!important;min-width:92px!important;min-height:68px!important;visibility:visible!important;position:relative!important;z-index:2!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:6px!important;border:1px solid rgba(194,160,91,.65)!important;border-radius:2px!important;background:var(--paper)!important;color:var(--ink)!important}
+.site-header .nav{display:none!important;position:absolute!important;top:100%!important;left:auto!important;right:0!important;z-index:100!important;width:min(360px,calc(100vw - 30px))!important;max-height:calc(100vh - 100px)!important;overflow:auto!important;padding:18px!important;background:var(--paper)!important;border:1px solid var(--line)!important;box-shadow:0 18px 48px rgba(8,40,45,.14)!important;flex-direction:column!important;align-items:stretch!important;gap:0!important}
+.site-header .nav.open{display:flex!important}
+.site-header .nav a{display:block!important;padding:13px 10px!important;border-bottom:1px solid var(--line)!important}
+.site-header .nav a:last-child{border-bottom:0!important}
+.site-header .nav .nav-cta{margin-top:12px!important;text-align:center!important;justify-content:center!important}
+@media(max-width:560px){
+ .site-header .header-inner{height:70px!important;min-height:70px!important;gap:7px!important}
+ .site-header .brand{font-size:.8rem!important;letter-spacing:.1em!important}
+ .site-header .menu{min-width:66px!important;padding:8px 9px!important}
+ .site-header .tz-widget{flex-basis:76px!important;width:76px!important;min-width:76px!important;min-height:64px!important}
+ .site-header .tz-widget-date{font-size:.45rem!important}
+ .site-header .tz-widget .tz-number,.site-header .tz-widget .tz-glyph{width:21px!important;height:21px!important;flex-basis:21px!important}
+ .site-header .tz-widget-action{font-size:.4rem!important}
+}
+
+/* Premium, uncluttered global navigation */
+.header-inner{position:relative;gap:clamp(12px,2vw,24px)}
+.menu{display:inline-flex;align-items:center;justify-content:center;min-width:82px;min-height:40px;padding:9px 15px;border:1px solid rgba(194,160,91,.55);background:transparent;color:var(--ink);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
+.menu:hover,.menu[aria-expanded="true"]{background:var(--sand);border-color:var(--gold)}
+.nav{display:none;position:absolute;top:calc(100% + 1px);right:0;left:auto;z-index:60;width:min(360px,calc(100vw - 30px));max-height:calc(100vh - 100px);overflow:auto;padding:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 18px 48px rgba(8,40,45,.14);flex-direction:column;align-items:stretch;gap:0;font-size:.68rem}
+.nav.open{display:flex}
+.nav a{display:block;padding:13px 10px;border-bottom:1px solid var(--line)}
+.nav a:last-child{border-bottom:0}
+.nav .nav-cta{margin-top:12px;justify-content:center;text-align:center;padding:13px 16px}
+.tz-modal{max-height:min(90vh,760px);overflow-y:auto;overscroll-behavior:contain}
+.tz-modal-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.tz-modal-link{margin-top:0}
+.tz-modal-journey{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding:11px 17px;background:var(--gold);color:var(--paper);font-size:.63rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.tz-modal-journey:hover{filter:brightness(.95);transform:translateY(-1px)}
+@media(max-width:850px){.header-inner{height:70px}.nav{top:100%;left:auto;right:0;width:min(360px,calc(100vw - 30px));max-height:calc(100vh - 85px);padding:18px;flex-direction:column;align-items:stretch}.nav.open{display:flex}}
+@media(max-width:560px){.header-inner{height:70px;min-height:70px;flex-wrap:nowrap;padding-top:0;padding-bottom:0}.header-inner .brand{margin-right:auto}.header-inner .menu{order:0;min-width:72px}.header-inner .tz-widget{order:0;flex:0 0 76px;width:76px;min-width:76px}.header-inner .nav{order:0;flex-basis:auto;width:min(360px,calc(100vw - 30px));font-size:.65rem}.tz-modal-actions{align-items:stretch;flex-direction:column}.tz-modal-journey{width:100%}}
+
+@media(max-width:1050px){.nav{gap:8px;font-size:.57rem}.tz-widget{flex-basis:82px;width:82px;min-width:82px;padding:6px}.tz-widget .tz-number,.tz-widget .tz-glyph{width:25px;height:25px;flex-basis:25px}}
+@media(max-width:850px){.header-inner{gap:8px}.nav{gap:7px;font-size:.55rem}.tz-widget{flex-basis:76px;width:76px;min-width:76px;padding:5px}.tz-widget-date{font-size:.46rem}.tz-widget .tz-number,.tz-widget .tz-glyph{width:22px;height:22px;flex-basis:22px}.tz-widget-action{font-size:.42rem}}
+@media(max-width:560px){.header-inner{height:auto;min-height:70px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}.header-inner .brand{margin-right:auto}.header-inner .menu{order:2}.header-inner .tz-widget{order:1;flex-basis:76px}.header-inner .nav{order:3;flex-basis:100%;width:100%;font-size:.62rem}.tz-date-controls{grid-template-columns:36px minmax(0,1fr) 36px}.tz-date-today{grid-column:1/-1;height:36px}.tz-modal-energy{align-items:flex-start;gap:12px}.tz-modal-art .tz-number,.tz-modal-art .tz-glyph{width:43px;height:43px}}
+
+/* Clear premium hamburger control */
+.site-header .menu{gap:10px!important;flex-direction:row!important}
+.site-header .menu-bars{display:flex!important;width:17px!important;flex:0 0 17px!important;flex-direction:column!important;gap:4px!important}
+.site-header .menu-bars span{display:block!important;width:17px!important;height:1px!important;background:currentColor!important;transition:transform .2s,opacity .2s!important}
+.site-header .menu[aria-expanded="true"] .menu-bars span:first-child{transform:translateY(5px) rotate(45deg)!important}
+.site-header .menu[aria-expanded="true"] .menu-bars span:nth-child(2){opacity:0!important}
+.site-header .menu[aria-expanded="true"] .menu-bars span:last-child{transform:translateY(-5px) rotate(-45deg)!important}
+.site-header .menu-label{font-size:.62rem!important;letter-spacing:.15em!important}
+.tz-modal-copy{margin:18px 0 14px;color:var(--muted);font-size:.9rem;line-height:1.8}.tz-reflection{margin:20px 0;padding:3px 0 3px 17px;border-left:2px solid var(--gold);font:1.2rem/1.5 var(--serif);color:var(--ink)}.tz-notes-label{display:block;margin:22px 0 8px;font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink)}.tz-notes{display:block;width:100%;min-height:104px;resize:vertical;padding:13px 14px;border:1px solid var(--line);border-radius:0;background:#fffefb;color:var(--ink);font:.85rem/1.6 var(--sans);outline-color:var(--gold)}.tz-save-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:11px}.tz-save-status{font-size:.72rem;line-height:1.5;color:var(--muted)}.tz-save{min-height:40px;padding:10px 17px;border:0;background:var(--ink);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.13em;cursor:pointer}.tz-save:hover{background:#987b43}@media(max-width:560px){.tz-save-row{align-items:stretch;flex-direction:column}.tz-save{width:100%}}</style>
+<style>.climate-teaser{display:flex;align-items:center;justify-content:space-between;gap:30px}.climate-teaser>div{max-width:700px}.climate-teaser p{color:#63736d;line-height:1.8}.climate-teaser .btn{flex:0 0 auto}@media(max-width:700px){.climate-teaser{display:block}.climate-teaser .btn{margin-top:18px;display:inline-flex}}</style></head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
 <a class="brand" href="index.html" aria-label="BLINKITA home"><span>BLINKITA</span></a>
-<button class="menu" id="menuButton" aria-expanded="false" aria-controls="mainNav">MENU</button>
+<button class="menu" id="menuButton" type="button" aria-expanded="false" aria-controls="mainNav"><span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="menu-label">MENU</span></button>
 <nav class="nav" id="mainNav" aria-label="Main navigation">
-<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="cacao-ceremony.html">Cacao ceremony</a><a href="#climate">Climate</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="#journey-planner">Begin your journey</a>
-</nav></div></header>
+<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="plan-your-journey.html#climate">Climate</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="plan-your-journey.html">Plan your journey</a>
+</nav>
+<button class="tz-widget" id="tzWidget" type="button" aria-label="Open the traditional Maya Tzolk'in calendar and plan a date">
+  <span class="tz-widget-date" id="tzDate">Today</span>
+  <span class="tz-widget-symbols"><span class="tz-number"><img id="tzNumberImage" src="assets/tzolkin/tone-1.png" alt="" /></span><span class="tz-glyph"><img id="tzGlyphImage" src="assets/tzolkin/imix.png" alt="" /></span></span>
+  <span class="tz-widget-action">PLAN A DATE</span>
+</button></div></header>
 
+<div class="tz-modal-backdrop" id="tzBackdrop" role="dialog" aria-modal="true" aria-labelledby="tzModalTitle">
+  <section class="tz-modal">
+    <button class="tz-close" id="tzClose" type="button" aria-label="Close calendar">×</button>
+    <div class="eyebrow">BLINKITA · LIVING TIME</div>
+    <h2 id="tzModalTitle">Explore the Tzolk'in</h2>
+    <p class="tz-modal-intro">Choose a date to explore its place in the traditional 260-day Maya calendar.</p>
+    <div class="tz-modal-date" id="tzModalDate" aria-live="polite"></div>
+    <div class="tz-date-controls">
+      <button class="tz-date-step" id="tzPreviousDate" type="button" aria-label="Previous day">‹</button>
+      <label class="tz-sr-only" for="tzDatePicker">Choose a date</label>
+      <input id="tzDatePicker" type="date" aria-label="Choose a date">
+      <button class="tz-date-step" id="tzNextDate" type="button" aria-label="Next day">›</button>
+      <button class="tz-date-today" id="tzTodayDate" type="button">TODAY</button>
+    </div>
+    <div class="tz-modal-energy">
+      <span class="tz-modal-art"><span class="tz-number"><img id="tzModalNumberImage" src="assets/tzolkin/tone-1.png" alt=""></span><span class="tz-glyph"><img id="tzModalGlyphImage" src="assets/tzolkin/imix.png" alt=""></span></span>
+      <div><div class="tz-modal-kicker" id="tzEnergyLabel">YOUR LIVING TIME</div><div class="tz-modal-name" id="tzModalDayName">1 Imox</div><p class="tz-modal-note">A day within the traditional 260-day Maya Tzolk'in cycle of 13 numbers and 20 day signs.</p></div>
+    </div>
+    <p class="tz-modal-copy" id="tzModalCopy">Let the rhythm of this day offer a moment to pause, notice what is moving through your life and choose how you wish to meet the experience ahead.</p>
+    <div class="tz-reflection" id="tzReflection">What would you like to give your attention to today?</div>
+    <label class="tz-notes-label" for="tzNotes">A note for your Living Time journey</label>
+    <textarea class="tz-notes" id="tzNotes" rows="4" placeholder="Write a thought, an intention, a feeling or something you want to remember..."></textarea>
+    <div class="tz-save-row"><span class="tz-save-status" id="tzSaveStatus">Your note stays in this browser.</span><button class="tz-save" id="tzSave" type="button">SAVE NOTE</button></div>
+    <div class="tz-modal-actions">
+      <a class="tz-modal-link" href="maya-time-astrology.html">Explore Maya Time &amp; Living Time</a>
+      <a class="tz-modal-journey" href="plan-your-journey.html">PLAN A JOURNEY <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+</div>
 <main>
 <section class="hero">
 <div class="wrap"><div class="hero-content">
@@ -103,7 +219,7 @@
 <article class="discover-card"><img src="assets/blinkita/personalguidance.jpg" alt="Personal guidance" loading="lazy"><div class="num">02 · MIND</div><h3>Find clarity within.</h3><p>Personal guidance, readings, hypnotherapy and coaching.</p><a class="text-link" href="personal-guidance.html">Explore MIND ↗</a></article>
 <article class="discover-card"><img src="assets/blinkita/astrology.jpg" alt="Maya Tzolk'in" loading="lazy"><div class="num">03 · TIME</div><h3>Discover your Living Time.</h3><p>Traditional Maya Tzolk'in, birth energy, cycles and a different relationship with time.</p><a class="text-link" href="maya-time-astrology.html">Explore TIME ↗</a></article>
 <article class="discover-card"><img src="assets/blinkita/privateblinkita.jpg" alt="Personal transformation" loading="lazy"><div class="num">04 · LIFE</div><h3>Create a meaningful shift.</h3><p>Guided programmes, personal processes and transformational experiences.</p><a class="text-link" href="offers.html">Explore LIFE ↗</a></article>
-<article class="discover-card"><img src="assets/blinkita/morning-ritual-experience.jpg" alt="Shared circles and retreats" loading="lazy"><div class="num">05 · CIRCLE</div><h3>Experience the power of connection.</h3><p>Group ceremonies, circles, retreats and shared experiences.</p><a class="text-link" href="cacao-ceremony.html">Explore CIRCLE ↗</a></article>
+<article class="discover-card"><img src="assets/blinkita/morning-ritual-experience.jpg" alt="Shared circles and retreats" loading="lazy"><div class="num">05 · CIRCLE</div><h3>Experience the power of connection.</h3><p>Group ceremonies, circles, retreats and shared experiences.</p></article>
 </div></div></section>
 
 
@@ -139,24 +255,10 @@
 <img src="assets/seiri/cacao-ceremony-concept.jpg" alt="A cacao ceremony setting prepared for a shared moment" loading="lazy">
 </div></section>
 
-<section class="climate-section" id="climate" aria-labelledby="climate-title">
-<div class="wrap climate-layout">
-<div class="climate-intro"><div class="eyebrow">Plan your Belize journey · Month by month</div><h2 id="climate-title">What is the weather like when you come?</h2>
-<p>Choose a month to explore typical daytime highs, nighttime lows, average rainfall and the usual number of rain days around the Hopkins and Dangriga area. This makes it easier to choose when to visit, what to pack and what kind of journey you would like to plan.</p>
-<p>Belize is warm throughout the year, but rainfall changes considerably by season. The drier months are generally February to April; wetter conditions become more common from June through November.</p>
-<div class="climate-note">These are long-term climate averages, not a forecast for your travel dates. Local conditions can vary, and the wider Belize itinerary may include regions with different temperatures and rainfall.</div>
-<div class="climate-source">Climate reference: Belize National Meteorological Service, 1991–2020 normals, Melinda Forest Station, approximately 9 miles from Dangriga. Rain days count days with more than 1 mm of rainfall. <a href="https://www.nms.gov.bz/climate-services/climatology/" target="_blank" rel="noopener">View official climate data ↗</a></div>
-</div>
-<div>
-<div class="climate-months" id="climateMonths" aria-label="Choose a month"></div>
-<div class="climate-detail" id="climateDetail" aria-live="polite">
-<h3>January · Hopkins region</h3><div class="climate-stats"><div><strong>28.3°C</strong><span>Average daytime high</span></div><div><strong>20.0°C</strong><span>Average nighttime low</span></div><div><strong>155 mm</strong><span>Average rainfall</span></div></div><p>Warm days and pleasantly cooler evenings. A light layer can be useful after sunset.</p>
-</div>
-</div>
-</div></section>
+<section class="climate-section" id="climate"><div class="wrap climate-teaser"><div><div class="eyebrow">PLAN YOUR JOURNEY · BELIZE BY SEASON</div><h2>Choose your moment in the Caribbean.</h2><p>Explore the month-by-month climate guide for the Hopkins and Dangriga area, then build a journey that fits the season and the experiences you have in mind.</p></div><a class="btn dark" href="plan-your-journey.html#climate">Explore the Belize climate calendar ↗</a></div></section>
 
 <section class="section stay-section" id="stay"><div class="wrap stay-grid">
-<div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="#journey-planner">Plan a Belize journey</a></div>
+<div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="plan-your-journey.html">Plan a Belize journey</a></div>
 <div class="stay-options">
 <article class="stay-option"><div class="eyebrow">Featured beachfront stay</div><h3>Seiri del Mar · Hopkins</h3><p>The main in-person BLINKITA base in Belize, with selected experiences arranged by appointment.</p></article>
 <article class="stay-option"><div class="eyebrow">Additional accommodation</div><h3>Lee-Blue · Pomona</h3><p>An alternative place to stay while exploring Belize. Any BLINKITA sessions are arranged separately.</p></article>
@@ -177,7 +279,7 @@
 <div class="planner-intro"><div class="eyebrow">YOUR JOURNEY · GUIDED BY BLINKITA</div><h2>Let's shape a journey that feels like yours.</h2><p>Start with what interests you. Choose how you would like to experience it, then add as much or as little detail as you already know. You do not need to have everything decided.</p><p class="lead">One clear starting point. Room for the journey to unfold.</p></div>
 <div class="planner-panel">
 <div class="planner-fields">
-<div class="full"><label for="jp-interest">What would you like to explore?</label><select id="jp-interest"><option value="CARIBBEAN SIGNATURE — massage and bodywork">CARIBBEAN SIGNATURE · Massage &amp; bodywork</option><option value="CARIBBEAN RESET — wellness retreat">CARIBBEAN RESET · Wellness retreat</option><option value="CARIBBEAN LIVING TIME EXPEDITION — 13 days in Belize">CARIBBEAN LIVING TIME EXPEDITION · 13 days in Belize</option><option value="CARIBBEAN LIVING TIME EXPEDITION — 20 days in Belize and Guatemala">CARIBBEAN LIVING TIME EXPEDITION · 20 days in Belize &amp; Guatemala</option><option value="CARIBBEAN LIVING TIME EXPEDITION — 33 days in Belize, Guatemala and Mexico">CARIBBEAN LIVING TIME EXPEDITION · 33 days in Belize, Guatemala &amp; Mexico</option><option value="Cacao Ceremony">Cacao Ceremony</option><option value="Online personal guidance, readings or hypnotherapy">Online · Personal guidance, readings &amp; hypnotherapy</option><option value="Traditional Maya Tzolk'in and Living Time">Traditional Maya Tzolk'in &amp; Living Time</option><option value="I am exploring and would like guidance">I am exploring and would like guidance</option></select></div>
+<div class="full"><label for="jp-interest">What would you like to explore?</label><select id="jp-interest"><option value="CARIBBEAN SIGNATURE, massage and bodywork">CARIBBEAN SIGNATURE · Massage &amp; bodywork</option><option value="CARIBBEAN RESET, wellness retreat">CARIBBEAN RESET · Wellness retreat</option><option value="CARIBBEAN LIVING TIME EXPEDITION, 13 days in Belize">CARIBBEAN LIVING TIME EXPEDITION · 13 days in Belize</option><option value="CARIBBEAN LIVING TIME EXPEDITION, 20 days in Belize and Guatemala">CARIBBEAN LIVING TIME EXPEDITION · 20 days in Belize &amp; Guatemala</option><option value="CARIBBEAN LIVING TIME EXPEDITION, 33 days in Belize, Guatemala and Mexico">CARIBBEAN LIVING TIME EXPEDITION · 33 days in Belize, Guatemala &amp; Mexico</option><option value="Cacao Ceremony">Cacao Ceremony</option><option value="Online personal guidance, readings or hypnotherapy">Online · Personal guidance, readings &amp; hypnotherapy</option><option value="Traditional Maya Tzolk'in and Living Time">Traditional Maya Tzolk'in &amp; Living Time</option><option value="I am exploring and would like guidance">I am exploring and would like guidance</option></select></div>
 <div class="full"><label for="jp-format">Where would you like your journey to take place?</label><select id="jp-format"><option value="Online, from wherever I am">ONLINE · from wherever I am</option><option value="In person in Belize">BELIZE · in person</option><option value="A combination of online and Belize">A combination of online and Belize</option><option value="I am not sure yet">I am not sure yet</option></select></div>
 <div class="full"><label for="jp-depth">What kind of experience are you considering?</label><select id="jp-depth"><option value="One private session or ceremony">One private session or ceremony</option><option value="A full-day CARIBBEAN SIGNATURE experience">A full-day CARIBBEAN SIGNATURE experience</option><option value="A multi-day CARIBBEAN RESET retreat">A multi-day CARIBBEAN RESET retreat</option><option value="A 13, 20 or 33-day expedition">A 13, 20 or 33-day expedition</option><option value="A tailored programme or series of sessions">A tailored programme or series of sessions</option><option value="I would like a recommendation">I would like a recommendation</option></select></div>
 <div class="full" id="jp-stay-wrap" hidden><label for="jp-stay">Would you like to include accommodation in Belize?</label><select id="jp-stay"><option value="Yes, please include accommodation options">Yes, please include accommodation options</option><option value="I have already arranged my accommodation">I have already arranged my accommodation</option><option value="I would like to explore Seiri del Mar in Hopkins">I would like to explore Seiri del Mar in Hopkins</option><option value="I would like to explore Lee-Blue in Pomona">I would like to explore Lee-Blue in Pomona</option><option value="Not sure yet">Not sure yet</option><option value="No accommodation needed">No accommodation needed</option></select></div>
@@ -190,7 +292,7 @@
 </div></div></section>
 \n<section class="section about" id="about"><div class="wrap about-grid">
 <div class="about-photo"><img src="assets/blinkita/blinkita1.jpg" alt="The world and work of BLINKITA" loading="lazy"></div>
-<div class="about-copy"><div class="eyebrow">The method behind BLINKITA</div><h2>A meeting place for ancient wisdom and the life you are creating.</h2><p>BLINKITA is a holistic method created by Blanka Thomas, known as Maginja Blinkita. Its five pillars — BODY, MIND, TIME, LIFE and CIRCLE — bring together different paths of learning, wellbeing, personal transformation and connection.</p><p>It brings together years of study, practice and lived experience across different traditions and contemporary approaches. Each path has its own language and depth, yet they meet in one intention: to help people listen more closely to themselves, recognise what is asking for change and take a meaningful next step.</p><div class="about-values"><div class="about-value"><strong>BODY</strong><span>Care, touch and wellbeing</span></div><div class="about-value"><strong>MIND</strong><span>Insight and inner work</span></div><div class="about-value"><strong>TIME</strong><span>Traditional Maya Living Time</span></div><div class="about-value"><strong>LIFE</strong><span>Change and transformation</span></div><div class="about-value"><strong>CIRCLE</strong><span>Connection and community</span></div></div><a class="text-link" href="about.html">Discover the story of BLINKITA ↗</a></div>
+<div class="about-copy"><div class="eyebrow">The method behind BLINKITA</div><h2>A meeting place for ancient wisdom and the life you are creating.</h2><p>BLINKITA is a holistic method created by Blanka Thomas, known as Maginja Blinkita. Its five pillars, BODY, MIND, TIME, LIFE and CIRCLE, bring together different paths of learning, wellbeing, personal transformation and connection.</p><p>It brings together years of study, practice and lived experience across different traditions and contemporary approaches. Each path has its own language and depth, yet they meet in one intention: to help people listen more closely to themselves, recognise what is asking for change and take a meaningful next step.</p><div class="about-values"><div class="about-value"><strong>BODY</strong><span>Care, touch and wellbeing</span></div><div class="about-value"><strong>MIND</strong><span>Insight and inner work</span></div><div class="about-value"><strong>TIME</strong><span>Traditional Maya Living Time</span></div><div class="about-value"><strong>LIFE</strong><span>Change and transformation</span></div><div class="about-value"><strong>CIRCLE</strong><span>Connection and community</span></div></div><a class="text-link" href="about.html">Discover the story of BLINKITA ↗</a></div>
 </div></section>
 
 <section class="closing" id="begin"><div class="wrap"><div class="eyebrow">Your next step can be simple</div><h2>Start with what matters to you. We can shape the rest together.</h2><p>Tell me what you are looking for, whether you are interested in an online session or considering Belize. I will help you find the right starting point and confirm the practical details with you.</p><div class="closing-actions"><a class="btn gold" href="mailto:info@blinkita.si?subject=MY%20BLINKITA%20%E2%80%94%20Begin%20my%20journey">Send an enquiry</a><a class="btn outline" href="https://wa.me/5016084121" target="_blank" rel="noopener">WhatsApp Blanka</a></div></div></section>
@@ -201,6 +303,9 @@ const menuButton=document.getElementById('menuButton');
 const mainNav=document.getElementById('mainNav');
 menuButton.addEventListener('click',()=>{const open=mainNav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
 mainNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mainNav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
+document.addEventListener('click',event=>{if(!mainNav.contains(event.target)&&!menuButton.contains(event.target)){mainNav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){mainNav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}});
+
 
 const jpFormat=document.getElementById('jp-format');
 const jpStayWrap=document.getElementById('jp-stay-wrap');
@@ -218,7 +323,7 @@ function journeyMessage(){
  return lines.join('\n');
 }
 document.getElementById('jp-email').addEventListener('click',()=>{
- const subject='BLINKITA enquiry — '+get('jp-interest');
+ const subject='BLINKITA enquiry, '+get('jp-interest');
  window.location.href='mailto:info@blinkita.si?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(journeyMessage());
  jpStatus.textContent='Your email app will open with your journey enquiry ready to send.';
 });
@@ -228,31 +333,64 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
 });
 </script>
 
-<script id="belize-climate-calendar">
+
+
+
+<script id="blinkita-living-time-widget">
 (()=> {
- const months=[
-  {n:'January',hi:28.3,lo:20.0,rain:155.1,note:'Warm days and pleasantly cooler evenings. A light layer can be useful after sunset.',rainDays:11},
-  {n:'February',hi:29.2,lo:20.4,rain:71.2,note:'One of the drier months, with warm days and generally less rainfall.',rainDays:8},
-  {n:'March',hi:30.2,lo:21.0,rain:60.3,note:'Typically warm and relatively dry, a popular time for outdoor exploration.',rainDays:6},
-  {n:'April',hi:31.5,lo:22.5,rain:53.5,note:'Hotter afternoons and usually low rainfall. Plan outdoor activities with shade and water breaks.',rainDays:5},
-  {n:'May',hi:32.3,lo:23.8,rain:130.2,note:'Hot and increasingly humid, with the transition toward the wetter season.',rainDays:8},
-  {n:'June',hi:31.7,lo:24.5,rain:251.8,note:'The rainy season is underway. Expect tropical showers and lush green landscapes.',rainDays:14},
-  {n:'July',hi:31.6,lo:24.1,rain:206.5,note:'Warm, humid conditions with regular rain. Some days include sunny breaks between showers.',rainDays:16},
-  {n:'August',hi:32.1,lo:24.0,rain:216.3,note:'Hot and humid, with a mix of sunshine and tropical rain.',rainDays:16},
-  {n:'September',hi:32.1,lo:23.8,rain:257.6,note:'A warm, wetter period. Keep plans flexible and check seasonal weather advisories.',rainDays:16},
-  {n:'October',hi:31.1,lo:23.1,rain:301.1,note:'One of the wettest months in the local climate record. Rain can affect road and excursion plans.',rainDays:16},
-  {n:'November',hi:29.6,lo:21.6,rain:254.5,note:'Rainfall often remains significant early in the month, with temperatures becoming a little milder.',rainDays:14},
-  {n:'December',hi:28.8,lo:20.7,rain:153.9,note:'Warm days and cooler evenings. Rainfall generally eases compared with October and November.',rainDays:13}
- ];
- const grid=document.getElementById('climateMonths'),detail=document.getElementById('climateDetail');
- if(!grid||!detail)return;
- const render=i=>{
-  const m=months[i];
-  grid.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
-  detail.innerHTML='<h3>'+m.n+' · Hopkins &amp; Dangriga area</h3><div class="climate-stats"><div><strong>'+m.hi.toFixed(1)+'°C</strong><span>Average daytime high</span></div><div><strong>'+m.lo.toFixed(1)+'°C</strong><span>Average nighttime low</span></div><div><strong>'+Math.round(m.rain)+' mm</strong><span>Average rainfall</span></div><div><strong>'+m.rainDays+'</strong><span>Rain days over 1 mm</span></div></div><p>'+m.note+'</p>';
- };
- months.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='climate-month';b.setAttribute('aria-pressed',String(i===0));b.innerHTML='<span>'+m.n.slice(0,3)+'</span><strong>'+m.hi.toFixed(0)+'°</strong>';b.addEventListener('click',()=>render(i));grid.appendChild(b);});
- render(0);
+ const $=id=>document.getElementById(id);
+ const widget=$('tzWidget'),backdrop=$('tzBackdrop'),close=$('tzClose');
+ if(!widget||!backdrop||!close)return;
+ const signs=["Imox","Iq","Aq'ab'al","K'at","Kan","Kame","Kej","Q'anil","Toj","Tz'i","B'atz","E","Aj","I'x","Tz'ikin","Ajmaq","Noj","Tijax","Kawoq","Ajpu"];
+ const glyphs=["imix","ik","akbal","kan","chicchan","cimi","manik","lamat","muluc","oc","chuen","eb","ben","ix","men","cib","caban","etznab","cauac","ahau"];
+ const reflections={"Imox":"Begin with curiosity. Notice what is beneath the surface, listen to your intuition and leave room for an unexpected discovery.","Iq":"Notice what moves through the day: a breeze, a new idea or a conversation. Take a breath before choosing what comes next.","Aq'ab'al":"Welcome the in-between moments and the possibility of a new beginning. Sometimes a fresh perspective arrives quietly.","K'at":"Gather what matters. Choose one experience, conversation or intention you want to carry with you.","Kan":"Follow your curiosity with care. Let the world invite discovery while giving yourself time to notice what feels meaningful.","Kame":"Make room for what you are ready to set down. A quiet pause can help one chapter close and another begin.","Kej":"Let the natural world set the pace. Notice the trees, the shoreline and the ground beneath your feet.","Q'anil":"Notice what is growing. Small moments become meaningful when they receive your attention.","Toj":"Pause and appreciate what has been offered today: time, care, kindness or a beautiful view.","Tz'i":"Choose one thing to give your full attention to. Meaningful connection grows through presence, trust and listening.","B'atz":"Your day is a thread in a larger story. Write something, create something or share a moment that feels like your own.","E":"Let the journey unfold one step at a time. You do not need to fit everything into one day.","Aj":"Notice what helps you feel grounded, supported and clear in the choices you are making.","I'x":"Seek stillness in nature. Let the quiet strength of the forest, sea or evening light bring you back to yourself.","Tz'ikin":"Look beyond the familiar view. What new perspective or small adventure might stay with you?","Ajmaq":"Make space for compassion, including toward yourself. A gentle moment of reflection can change the shape of a day.","Noj":"Give one thought room to become clear. A journal or a quiet pause can help you hear what matters.","Tijax":"Choose what restores clarity. Simplify one thing and make more room for what matters.","Kawoq":"A meaningful journey is shaped by the people and places that hold it. Notice what helps you feel welcome, restored and connected.","Ajpu":"Let the day hold courage and joy. Choose an experience that reminds you why you made room for this journey."};
+ const questions={"Imox":"What could you discover if you left a little room for the unexpected?","Iq":"What do you want to breathe in, and what are you ready to let pass?","Aq'ab'al":"What new beginning might be waiting in a quiet moment?","K'at":"What is worth gathering, keeping or giving your attention to?","Kan":"What is calling your curiosity, and how can you explore it with care?","Kame":"What are you ready to leave behind to make space for what comes next?","Kej":"Where could nature help you slow down and feel grounded?","Q'anil":"What is growing in your life that deserves your attention?","Toj":"What part of today do you want to appreciate before it passes?","Tz'i":"Who or what deserves your full attention today?","B'atz":"What small moment would you like to weave into your story?","E":"What would change if you focused only on the next step?","Aj":"What helps you feel supported and grounded right now?","I'x":"Where can you find a little stillness in the natural world?","Tz'ikin":"What new perspective would you like to carry forward?","Ajmaq":"Where could you offer yourself a little more compassion?","Noj":"What thought deserves a quiet moment to become clearer?","Tijax":"What could you simplify to make more room for what matters?","Kawoq":"What would make today feel more nourishing, connected or memorable?","Ajpu":"What experience would make you feel more alive?"};
+ const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+ const shortMonths=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ const today=new Date();today.setHours(12,0,0,0);let selected=new Date(today);
+ function tzData(date){
+  const y=date.getFullYear(),m=date.getMonth()+1,a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;
+  const jdn=date.getDate()+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+  const elapsed=jdn-584283;
+  return {number:((elapsed+3)%13+13)%13+1,sign:((elapsed+19)%20+20)%20};
+ }
+ function render(date){
+  selected=new Date(date);selected.setHours(12,0,0,0);
+  const data=tzData(selected),y=selected.getFullYear(),m=selected.getMonth(),day=selected.getDate();
+  const name=data.number+' '+signs[data.sign],numberSrc='assets/tzolkin/tone-'+data.number+'.png',glyphSrc='assets/tzolkin/'+glyphs[data.sign]+'.png';
+  $('tzDate').textContent=day+' '+shortMonths[m]+' '+y;
+  $('tzNumberImage').src=numberSrc;$('tzGlyphImage').src=glyphSrc;
+  $('tzModalTitle').textContent=name;$('tzModalDayName').textContent=name;
+  $('tzModalDate').textContent=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][selected.getDay()]+', '+day+' '+months[m]+' '+y;
+  $('tzModalNumberImage').src=numberSrc;$('tzModalGlyphImage').src=glyphSrc;
+  $('tzDatePicker').value=String(y).padStart(4,'0')+'-'+String(m+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+  const sign=signs[data.sign],same=day===today.getDate()&&m===today.getMonth()&&y===today.getFullYear();
+  $('tzEnergyLabel').textContent=same?"YOUR LIVING TIME":"LIVING TIME FOR YOUR CHOSEN DATE";
+  $('tzModalCopy').textContent=reflections[sign]||reflections.Kawoq;
+  $('tzReflection').textContent=questions[sign]||questions.Kawoq;
+  $('tzSaveStatus').textContent="Your note stays in this browser.";
+
+ }
+ function open(){backdrop.classList.add('open');document.body.style.overflow='hidden';close.focus()}
+ function shut(){backdrop.classList.remove('open');document.body.style.overflow='';widget.focus()}
+ widget.addEventListener('click',open);close.addEventListener('click',shut);
+ backdrop.addEventListener('click',event=>{if(event.target===backdrop)shut()});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&backdrop.classList.contains('open'))shut()});
+ $('tzDatePicker').addEventListener('change',event=>{
+  if(!event.target.value)return;const [y,m,d]=event.target.value.split('-').map(Number),next=new Date(0);
+  next.setFullYear(y,m-1,d);next.setHours(12,0,0,0);
+  if(next.getFullYear()===y&&next.getMonth()===m-1&&next.getDate()===d)render(next);
+ });
+ $('tzPreviousDate').addEventListener('click',()=>{const next=new Date(selected);next.setDate(next.getDate()-1);render(next)});
+ $('tzNextDate').addEventListener('click',()=>{const next=new Date(selected);next.setDate(next.getDate()+1);render(next)});
+ $('tzTodayDate').addEventListener('click',()=>render(today));
+ const note=$('tzNotes'),save=$('tzSave'),status=$('tzSaveStatus'),storeKey='blinkitaLivingTimeNotes_v1';
+ save.addEventListener('click',()=>{
+  const value=note.value.trim();if(!value){status.textContent="Write a note or intention before saving.";note.focus();return;}
+  try{const entries=JSON.parse(localStorage.getItem(storeKey)||'[]');entries.push({date:$('tzModalDate').textContent,calendar:$('tzModalDayName').textContent,note:value,createdAt:new Date().toISOString()});localStorage.setItem(storeKey,JSON.stringify(entries));note.value='';status.textContent="Saved on this device for your Living Time journey.";}
+  catch(error){status.textContent="This browser could not save the note. Check your storage settings.";}
+ });
+ render(today);
 })();
 </script>
 
