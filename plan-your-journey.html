@@ -68,4 +68,30 @@ const b=$('menuButton'),n=$('mainNav');if(b&&n)b.addEventListener('click',()=>{c
  months.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='climate-month';b.setAttribute('aria-pressed',String(i===0));b.innerHTML='<span>'+m.n.slice(0,3)+'</span><strong>'+m.hi.toFixed(0)+'°</strong>';b.addEventListener('click',()=>render(i));grid.appendChild(b);});
  render(0);
 })();
+</script><script id="belize-climate-calendar">
+(()=> {
+ const months=[
+  {n:'January',hi:28.3,lo:20.0,rain:155.1,note:'Warm days and pleasantly cooler evenings. A light layer can be useful after sunset.',rainDays:11},
+  {n:'February',hi:29.2,lo:20.4,rain:71.2,note:'One of the drier months, with warm days and generally less rainfall.',rainDays:8},
+  {n:'March',hi:30.2,lo:21.0,rain:60.3,note:'Typically warm and relatively dry, a popular time for outdoor exploration.',rainDays:6},
+  {n:'April',hi:31.5,lo:22.5,rain:53.5,note:'Hotter afternoons and usually low rainfall. Plan outdoor activities with shade and water breaks.',rainDays:5},
+  {n:'May',hi:32.3,lo:23.8,rain:130.2,note:'Hot and increasingly humid, with the transition toward the wetter season.',rainDays:8},
+  {n:'June',hi:31.7,lo:24.5,rain:251.8,note:'The rainy season is underway. Expect tropical showers and lush green landscapes.',rainDays:14},
+  {n:'July',hi:31.6,lo:24.1,rain:206.5,note:'Warm, humid conditions with regular rain. Some days include sunny breaks between showers.',rainDays:16},
+  {n:'August',hi:32.1,lo:24.0,rain:216.3,note:'Hot and humid, with a mix of sunshine and tropical rain.',rainDays:16},
+  {n:'September',hi:32.1,lo:23.8,rain:257.6,note:'A warm, wetter period. Keep plans flexible and check seasonal weather advisories.',rainDays:16},
+  {n:'October',hi:31.1,lo:23.1,rain:301.1,note:'One of the wettest months in the local climate record. Rain can affect road and excursion plans.',rainDays:16},
+  {n:'November',hi:29.6,lo:21.6,rain:254.5,note:'Rainfall often remains significant early in the month, with temperatures becoming a little milder.',rainDays:14},
+  {n:'December',hi:28.8,lo:20.7,rain:153.9,note:'Warm days and cooler evenings. Rainfall generally eases compared with October and November.',rainDays:13}
+ ];
+ const grid=document.getElementById('climateMonths'),detail=document.getElementById('climateDetail');
+ if(!grid||!detail)return;
+ const render=i=>{
+  const m=months[i];
+  grid.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
+  detail.innerHTML='<h3>'+m.n+' · Hopkins &amp; Dangriga area</h3><div class="climate-stats"><div><strong>'+m.hi.toFixed(1)+'°C</strong><span>Average daytime high</span></div><div><strong>'+m.lo.toFixed(1)+'°C</strong><span>Average nighttime low</span></div><div><strong>'+Math.round(m.rain)+' mm</strong><span>Average rainfall</span></div><div><strong>'+m.rainDays+'</strong><span>Rain days over 1 mm</span></div></div><p>'+m.note+'</p>';
+ };
+ months.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='climate-month';b.setAttribute('aria-pressed',String(i===0));b.innerHTML='<span>'+m.n.slice(0,3)+'</span><strong>'+m.hi.toFixed(0)+'°</strong>';b.addEventListener('click',()=>render(i));grid.appendChild(b);});
+ render(0);
+})();
 </script></body></html>
