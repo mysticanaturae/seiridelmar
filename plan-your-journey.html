@@ -42,41 +42,35 @@ const vals=()=>({destination:$('destination').value,duration:$('duration').value
 const message=()=>{const v=vals();return ['BLINKITA PERSONAL JOURNEY','Destination: '+v.destination,'Duration: '+v.duration,'Preferred timing: '+(v.month?v.month+' '+v.year:'Flexible'),'Travellers: '+v.travellers,'Travel style: '+v.style,'Experiences: '+(v.experiences.join(', ')||'Open to suggestions'),'Accommodation: '+(v.stays.join(', ')||'Open to suggestions'),'BLINKITA experiences: '+(v.blinkita.join(', ')||'Open to suggestions'),'Name: '+(v.name||'Not provided'),'Email: '+(v.email||'Not provided'),'Notes: '+(v.notes||'None')].join('\n')};
 const itinerary= v=>{
  const days=parseInt(v.duration,10)||13,all=v.experiences.join(' ').toLowerCase(),route=v.destination;
- const wantsTikal=all.includes('tikal')||route.includes('Guatemala');
- const wantsMaya=all.includes('maya')||all.includes('culture');
- const wantsSea=all.includes('beach')||all.includes('caribbean');
- const wantsJungle=all.includes('jungle')||all.includes('nature');
- const wantsWell=all.includes('wellness')||v.blinkita.length>0;
- const phases=[];
- const add=(range,title,desc)=>phases.push({range,title,desc});
- const end=(start,count)=>'Days '+start+'–'+(start+count-1);
+ const wantsMaya=all.includes('maya')||all.includes('culture'),wantsSea=all.includes('beach')||all.includes('caribbean'),wantsJungle=all.includes('jungle')||all.includes('nature'),wantsWell=all.includes('wellness')||v.blinkita.length>0;
+ const phases=[],add=(range,title,desc)=>phases.push({range,title,desc}),span=(a,b)=>'Days '+a+'–'+b;
+ let fit='';
  if(route==='Belize'){
-  add(end(1,2),'Arrive and settle on the Caribbean coast','Arrive in Belize, transfer towards Hopkins and ease into the rhythm of the coast.');
-  if(wantsMaya||wantsJungle)add(end(3,3),'Inland Belize · Maya heritage and nature','Explore a selection of inland Maya sites, rivers or rainforest experiences, matched to access and travel time.');
-  else add(end(3,2),'Coast, culture and local discovery','Enjoy the Caribbean setting, village life and a choice of gentle local excursions.');
-  if(wantsWell)add(end(days-2,Math.min(2,days-5)),'BLINKITA reset','Make room for restorative time, selected BLINKITA experiences and unhurried moments.');
-  add(end(days-1,2),'Return and departure','Keep the final days flexible for the return transfer and onward departure.');
+  const inland=Math.max(2,days-5),last=days-1;
+  add(span(1,2),'Arrive and settle on the Caribbean coast','Arrive in Belize, transfer towards Hopkins and ease into the rhythm of the coast.');
+  add(span(3,2+inland),'Belize inland · '+(wantsMaya||wantsJungle?'Maya heritage and nature':'Culture and local discovery'),wantsMaya||wantsJungle?'Explore selected Maya sites, rainforest landscapes or river experiences, matched to access and travel time.':'Enjoy village life, local culture and a choice of gentle excursions.');
+  if(wantsWell)add({range:'Flexible time during your stay',title:'BLINKITA restorative experiences',desc:'Place selected bodywork, rituals or wellness moments where they best fit your pace.'}.range,'BLINKITA restorative experiences','Place selected bodywork, rituals or wellness moments where they best fit your pace.');
+  add(span(last,days),'Return and departure','Keep the final days flexible for the return transfer and onward departure.');
  }else if(route==='Belize + Guatemala'){
-  add(end(1,3),'Belize · Caribbean arrival','Settle into Belize and begin with the coast, culture and time to adjust.');
-  add(end(4,Math.max(3,Math.floor(days*.3))),'Belize inland · Nature and Maya heritage','Explore rainforest landscapes and selected Maya sites, depending on your interests.');
-  const gstart=4+Math.max(3,Math.floor(days*.3));
-  add(end(gstart,Math.max(3,days-gstart+1)),'Guatemala · The Maya world and Tikal','Continue into Guatemala for a considered visit to Tikal and the surrounding region, with border and transfer logistics confirmed for your dates.');
+  const belize= Math.max(3,Math.round(days*.45)),guatemalaStart=belize+1;
+  add(span(1,3),'Belize · Caribbean arrival','Settle into Belize, discover the coast and allow time to adjust after arrival.');
+  add(span(4,belize+3),'Belize inland · Nature and Maya heritage','Explore rainforest landscapes and selected Maya sites, depending on your interests and route.');
+  add(span(guatemalaStart+3,days-1),'Guatemala · Tikal and the Maya world','Continue into Guatemala for Tikal and the Petén region. Border crossings, road transfers and site access need date-specific planning.');
+  if(days<16)fit='This is a compact timeframe for two countries. Consider a Belize-only journey or allow more days for Guatemala so the route does not feel rushed.';
  }else{
-  add(end(1,3),'Belize · Caribbean beginnings','Arrive, settle on the coast and discover the Belizean landscape at an easy pace.');
-  add(end(4,Math.max(4,Math.floor(days*.25))),'Belize · Jungle, rivers and Maya heritage','Explore a selection of Belize inland experiences and ancient Maya sites.');
-  const g=Math.max(4,Math.floor(days*.25)),gstart=4+g;
-  add(end(gstart,Math.max(4,Math.floor(days*.3))),'Guatemala · Tikal and living Maya culture','Allow time for Tikal and the wider Petén region, subject to route and access.');
-  const mstart=gstart+Math.max(4,Math.floor(days*.3));
-  add(end(mstart,Math.max(3,days-mstart+1)),'Mexico · A gentle onward journey','Continue towards the Yucatán, with Tulum as a possible extension and onward travel planned separately.');
+  if(days<28)fit='Three countries in this timeframe would make the journey very fast-paced. BLINKITA recommends allowing around 33 days for a more considered Belize–Guatemala–Mexico route, or choosing two countries for this trip.';
+  const belize=Math.max(7,Math.round(days*.3)),guatemala=Math.max(7,Math.round(days*.3)),mexicoStart=belize+guatemala+1;
+  add(span(1,belize),'Belize · Caribbean beginnings','Arrive, settle on the coast and discover Belize at an easy pace, with time for nature and Maya heritage.');
+  add(span(belize+1,belize+guatemala),'Guatemala · Tikal and the Maya world','Allow time for Tikal and the wider Petén region, with border and transfer logistics confirmed for your dates.');
+  add(span(mexicoStart,days-1),'Mexico · Yucatán and onward journey','Continue towards the Yucatán. Tulum is a possible extension, with onward travel and connections planned separately.');
  }
- if(phases.length>4)phases.splice(3,phases.length-4);
  if(wantsSea)phases.push({range:'Throughout the journey',title:'Caribbean time',desc:'Keep space for beach time, sea views and unhurried days along the coast.'});
  if(wantsJungle)phases.push({range:'Experience focus',title:'Nature and rainforest',desc:'Prioritise guided nature experiences and allow flexibility for local conditions.'});
  if(wantsWell)phases.push({range:'Experience focus',title:'BLINKITA wellbeing moments',desc:'Include selected bodywork, rituals or restorative experiences at a comfortable pace.'});
  if(!v.experiences.length)phases.push({range:'Personal touch',title:'Open space for discovery',desc:'Your interests are still open, so this outline leaves room for a personal recommendation.'});
- return phases.slice(0,6);
+ return {phases:phases.slice(0,6),fit};
 };
-const summary=()=>{const v=vals(),list=[v.destination,v.duration,v.month?v.month+' '+v.year:'Dates flexible',v.travellers,v.style,...v.experiences,...v.stays,...v.blinkita];$('summaryTitle').textContent=v.duration+' · '+v.destination;$('summaryList').innerHTML='';list.filter(Boolean).slice(0,12).forEach(x=>{const li=document.createElement('li');li.textContent=x;$('summaryList').append(li)});const route=itinerary(v);$('itineraryTitle').textContent=v.duration+' · '+v.destination;$('itineraryIntro').textContent='A suggested route shaped around '+(v.experiences.length?v.experiences.slice(0,3).join(', '):'your selected destination and travel time')+'.';$('itineraryDays').innerHTML='';route.forEach(p=>{const li=document.createElement('li'),strong=document.createElement('strong');strong.textContent=p.range+' · '+p.title;li.append(strong,document.createTextNode(p.desc));$('itineraryDays').append(li)});};
+const summary=()=>{const v=vals(),list=[v.destination,v.duration,v.month?v.month+' '+v.year:'Dates flexible',v.travellers,v.style,...v.experiences,...v.stays,...v.blinkita];$('summaryTitle').textContent=v.duration+' · '+v.destination;$('summaryList').innerHTML='';list.filter(Boolean).slice(0,12).forEach(x=>{const li=document.createElement('li');li.textContent=x;$('summaryList').append(li)});const route=itinerary(v);$('itineraryTitle').textContent=v.duration+' · '+v.destination;$('itineraryIntro').textContent='A suggested route shaped around '+(v.experiences.length?v.experiences.slice(0,3).join(', '):'your selected destination and travel time')+'.'+(route.fit?' '+route.fit:'');$('itineraryDays').innerHTML='';route.phases.forEach(p=>{const li=document.createElement('li'),strong=document.createElement('strong');strong.textContent=p.range+' · '+p.title;li.append(strong,document.createTextNode(p.desc));$('itineraryDays').append(li)});};
 const persist=()=>{try{localStorage.setItem(draftKey,JSON.stringify(vals()))}catch(e){}};
 try{const d=JSON.parse(localStorage.getItem(draftKey)||'null');if(d){['destination','duration','travelMonth','travelYear','travellers','travelStyle','guestName','guestEmail','extraNotes'].forEach((id,i)=>{const k=['destination','duration','month','year','travellers','style','name','email','notes'][i];if(d[k]!==undefined)$(id).value=d[k]});['experience','stay','blinkita'].forEach(g=>{const k=g==='experience'?'experiences':g==='stay'?'stays':'blinkita';form.querySelectorAll('[name='+g+']').forEach(el=>el.checked=(d[k]||[]).includes(el.value))})}}catch(e){}
 form.addEventListener('input',()=>{summary();persist()});form.addEventListener('change',()=>{summary();persist()});summary();
