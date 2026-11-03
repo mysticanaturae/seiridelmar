@@ -67,13 +67,13 @@
 @media(max-width:760px){.product-line-grid{grid-template-columns:1fr}.product-line-card img{height:240px}}
 
 </style>
-</head>
+<style id="journey-climate-teaser">.climate-teaser{display:flex;align-items:center;justify-content:space-between;gap:30px}.climate-teaser>div{max-width:700px}.climate-teaser p{color:#63736d;line-height:1.8}.climate-teaser .btn{flex:0 0 auto}@media(max-width:700px){.climate-teaser{display:block}.climate-teaser .btn{margin-top:18px;display:inline-flex}}</style></head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
 <a class="brand" href="index.html" aria-label="BLINKITA home"><span>BLINKITA</span></a>
 <button class="menu" id="menuButton" aria-expanded="false" aria-controls="mainNav">MENU</button>
 <nav class="nav" id="mainNav" aria-label="Main navigation">
-<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="cacao-ceremony.html">Cacao ceremony</a><a href="#climate">Climate</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="#journey-planner">Begin your journey</a>
+<a href="#discover">Explore</a><a href="#online">Online</a><a href="#belize">Belize</a><a href="travel.html">Travel</a><a href="cacao-ceremony.html">Cacao ceremony</a><a href="plan-your-journey.html#climate">Climate</a><a href="#stay">Stay</a><a href="#about">About</a><a href="my-blinkita.html">MY BLINKITA</a><a class="nav-cta" href="plan-your-journey.html">Plan your journey</a>
 </nav></div></header>
 
 <main>
@@ -139,24 +139,10 @@
 <img src="assets/seiri/cacao-ceremony-concept.jpg" alt="A cacao ceremony setting prepared for a shared moment" loading="lazy">
 </div></section>
 
-<section class="climate-section" id="climate" aria-labelledby="climate-title">
-<div class="wrap climate-layout">
-<div class="climate-intro"><div class="eyebrow">Plan your Belize journey · Month by month</div><h2 id="climate-title">What is the weather like when you come?</h2>
-<p>Choose a month to explore typical daytime highs, nighttime lows, average rainfall and the usual number of rain days around the Hopkins and Dangriga area. This makes it easier to choose when to visit, what to pack and what kind of journey you would like to plan.</p>
-<p>Belize is warm throughout the year, but rainfall changes considerably by season. The drier months are generally February to April; wetter conditions become more common from June through November.</p>
-<div class="climate-note">These are long-term climate averages, not a forecast for your travel dates. Local conditions can vary, and the wider Belize itinerary may include regions with different temperatures and rainfall.</div>
-<div class="climate-source">Climate reference: Belize National Meteorological Service, 1991–2020 normals, Melinda Forest Station, approximately 9 miles from Dangriga. Rain days count days with more than 1 mm of rainfall. <a href="https://www.nms.gov.bz/climate-services/climatology/" target="_blank" rel="noopener">View official climate data ↗</a></div>
-</div>
-<div>
-<div class="climate-months" id="climateMonths" aria-label="Choose a month"></div>
-<div class="climate-detail" id="climateDetail" aria-live="polite">
-<h3>January · Hopkins region</h3><div class="climate-stats"><div><strong>28.3°C</strong><span>Average daytime high</span></div><div><strong>20.0°C</strong><span>Average nighttime low</span></div><div><strong>155 mm</strong><span>Average rainfall</span></div></div><p>Warm days and pleasantly cooler evenings. A light layer can be useful after sunset.</p>
-</div>
-</div>
-</div></section>
+<section class="climate-section" id="climate"><div class="wrap climate-teaser"><div><div class="eyebrow">PLAN YOUR JOURNEY · BELIZE BY SEASON</div><h2>Choose your moment in the Caribbean.</h2><p>Explore the month-by-month climate guide for the Hopkins and Dangriga area, then build a journey that fits the season and the experiences you have in mind.</p></div><a class="btn dark" href="plan-your-journey.html#climate">Explore the Belize climate calendar ↗</a></div></section>
 
 <section class="section stay-section" id="stay"><div class="wrap stay-grid">
-<div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="#journey-planner">Plan a Belize journey</a></div>
+<div class="stay-copy"><div class="eyebrow">Make space for the whole experience</div><h2>Your stay. Your pace. Your journey.</h2><p>Planning Belize can include the practical details as well as the experiences you want to make time for. Explore accommodation options, then choose whether you would like to add selected BLINKITA sessions, a day experience or a longer programme.</p><p>Accommodation and BLINKITA experiences are arranged separately. Property availability, rates and booking conditions are confirmed directly with the accommodation provider. Your BLINKITA programme or session is discussed with Blanka.</p><a class="btn dark" href="plan-your-journey.html">Plan a Belize journey</a></div>
 <div class="stay-options">
 <article class="stay-option"><div class="eyebrow">Featured beachfront stay</div><h3>Seiri del Mar · Hopkins</h3><p>The main in-person BLINKITA base in Belize, with selected experiences arranged by appointment.</p></article>
 <article class="stay-option"><div class="eyebrow">Additional accommodation</div><h3>Lee-Blue · Pomona</h3><p>An alternative place to stay while exploring Belize. Any BLINKITA sessions are arranged separately.</p></article>
@@ -240,21 +226,4 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
   {n:'July',hi:31.6,lo:24.1,rain:206.5,note:'Warm, humid conditions with regular rain. Some days include sunny breaks between showers.',rainDays:16},
   {n:'August',hi:32.1,lo:24.0,rain:216.3,note:'Hot and humid, with a mix of sunshine and tropical rain.',rainDays:16},
   {n:'September',hi:32.1,lo:23.8,rain:257.6,note:'A warm, wetter period. Keep plans flexible and check seasonal weather advisories.',rainDays:16},
-  {n:'October',hi:31.1,lo:23.1,rain:301.1,note:'One of the wettest months in the local climate record. Rain can affect road and excursion plans.',rainDays:16},
-  {n:'November',hi:29.6,lo:21.6,rain:254.5,note:'Rainfall often remains significant early in the month, with temperatures becoming a little milder.',rainDays:14},
-  {n:'December',hi:28.8,lo:20.7,rain:153.9,note:'Warm days and cooler evenings. Rainfall generally eases compared with October and November.',rainDays:13}
- ];
- const grid=document.getElementById('climateMonths'),detail=document.getElementById('climateDetail');
- if(!grid||!detail)return;
- const render=i=>{
-  const m=months[i];
-  grid.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
-  detail.innerHTML='<h3>'+m.n+' · Hopkins &amp; Dangriga area</h3><div class="climate-stats"><div><strong>'+m.hi.toFixed(1)+'°C</strong><span>Average daytime high</span></div><div><strong>'+m.lo.toFixed(1)+'°C</strong><span>Average nighttime low</span></div><div><strong>'+Math.round(m.rain)+' mm</strong><span>Average rainfall</span></div><div><strong>'+m.rainDays+'</strong><span>Rain days over 1 mm</span></div></div><p>'+m.note+'</p>';
- };
- months.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='climate-month';b.setAttribute('aria-pressed',String(i===0));b.innerHTML='<span>'+m.n.slice(0,3)+'</span><strong>'+m.hi.toFixed(0)+'°</strong>';b.addEventListener('click',()=>render(i));grid.appendChild(b);});
- render(0);
-})();
-</script>
-
-</body>
-</html>
+  {n:'October',hi:31.1,lo:23.1,rain:301.1,note:'One of the wettest months in the lo
