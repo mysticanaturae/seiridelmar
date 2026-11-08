@@ -1,7 +1,7 @@
 {
-  "name": "Seiri del Mar — The Living Experience",
-  "short_name": "My Seiri",
-  "description": "A private concept prototype for the Seiri del Mar guest experience.",
+  "name": "BLINKITA | The Living Experience",
+  "short_name": "BLINKITA",
+  "description": "The BLINKITA living portal: explore personal experiences, wellness retreats and journeys in Belize.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f4efe4",
