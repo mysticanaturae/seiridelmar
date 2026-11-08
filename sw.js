@@ -1,4 +1,4 @@
-const CACHE_NAME = 'seiri-assets-v4';
+const CACHE_NAME = 'blinkita-assets-v5';
 const CORE_ASSETS = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 const STATIC_ASSET = /\.(?:avif|gif|ico|jpe?g|js|png|svg|webp|woff2?)$/i;
 
