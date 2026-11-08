@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="sl" lang="en">
+<head><base href="../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102d2b">
+<title>EMBER | Seiri del Mar</title>
+<style>
+:root{--ink:#102d2b;--deep:#0a201f;--cream:#f5f0e6;--gold:#c9a66b;--muted:#aebbb3;--line:rgba(245,240,230,.15)}
+*{box-sizing:border-box}body{margin:0;background:var(--deep);color:var(--cream);font-family:Georgia,"Times New Roman",serif}
+a{color:inherit}.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px clamp(20px,5vw,72px);border-bottom:1px solid var(--line);font:12px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.brand{color:var(--gold);text-decoration:none}.navlinks{display:flex;gap:22px;flex-wrap:wrap}.navlinks a{text-decoration:none}
+.hero{min-height:65vh;position:relative;display:flex;align-items:end;padding:clamp(28px,7vw,96px);background:#193b37;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.57}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,24,23,.92),rgba(6,24,23,.08))}
+.hero-copy{position:relative;z-index:1;max-width:800px}.eyebrow{font:11px Arial,sans-serif;letter-spacing:.23em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(56px,11vw,130px);font-weight:normal;letter-spacing:.08em;margin:15px 0}h2{font-weight:normal;font-size:clamp(30px,4vw,48px);margin:0 0 14px}.hero p,.section-intro{font-size:18px;line-height:1.7;max-width:620px;color:#e3e1d8}
+main{padding:64px clamp(20px,5vw,72px)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.tabs{display:flex;gap:9px;flex-wrap:wrap;margin:28px 0 32px}.tab,.btn{border:1px solid var(--gold);background:transparent;color:var(--cream);padding:12px 17px;border-radius:999px;cursor:pointer;font:12px Arial,sans-serif;letter-spacing:.05em}.tab.active,.btn.primary{background:var(--gold);color:#172b27}
+.search{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--cream);padding:13px 16px;border-radius:4px;min-width:min(100%,280px)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.dish{border:1px solid var(--line);background:rgba(255,255,255,.025);cursor:pointer;transition:transform .25s,border-color .25s;overflow:hidden}.dish:hover{transform:translateY(-4px);border-color:var(--gold)}
+.dish img{width:100%;height:220px;object-fit:cover;display:block}.dish-content{padding:20px}.dish-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.dish h3{font-size:22px;font-weight:normal;margin:0 0 9px}.price{white-space:nowrap;color:var(--gold);font:13px Arial,sans-serif}.dish p{color:var(--muted);font:14px/1.6 Arial,sans-serif;min-height:66px}.more{font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.note{color:var(--muted);font:12px/1.6 Arial,sans-serif;margin-top:30px}.saved-link{border-bottom:1px solid var(--gold);padding-bottom:3px;text-decoration:none}
+footer{padding:30px clamp(20px,5vw,72px);border-top:1px solid var(--line);font:12px/1.7 Arial,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:10;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.panel{width:min(720px,100%);max-height:90vh;overflow:auto;background:#112b29;border:1px solid rgba(201,166,107,.5);position:relative}.panel img{width:100%;height:280px;object-fit:cover;display:block}.panel-body{padding:clamp(22px,4vw,38px)}.close{position:absolute;top:12px;right:12px;background:#102d2b;color:white;border:1px solid var(--line);border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer}.panel h2{margin-top:12px}.panel p{font:15px/1.7 Arial,sans-serif;color:#d3dcd5}.modal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.status{font:12px Arial,sans-serif;color:var(--gold);margin-top:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dish img{height:190px}}@media(max-width:560px){.grid{grid-template-columns:1fr}.dish img{height:230px}.topbar{align-items:flex-start}.navlinks{gap:12px}.hero{min-height:58vh}.hero p{font-size:16px}}
+/* Hero image visibility fix */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#193b37;min-height:65vh}
+.hero img#heroImage{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.88;z-index:0}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,24,23,.72),rgba(6,24,23,.02))}
+.hero .hero-copy{position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:9px}.brand img{display:block;object-fit:contain}.header-date-link{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:var(--ink,#12383b);border:1px solid rgba(194,160,91,.5);padding:8px 10px;font-size:.59rem;letter-spacing:.08em;text-transform:uppercase}.header-date-link span:first-child{font-size:1rem;color:var(--gold,#c2a05b)}@media(max-width:900px){.header-date-link{font-size:.55rem;padding:7px 8px}}.header-date-link{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:var(--ink,#12383b);border:1px solid rgba(194,160,91,.5);padding:6px 8px;text-decoration:none}.calendar-icon svg{width:20px;height:20px;display:block;fill:none;stroke:var(--gold,#c2a05b);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.calendar-copy{display:grid;line-height:1.15}.calendar-copy small{font-size:.48rem;letter-spacing:.1em;color:var(--muted,#586e6b)}.calendar-copy strong{font-size:.62rem;font-weight:500;color:var(--ink,#12383b)}.mobile-menu{display:none;align-items:center;justify-content:center;gap:4px;width:38px;height:36px;padding:8px;border:1px solid rgba(23,58,61,.15);background:transparent;color:var(--ink,#12383b);cursor:pointer}.mobile-menu span{display:block;width:17px;height:1px;background:currentColor}.topbar{position:relative}@media(max-width:1100px){.topbar{display:flex!important;flex-wrap:nowrap!important;flex-direction:row!important;align-items:center!important;justify-content:space-between;gap:12px;height:auto;min-height:70px;padding:12px 0!important}.topbar .navlinks{display:none!important}.topbar .navlinks.open{display:flex!important;position:absolute;top:100%;left:0;right:0;z-index:50;padding:18px 20px;background:var(--paper,#fffdf8);border:1px solid rgba(23,58,61,.15);box-shadow:0 16px 36px rgba(8,40,45,.12);flex-direction:column;align-items:flex-start;gap:15px}.topbar .mobile-menu{display:inline-flex!important;flex-direction:column;flex:0 0 38px}.topbar .header-date-link{margin-left:auto}}</style>
+<style id="header-size-and-spacing">@media(min-width:1101px){.topbar{justify-content:flex-start}.topbar .nav,.topbar .navlinks{margin-left:auto}.header-date-link{margin-left:16px}}.brand img{width:24px;height:24px}</style><style id="green-nav-tz-style">.mobile-menu{display:none!important}.topbar,.site-header{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:clamp(6px,.8vw,12px)}.navlinks{display:flex!important;flex:1 1 auto;min-width:0;flex-wrap:nowrap!important;white-space:nowrap;overflow-x:auto;scrollbar-width:none;gap:clamp(4px,.65vw,10px);font-size:clamp(.48rem,.68vw,.64rem);letter-spacing:0}.navlinks::-webkit-scrollbar{display:none}.static-tz-widget{position:static;display:block;flex:0 0 156px;width:190px;max-width:190px;margin-left:8px;padding:8px 10px;border:1px solid rgba(194,160,91,.45);background:rgba(255,253,248,.96);box-shadow:0 8px 24px rgba(8,40,45,.12);color:var(--ink,#12383b);cursor:default}.static-tz-widget .tz-top{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:4px;white-space:nowrap}.static-tz-widget .tz-label,.static-tz-widget .tz-date{font:600 .55rem/1.2 Arial,sans-serif;letter-spacing:.08em;color:var(--muted,#586e6b)}.static-tz-widget .tz-symbols{display:flex;align-items:center;gap:7px}.static-tz-widget .tz-number,.static-tz-widget .tz-glyph{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;padding:0}.static-tz-widget .tz-number img,.static-tz-widget .tz-glyph img{display:block;width:100%;height:100%;object-fit:contain}.static-tz-widget .tz-widget-meta{display:flex;align-items:center;justify-content:space-between;gap:5px}.static-tz-widget .tz-name{font: .8rem/1.1 Georgia,serif;color:var(--ink,#12383b)}.static-tz-widget .tz-calendar-link{font:600 .48rem/1 Arial,sans-serif;letter-spacing:.04em;color:#806b43;white-space:nowrap;text-decoration:underline;text-underline-offset:2px}@media(max-width:1000px){.navlinks{font-size:clamp(.44rem,.55vw,.55rem);gap:clamp(3px,.4vw,6px)}.static-tz-widget{transform:scale(.82);transform-origin:right center;flex-basis:128px}}@media(max-width:700px){.navlinks{font-size:.42rem;gap:3px}.static-tz-widget{transform:scale(.68);flex-basis:106px}}
+</style><style id="canonical-shared-header">
+.site-header-wrap{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+.site-header-wrap .topbar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;height:86px;padding:0 12px 0 24px}
+.site-header-wrap .brand{display:flex;align-items:center;gap:12px;flex:0 0 auto;white-space:nowrap}
+.site-header-wrap .seiri-header-logo{width:48px!important;height:48px!important;flex:0 0 48px!important;object-fit:contain}
+.site-header-wrap .brand .seiri-brand-name{font-size:clamp(.88rem,1.1vw,1.08rem);letter-spacing:.11em;white-space:nowrap}
+.site-header-wrap .nav{display:flex!important;align-items:center;justify-content:space-between;flex:1 1 auto;min-width:0;flex-wrap:nowrap!important;white-space:nowrap;overflow:visible;gap:clamp(8px,.95vw,16px);font-size:clamp(.7rem,calc(.59rem + .36vw),.88rem);letter-spacing:.045em}
+.site-header-wrap .nav .nav-cta{flex:0 0 auto;padding:10px 16px;font-size:inherit}
+.site-header-wrap .mobile-menu{display:none!important}
+.site-header-wrap #tzWidget,.topbar #tzWidget{position:absolute!important;top:50%!important;right:10px!important;transform:translateY(-50%)!important;width:104px!important;max-width:104px!important;margin:0!important;padding:5px 6px!important;display:flex!important;flex-direction:column;align-items:stretch;text-align:center;border:1px solid rgba(194,160,91,.35)!important;border-radius:2px;background:rgba(255,253,248,.94)!important;box-shadow:0 6px 20px rgba(8,40,45,.08)!important;color:#12383b!important;cursor:pointer}
+#tzWidget .tz-top{display:flex;justify-content:flex-end;gap:0;margin:0 0 3px}
+#tzWidget .tz-label,#tzWidget .tz-name,#tzWidget .tz-open{display:none!important}
+#tzWidget .tz-date{font:500 .56rem/1.2 Arial,sans-serif;color:#68766f;white-space:nowrap}
+#tzWidget .tz-symbols{display:flex;justify-content:center;align-items:center;gap:7px}
+#tzWidget .tz-number,#tzWidget .tz-glyph{width:27px!important;height:27px!important;flex:0 0 27px!important;display:grid;place-items:center;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible}
+#tzWidget .tz-number img,#tzWidget .tz-glyph img{display:block;width:100%;height:100%;object-fit:contain}
+#tzWidget .tz-widget-meta{display:block;margin:2px 0 0}
+#tzWidget .tz-calendar-link{display:block;font:700 .42rem/1.1 Arial,sans-serif;letter-spacing:.1em;color:#927740;white-space:nowrap}
+.tz-modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(3,23,26,.68);display:none;align-items:center;justify-content:center;padding:20px}
+.tz-modal-backdrop.open{display:flex}.tz-modal{position:relative;width:min(620px,100%);max-height:min(90vh,850px);overflow:auto;background:#fffdf8;color:#12383b;padding:clamp(24px,5vw,44px);box-shadow:0 30px 100px #0005}
+.tz-close{position:absolute;right:16px;top:13px;width:38px;height:38px;border:1px solid rgba(23,58,61,.15);background:transparent;color:#12383b;cursor:pointer;font-size:1.25rem}
+.tz-modal-kicker{font:700 .66rem Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9b7b3b;margin-bottom:16px}.tz-modal-title{font:clamp(2.1rem,6vw,3.3rem) Georgia,serif;line-height:1.08;margin:0 38px 10px 0}.tz-modal-date{color:#586e6b;font:.85rem Arial,sans-serif}
+.tz-date-explorer{margin:18px 0 22px;padding:17px 18px;background:#f3efe5;border:1px solid rgba(194,160,91,.35)}.tz-date-explorer-copy span{font:700 9px Arial,sans-serif;letter-spacing:.18em;color:#927740}.tz-date-explorer-copy p{margin:5px 0 13px;color:#586e6b;font:12px/1.5 Arial,sans-serif}
+.tz-date-controls{display:grid;grid-template-columns:42px minmax(130px,1fr) 42px auto;gap:8px;align-items:center}.tz-date-step{width:42px;height:42px;border:1px solid rgba(18,56,59,.22);background:#fffdf8;color:#12383b;font:25px/1 Arial,sans-serif;cursor:pointer}
+#tzDatePicker{min-width:0;width:100%;height:42px;padding:0 10px;border:1px solid rgba(18,56,59,.22);background:#fffdf8;color:#12383b;font:13px Arial,sans-serif;color-scheme:light}.tz-date-today{height:42px;padding:0 13px;border:1px solid rgba(18,56,59,.22);background:transparent;color:#34514a;font:10px Arial,sans-serif;cursor:pointer}
+.tz-modal-art{display:flex;align-items:center;gap:14px;margin:20px 0}.tz-modal-art .tz-number,.tz-modal-art .tz-glyph{width:58px;height:58px;display:grid;place-items:center;border:0;border-radius:0;background:transparent;box-shadow:none}.tz-modal-art img{width:100%;height:100%;object-fit:contain}.tz-modal-art .tz-name{font:1rem Georgia,serif;color:#12383b}.tz-modal-copy,.tz-reflection{color:#586e6b;line-height:1.65}.tz-reflection{padding:14px 18px;background:#f3efe5;margin:16px 0}
+.tz-notes-label{display:block;font:700 .62rem Arial,sans-serif;letter-spacing:.12em;margin:16px 0 7px}.tz-notes{width:100%;min-height:90px;padding:10px;border:1px solid rgba(18,56,59,.22);font:14px Arial,sans-serif}.tz-save-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}.tz-save-status{font:12px Arial,sans-serif;color:#586e6b}.tz-save{padding:10px 14px;border:0;background:#c2a05b;color:#fff;font:700 11px Arial,sans-serif;cursor:pointer}
+@media(max-width:1100px){.site-header-wrap .topbar{padding-left:18px;padding-right:122px;gap:12px}.site-header-wrap .brand .seiri-brand-name{font-size:clamp(.82rem,1.05vw,1rem)}.site-header-wrap .nav{gap:clamp(6px,.7vw,10px);font-size:clamp(.64rem,.82vw,.76rem)}}
+@media(max-width:760px){.site-header-wrap .topbar{height:auto;min-height:82px;padding-left:12px;padding-right:112px;gap:8px}.site-header-wrap .seiri-header-logo{width:38px!important;height:38px!important;flex-basis:38px!important}.site-header-wrap .brand{gap:7px}.site-header-wrap .brand .seiri-brand-name{font-size:.74rem;letter-spacing:.06em}.site-header-wrap .nav{gap:5px;font-size:clamp(.55rem,1.2vw,.66rem)}.site-header-wrap .nav .nav-cta{padding:7px 8px}.site-header-wrap #tzWidget,.topbar #tzWidget{right:6px!important;width:96px!important;max-width:96px!important}.site-header-wrap #tzWidget .tz-number,.site-header-wrap #tzWidget .tz-glyph,.topbar #tzWidget .tz-number,.topbar #tzWidget .tz-glyph{width:24px!important;height:24px!important;flex-basis:24px!important}.tz-date-controls{grid-template-columns:36px minmax(100px,1fr) 36px auto;gap:5px}.tz-date-step{width:36px;height:38px}.tz-date-today{height:38px;padding:0 8px}}
+.topbar .navlinks{display:flex!important;flex-wrap:nowrap!important;white-space:nowrap;overflow-x:auto;scrollbar-width:none;gap:clamp(6px,.8vw,12px);font-size:clamp(.58rem,.8vw,.76rem);min-width:0}.topbar .navlinks::-webkit-scrollbar{display:none}
+</style></head>
+<body>
+<div class="tz-modal-backdrop" id="tzBackdrop" role="dialog" aria-modal="true" aria-labelledby="tzModalTitle">
+  <section class="tz-modal">
+    <button class="tz-close" id="tzClose" aria-label="Close reflection">×</button>
+    <div class="tz-modal-kicker">SEIRI DEL MAR | LIVING TIME</div>
+    <h2 class="tz-modal-title" id="tzModalTitle">6 Kawoq</h2>
+    <div class="tz-modal-date" id="tzModalDate" aria-live="polite"></div>
+<div class="tz-date-explorer" aria-label="Explore Living Time for a travel date">
+  <div class="tz-date-explorer-copy"><span>PLAN WITH LIVING TIME</span><p>Choose a travel date to explore its energy.</p></div>
+  <div class="tz-date-controls">
+    <button class="tz-date-step" id="tzPreviousDate" type="button" aria-label="Previous day" title="Previous day">&lsaquo;</button>
+    <label class="tz-sr-only" for="tzDatePicker">Choose a travel date</label>
+    <input id="tzDatePicker" type="date" aria-label="Choose a travel date">
+    <button class="tz-date-step" id="tzNextDate" type="button" aria-label="Next day" title="Next day">&rsaquo;</button>
+    <button class="tz-date-today" id="tzTodayDate" type="button">Today</button>
+  </div>
+</div>
+    <div class="tz-modal-art">
+      <span class="tz-number" id="tzModalNumber" aria-label="Tzolk'in number 6"><img id="tzModalNumberImage" src="assets/tzolkin/tone-6.png" alt="" /></span>
+      <span class="tz-glyph" id="tzModalGlyph" aria-label="Maya day sign"><img id="tzModalGlyphImage" src="assets/tzolkin/cauac.png" alt="" /></span>
+      <div><div class="tz-label" id="tzEnergyLabel">Today's energy</div><div class="tz-name">Kawoq | Community, care & renewal</div></div>
+    </div>
+    <p class="tz-modal-copy">Let today remind you that a meaningful journey is shaped by the people and places that hold it. In Belize, connection can begin with a conversation, the rhythm of the sea, a shared meal or a moment of care. Give yourself space to notice what helps you feel welcome, restored and connected.</p>
+    <div class="tz-reflection">What would make today feel more nourishing, connected or memorable?</div>
+    <label class="tz-notes-label" for="tzNotes">A note for your Seiri story</label>
+    <textarea class="tz-notes" id="tzNotes" placeholder="Capture a thought, a feeling, a moment you want to remember..."></textarea>
+    <div class="tz-save-row"><span class="tz-save-status" id="tzSaveStatus">Your note stays in this browser in this prototype.</span><button class="tz-save" id="tzSave">Save to My Seiri</button></div>
+  </section>
+</div>
+
+<header class="topbar green-shared-header"><a class="brand" href="index.html#home" aria-label="Seiri del Mar home"><img class="seiri-header-logo" src="assets/seiri/official-50.png" alt=""><span class="seiri-brand-name">SEIRI DEL MAR</span></a><nav class="navlinks" id="nav" aria-label="Main navigation"><a href="stay.html">Stay</a><a href="offers.html">Offers</a><a href="wellness.html">Wellness</a><a href="ember.html">Ember</a><a href="belize-life.html">Belize Life</a><a href="getting-here.html">Getting Here</a><a href="index.html#my-seiri" id="mySeiriLink">My Seiri</a><a href="index.html#contact">Contact</a><a href="https://secure.webrez.com/hotel/2552" class="nav-cta">Book Now</a></nav><button class="tz-widget" id="tzWidget" aria-label="Open Living Time and plan a date">
+  <div class="tz-top"><span class="tz-label" aria-hidden="true"></span><span class="tz-date" id="tzDate">28 Oct 2026</span></div>
+  <div class="tz-symbols">
+    <span class="tz-number" id="tzNumber" aria-label="Tzolk'in number"><img id="tzNumberImage" src="assets/tzolkin/tone-6.png" alt="" /></span>
+    <span class="tz-glyph" id="tzGlyph" aria-label="Maya day sign"><img id="tzGlyphImage" src="assets/tzolkin/cauac.png" alt="" /></span>
+  </div>
+  <div class="tz-widget-meta"><span class="tz-name" id="tzName">6 Kawoq</span><span class="tz-calendar-link">PLAN A DATE &rarr;</span></div>
+  <div class="tz-sub"></div>
+  <div class="tz-open">Open today's reflection</div>
+</button></header>
+<section class="hero">
+<img id="heroImage" src="assets/seiri/official-47.webp" alt="Dining atmosphere at Ember">
+<div class="hero-copy"><div class="eyebrow">Dining at Seiri del Mar</div><h1>EMBER</h1><p>Where the Caribbean meets the table. Explore the menu, discover your favourites and save the dishes you want to remember in My Seiri.</p><a class="btn primary" href="#menus">Explore the menus ↓</a></div>
+</section>
+<main id="menus">
+<div class="section-head"><div><div class="eyebrow">A taste to remember</div><h2>Discover the menu</h2><p class="section-intro">Explore breakfast, lunch, dinner, desserts and drinks. Select any dish to view its details and save it to My Seiri.</p></div><input class="search" id="search" type="search" placeholder="Search dishes..." aria-label="Search dishes"></div>
+<div class="tabs" id="tabs" role="tablist" aria-label="Menu categories"></div>
+<div class="grid" id="dishGrid"></div>
+<p class="note">Menu preview based on supplied menu text. Prices shown in Belize dollars (BZD). USD estimates use BZ$2 = US$1. Taxes and service charges should be confirmed against the current menu before publication.</p>
+</main>
+<footer id="my-seiri"><span>EMBER · SEIRI DEL MAR</span><span>Saved favourites are stored in this browser on this device.</span><a class="saved-link" href="index.html#my-seiri">Open My Seiri on the main page ↗</a></footer>
+<div class="modal" id="dishModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="panel"><button class="close" id="closeModal" aria-label="Close">×</button><img id="modalImage" src="" alt=""><div class="panel-body"><div class="eyebrow" id="modalCategory"></div><h2 id="modalTitle"></h2><div class="price" id="modalPrice"></div><p id="modalDescription"></p><div class="modal-actions"><button class="btn primary" id="saveDish">♡ Save to My Seiri</button><button class="btn" id="closeModal2">Continue exploring</button></div><div class="status" id="saveStatus" aria-live="polite"></div></div></div>
+</div>
+<script>
+const imagePaths = ["assets/seiri/official-21.jpg","assets/seiri/official-22.jpg","assets/seiri/official-23.jpg","assets/seiri/official-24.jpg","assets/seiri/official-25.jpg","assets/seiri/official-26.jpg","assets/seiri/official-27.jpg","assets/seiri/official-28.jpg","assets/seiri/official-29.jpg","assets/seiri/official-30.jpg","assets/seiri/official-31.jpg","assets/seiri/official-32.jpg","assets/seiri/official-33.jpg","assets/seiri/official-34.jpg","assets/seiri/official-35.jpg","assets/seiri/official-36.jpg","assets/seiri/official-37.jpg","assets/seiri/official-38.jpg"];
+const dishes = [{"id":"breakfast-potato-hash","category":"Breakfast","name":"Potato Bacon Hash","price":30,"description":"Crispy potatoes, bacon, bell peppers and onions, topped with mozzarella, cherry tomatoes, kale and a soy-boiled egg.","image":0},{"id":"breakfast-yogurt-parfait","category":"Breakfast","name":"Yogurt Parfait","price":22,"description":"Creamy yogurt, crunchy granola, cantaloupe, strawberries and blueberries.","image":1},{"id":"breakfast-pancakes","category":"Breakfast","name":"Pancakes","price":20,"description":"Fluffy buttery pancakes with blueberries, banana, maple syrup, bacon onion jam and powdered sugar.","image":2},{"id":"breakfast-waffles","category":"Breakfast","name":"Waffles","price":20,"description":"Golden waffles with blueberries, coconut flakes, maple syrup, bacon onion jam and powdered sugar.","image":3},{"id":"breakfast-eggs-benedict","category":"Breakfast","name":"Eggs Benedict","price":28,"description":"Poached eggs on homemade muffins with ham, kale and hollandaise sauce.","image":4},{"id":"breakfast-french-toast","category":"Breakfast","name":"French Toast","price":20,"description":"Homemade cinnamon bread filled with mascarpone and strawberries, with tropical fruit compote.","image":5},{"id":"breakfast-bagels","category":"Breakfast","name":"Bagels","price":30,"description":"Homemade sesame bagels with herb cream cheese, pepperoni, prosciutto and fresh fruit.","image":6},{"id":"lunch-fish-tacos","category":"Lunch","name":"Baja California Fish Tacos","price":22,"description":"Beer-battered fish strips in tortillas with cabbage slaw and chipotle mayonnaise.","image":11},{"id":"lunch-beef-sliders","category":"Lunch","name":"Beef Sliders","price":25,"description":"Prime beef, melted cheese, kale and tomato jelly on brioche, served with fries.","image":15},{"id":"lunch-guacamole","category":"Lunch","name":"Holy Guacamole Dip","price":25,"description":"Guacamole dip served with assorted chips.","image":9},{"id":"lunch-hummus","category":"Lunch","name":"Trio of Hummus","price":25,"description":"Herb, sundried tomato and saffron hummus with infused olive oil, artisan pita and vegetables.","image":16},{"id":"lunch-ceviche","category":"Lunch","name":"Seafood Ceviche","price":55,"description":"Fresh seafood with tomatoes, purple onion, coriander, habanero Agua de Chile and assorted chips.","image":11},{"id":"lunch-margherita","category":"Lunch","name":"Margherita Pizza","price":32,"description":"Tuscan-style pizza with fresh basil, pomodoro and mozzarella.","image":12},{"id":"lunch-seafood-pizza","category":"Lunch","name":"Seafood Lovers Pizza","price":70,"description":"Shrimp, fish and octopus with mozzarella, pomodoro and garlic-infused oil.","image":13},{"id":"lunch-fish-bowl","category":"Lunch","name":"Fish Taco Bowl","price":44,"description":"Coconut brown rice, salsa verde, cabbage, radish, coriander, tortilla strips and blackened snapper.","image":14},{"id":"lunch-caesar","category":"Lunch","name":"Classic Caesar Salad","price":35,"description":"Romaine lettuce with Caesar dressing, focaccia toast, roasted cherry tomatoes and Parmesan.","image":15},{"id":"dinner-frutti-mare","category":"Dinner","name":"Tuscan Frutti di Mare","price":55,"description":"Lobster when in season, octopus, shrimp and mussels in garlic-lime butter, served with baguette.","image":16},{"id":"dinner-chicken-ballotine","category":"Dinner","name":"Chicken Ballotine","price":45,"description":"Chicken breast stuffed with Italian sausage, ground beef, broccoli and mushrooms, with yellow squash purée.","image":17},{"id":"dinner-ribeye","category":"Dinner","name":"Ribeye Steak","price":75,"description":"Ribeye with cauliflower purée, fondant potatoes and Hennessy cognac peppercorn sauce.","image":17},{"id":"dinner-snapper","category":"Dinner","name":"Lemongrass Snapper","price":60,"description":"Snapper with lemongrass, potato purée, broccoli, cherry tomatoes and cilantro-green pepper sauce.","image":5},{"id":"dessert-truffle-cake","category":"Desserts","name":"Chocolate Truffle Cake","price":20,"description":"Chocolate cake with truffle centre, chocolate meringue buttercream, dried raspberries and gold flakes.","image":9},{"id":"dessert-coconut-mousse","category":"Desserts","name":"Coconut Mousse \u0026 Lime Sphere","price":22,"description":"Coconut mousse with lime compote, coconut-vanilla chiffon, toasted coconut and candied lime zest.","image":0},{"id":"dessert-brownie","category":"Desserts","name":"Peanut Butter Crunch Brownie","price":18,"description":"Warm chocolate fudge brownie with peanut butter crunch, chocolate ganache and cacao nibs.","image":11},{"id":"drink-rum-punch","category":"Drinks \u0026 Happy Hour","name":"Rum Punch","price":8,"description":"White and dark rum with fruit punch mix.","image":12},{"id":"drink-mojito","category":"Drinks \u0026 Happy Hour","name":"Classic Mojito","price":14,"description":"Rum, lime juice, simple syrup and mint.","image":13},{"id":"drink-caribbean-romance","category":"Drinks \u0026 Happy Hour","name":"Caribbean Romance","price":15,"description":"White and dark rum, orange and pineapple juice, and amaretto.","image":14}];
+const categories = ["All menus","Breakfast","Lunch","Dinner","Desserts","Drinks & Happy Hour"];
+const grid = document.getElementById("dishGrid");
+const tabs = document.getElementById("tabs");
+const search = document.getElementById("search");
+const modal = document.getElementById("dishModal");
+const memoryKey = "seiriPersonalMemories_v1";
+let activeCategory = "All menus";
+let selectedDish = null;
+
+
+
+function escapeHtml(value) {
+ return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+}
+function money(value) {
+ return "BZ$" + Number(value).toFixed(2).replace(/\.00$/,"") + " · approx. US$" + (Number(value)/2).toFixed(2).replace(/\.00$/,"");
+}
+function savedItems() {
+ try { return JSON.parse(localStorage.getItem(memoryKey) || "[]"); } catch(e) { return []; }
+}
+function isSaved(dish) {
+ return savedItems().some(item => item.menuItemId === dish.id || item.title === "EMBER: " + dish.name);
+}
+function renderTabs() {
+ tabs.innerHTML = "";
+ categories.forEach(category => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "tab" + (category === activeCategory ? " active" : "");
+  button.textContent = category;
+  button.setAttribute("aria-pressed", category === activeCategory ? "true" : "false");
+  button.addEventListener("click", () => { activeCategory = category; renderTabs(); renderDishes(); });
+  tabs.appendChild(button);
+ });
+}
+function renderDishes() {
+ const term = search.value.trim().toLowerCase();
+ const filtered = dishes.filter(dish =>
+  (activeCategory === "All menus" || dish.category === activeCategory) &&
+  (dish.name + " " + dish.description + " " + dish.category).toLowerCase().includes(term)
+ );
+ grid.innerHTML = "";
+ if (!filtered.length) {
+  grid.innerHTML = '<p class="note">No dishes found. Try another search.</p>';
+  return;
+ }
+ filtered.forEach(dish => {
+  const card = document.createElement("article");
+  card.className = "dish";
+  card.tabIndex = 0;
+  card.setAttribute("role","button");
+  card.setAttribute("aria-label","View " + dish.name);
+  card.innerHTML = '<img src="' + escapeHtml(imagePaths[dish.image] || imagePaths[0]) + '" alt="' + escapeHtml(dish.name) + '" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>' + escapeHtml(dish.name) + '</h3><span class="price">BZ$' + escapeHtml(dish.price) + '</span></div><p>' + escapeHtml(dish.description) + '</p><span class="more">' + (isSaved(dish) ? "♥ Saved in My Seiri" : "View dish & save ↗") + '</span></div>';
+  card.addEventListener("click", () => openDish(dish));
+  card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openDish(dish); } });
+  grid.appendChild(card);
+ });
+}
+function openDish(dish) {
+ selectedDish = dish;
+ document.getElementById("modalImage").src = imagePaths[dish.image] || imagePaths[0];
+ document.getElementById("modalImage").alt = dish.name;
+ document.getElementById("modalCategory").textContent = dish.category;
+ document.getElementById("modalTitle").textContent = dish.name;
+ document.getElementById("modalPrice").textContent = money(dish.price);
+ document.getElementById("modalDescription").textContent = dish.description;
+ document.getElementById("saveStatus").textContent = isSaved(dish) ? "Already saved in My Seiri." : "";
+ document.getElementById("saveDish").textContent = isSaved(dish) ? "♥ Saved to My Seiri" : "♡ Save to My Seiri";
+ modal.classList.add("open");
+ document.body.style.overflow = "hidden";
+ document.getElementById("closeModal").focus();
+}
+function closeDish() {
+ modal.classList.remove("open");
+ document.body.style.overflow = "";
+}
+function saveSelectedDish() {
+ if (!selectedDish) return;
+ const items = savedItems();
+ if (items.some(item => item.menuItemId === selectedDish.id || item.title === "EMBER: " + selectedDish.name)) {
+  document.getElementById("saveStatus").textContent = "This dish is already in My Seiri.";
+  return;
+ }
+ const image = imagePaths[selectedDish.image] || imagePaths[0];
+ items.push({
+  id: "ember-" + selectedDish.id,
+  menuItemId: selectedDish.id,
+  title: "EMBER: " + selectedDish.name,
+  note: selectedDish.category + " · " + money(selectedDish.price) + "\n" + selectedDish.description,
+  photo: image,
+  date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),
+  createdAt: new Date().toISOString(),
+  type: "menu-item"
+ });
+ try {
+  localStorage.setItem(memoryKey, JSON.stringify(items));
+  document.getElementById("saveStatus").textContent = "Saved. Your favourite is now in My Seiri on this browser.";
+  document.getElementById("saveDish").textContent = "♥ Saved to My Seiri";
+  renderDishes();
+ } catch(e) {
+  document.getElementById("saveStatus").textContent = "Unable to save in this browser. Check your browser storage settings.";
+ }
+}
+search.addEventListener("input", renderDishes);
+document.getElementById("saveDish").addEventListener("click", saveSelectedDish);
+document.getElementById("closeModal").addEventListener("click", closeDish);
+document.getElementById("closeModal2").addEventListener("click", closeDish);
+modal.addEventListener("click", event => { if (event.target === modal) closeDish(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeDish(); });
+document.getElementById("mySeiriLink").addEventListener("click", () => {
+ // My Seiri is shared with the main page using the same browser storage.
+});
+renderTabs();
+renderDishes();
+</script>
+<script id="canonical-living-time">(()=>{const $=id=>document.getElementById(id),w=$('tzWidget'),b=$('tzBackdrop'),x=$('tzClose');if(!w||!b||!x)return;const signs=["Imox","Iq","Aq'ab'al","K'at","Kan","Kame","Kej","Q'anil","Toj","Tz'i","B'atz","E","Aj","I'x","Tz'ikin","Ajmaq","Noj","Tijax","Kawoq","Ajpu"],glyph=["imix","ik","akbal","kan","chicchan","cimi","manik","lamat","muluc","oc","chuen","eb","ben","ix","men","cib","caban","etznab","cauac","ahau"],months=['January','February','March','April','May','June','July','August','September','October','November','December'],short=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];const today=new Date();today.setHours(12,0,0,0);let selected=new Date(today);function data(d){const y=d.getFullYear(),m=d.getMonth()+1,a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3,jdn=d.getDate()+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045,e=jdn-584283;return{n:((e+3)%13+13)%13+1,g:((e+19)%20+20)%20}}function render(d){selected=new Date(d);selected.setHours(12,0,0,0);const z=data(selected),y=selected.getFullYear(),m=selected.getMonth(),day=selected.getDate(),name=z.n+' '+signs[z.g],iso=y+'-'+String(m+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');$('tzDate').textContent=day+' '+short[m]+' '+y;$('tzNumberImage').src='assets/tzolkin/tone-'+z.n+'.png';$('tzGlyphImage').src='assets/tzolkin/'+glyph[z.g]+'.png';$('tzName').textContent=name;$('tzModalTitle').textContent=name+' / '+signs[z.g];$('tzModalDate').textContent=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][selected.getDay()]+', '+day+' '+months[m]+' '+y;$('tzModalNumberImage').src='assets/tzolkin/tone-'+z.n+'.png';$('tzModalGlyphImage').src='assets/tzolkin/'+glyph[z.g]+'.png';$('tzModalNumber').setAttribute('aria-label',"Tzolk'in number "+z.n);$('tzModalGlyph').setAttribute('aria-label',signs[z.g]+' day sign');$('tzEnergyLabel').textContent=selected.toDateString()===today.toDateString()?"Today's energy":'Energy for your chosen date';const nm=document.querySelector('.tz-modal-art .tz-name');if(nm)nm.textContent=signs[z.g]+' | Living Time';$('tzDatePicker').value=iso}function open(){b.classList.add('open');document.body.style.overflow='hidden'}function close(){b.classList.remove('open');document.body.style.overflow='';w.focus()}w.addEventListener('click',e=>{e.preventDefault();open()});x.addEventListener('click',close);b.addEventListener('click',e=>{if(e.target===b)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&b.classList.contains('open'))close()});$('tzDatePicker').addEventListener('change',e=>{if(!e.target.value)return;const [y,m,d]=e.target.value.split('-').map(Number),q=new Date(0);q.setFullYear(y,m-1,d);q.setHours(12,0,0,0);if(q.getFullYear()===y&&q.getMonth()===m-1&&q.getDate()===d)render(q)});$('tzPreviousDate').addEventListener('click',()=>{const q=new Date(selected);q.setDate(q.getDate()-1);render(q)});$('tzNextDate').addEventListener('click',()=>{const q=new Date(selected);q.setDate(q.getDate()+1);render(q)});$('tzTodayDate').addEventListener('click',()=>render(today));$('tzSave')?.addEventListener('click',()=>{const n=$('tzNotes').value.trim(),s=$('tzSaveStatus');if(!n){s.textContent='Add a note first.';return}const a=JSON.parse(localStorage.getItem('seiriLivingTimeNotes_v1')||'[]');a.push({date:$('tzDate').textContent,code:$('tzName').textContent,note:n,createdAt:new Date().toISOString()});localStorage.setItem('seiriLivingTimeNotes_v1',JSON.stringify(a));s.textContent='Saved in this browser.';$('tzNotes').value=''});render(today)})();</script><style id="green-shared-navigation">
+header.green-shared-header{position:sticky!important;top:0!important;z-index:1000!important;display:grid!important;grid-template-columns:minmax(170px,190px) minmax(0,1fr) 120px!important;align-items:center!important;gap:clamp(10px,1vw,18px)!important;width:100%!important;min-height:82px!important;padding:0 clamp(14px,2vw,28px)!important;box-sizing:border-box!important;background:#123d37!important;color:#f7f3e8!important}
+header.green-shared-header .brand{display:flex!important;align-items:center!important;justify-self:start!important;gap:9px!important;white-space:nowrap!important;color:#f7f3e8!important;font:600 .76rem/1.2 Georgia,serif!important;letter-spacing:.09em!important}
+header.green-shared-header .seiri-header-logo{display:block!important;width:34px!important;height:34px!important;flex:0 0 34px!important;object-fit:contain!important;filter:brightness(0) saturate(100%) invert(78%) sepia(32%) saturate(520%) hue-rotate(7deg) brightness(94%) contrast(88%)!important}
+header.green-shared-header .brand .seiri-brand-name{font:600 .76rem/1.2 Georgia,serif!important;letter-spacing:.09em!important}
+header.green-shared-header .navlinks{grid-column:2!important;justify-self:stretch!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:clamp(7px,.9vw,14px)!important;min-width:0!important;width:100%!important;margin:0!important;flex-wrap:nowrap!important;overflow-x:auto!important;white-space:nowrap!important;scrollbar-width:none!important;font:500 clamp(.56rem,.68vw,.68rem)/1.3 Arial,sans-serif!important;letter-spacing:.045em!important;text-transform:uppercase!important}
+header.green-shared-header .navlinks::-webkit-scrollbar{display:none!important}
+header.green-shared-header .navlinks a{display:inline-block!important;flex:0 0 auto!important;padding:8px 0!important;color:#f1eee2!important;text-decoration:none!important;opacity:.92!important}
+header.green-shared-header .navlinks a:hover,header.green-shared-header .navlinks a[aria-current=page]{color:#d7bb77!important}
+header.green-shared-header .navlinks .nav-cta{padding:10px 12px!important;background:#c2a05b!important;color:#fff!important;letter-spacing:.05em!important}
+header.green-shared-header #tzWidget{position:static!important;grid-column:3!important;justify-self:end!important;align-self:center!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;width:112px!important;min-width:112px!important;max-width:112px!important;margin:0!important;padding:5px 6px!important;transform:none!important;border:1px solid rgba(215,187,119,.55)!important;background:rgba(255,253,248,.07)!important;color:#f7f3e8!important;box-shadow:none!important}
+header.green-shared-header #tzWidget .tz-top{display:flex!important;justify-content:flex-end!important;margin:0 0 3px!important}
+header.green-shared-header #tzWidget .tz-date{color:#e4dfd1!important;font-size:.55rem!important}
+header.green-shared-header #tzWidget .tz-symbols{display:flex!important;justify-content:flex-end!important;gap:7px!important}
+header.green-shared-header #tzWidget .tz-number,header.green-shared-header #tzWidget .tz-glyph{display:flex!important;width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;flex:0 0 30px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+header.green-shared-header #tzWidget .tz-number img,header.green-shared-header #tzWidget .tz-glyph img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+header.green-shared-header #tzWidget .tz-calendar-link{display:block!important;margin:3px 0 0!important;color:#d7bb77!important;font:700 .47rem/1.2 Arial,sans-serif!important;letter-spacing:.1em!important;text-align:center!important;white-space:nowrap!important}
+@media(max-width:900px){header.green-shared-header{grid-template-columns:minmax(144px,160px) minmax(0,1fr) 104px!important;min-height:76px!important;gap:8px!important;padding:0 10px!important}header.green-shared-header .navlinks{gap:clamp(5px,.7vw,9px)!important;font-size:clamp(.51rem,.62vw,.58rem)!important}header.green-shared-header .navlinks .nav-cta{padding:8px 7px!important}header.green-shared-header #tzWidget{width:96px!important;min-width:96px!important;max-width:96px!important}header.green-shared-header #tzWidget .tz-number,header.green-shared-header #tzWidget .tz-glyph{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;flex-basis:26px!important}}
+@media(max-width:650px){header.green-shared-header{grid-template-columns:104px minmax(0,1fr) 78px!important;min-height:68px!important;gap:4px!important;padding:0 6px!important}header.green-shared-header .brand{gap:5px!important;font-size:.56rem!important;letter-spacing:.02em!important}header.green-shared-header .seiri-header-logo{width:25px!important;height:25px!important;flex-basis:25px!important}header.green-shared-header .brand .seiri-brand-name{font-size:.56rem!important;letter-spacing:.02em!important}header.green-shared-header .navlinks{justify-content:flex-start!important;gap:8px!important;font-size:.47rem!important}header.green-shared-header #tzWidget{width:72px!important;min-width:72px!important;max-width:72px!important;padding:3px!important}header.green-shared-header #tzWidget .tz-date{font-size:.43rem!important}header.green-shared-header #tzWidget .tz-number,header.green-shared-header #tzWidget .tz-glyph{width:21px!important;height:21px!important;min-width:21px!important;min-height:21px!important;flex-basis:21px!important}header.green-shared-header #tzWidget .tz-calendar-link{font-size:.38rem!important}}
+</style>
+<style id="living-date-picker-layout-fix">
+#tzBackdrop .tz-date-controls{display:grid!important;grid-template-columns:42px minmax(120px,1fr) 42px auto!important;align-items:center!important;gap:8px!important}
+#tzBackdrop label.tz-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+#tzBackdrop .tz-date-controls>#tzDatePicker{display:block!important;grid-column:auto!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;appearance:auto!important;min-width:0!important;width:100%!important;height:42px!important;min-height:42px!important;padding:0 10px!important;box-sizing:border-box!important;color-scheme:light!important}
+#tzBackdrop .tz-date-controls>.tz-date-today{grid-column:auto!important;justify-self:stretch!important;height:42px!important;min-width:64px!important;padding:0 12px!important;white-space:nowrap!important}
+@media(max-width:520px){#tzBackdrop .tz-date-controls{grid-template-columns:38px minmax(100px,1fr) 38px auto!important;gap:5px!important}#tzBackdrop .tz-date-controls>.tz-date-step{width:38px!important;height:40px!important}#tzBackdrop .tz-date-controls>#tzDatePicker{height:40px!important;min-height:40px!important;padding:0 6px!important}#tzBackdrop .tz-date-controls>.tz-date-today{height:40px!important;min-width:54px!important;padding:0 7px!important}}
+</style>
+<style id="tz-widget-number-scale-fix">
+#tzWidget .tz-number,#tzWidget .tz-glyph{display:flex!important;align-items:center!important;justify-content:center!important;overflow:visible!important}
+#tzWidget .tz-number img{display:block!important;width:78%!important;height:78%!important;max-width:78%!important;max-height:78%!important;flex:0 0 auto!important;object-fit:contain!important;margin:auto!important;padding:0!important}
+#tzWidget .tz-glyph img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;flex:0 0 auto!important;object-fit:contain!important;margin:auto!important;padding:0!important}
+</style>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});</script>
+<script>(()=>{const d={"EMBER | SEIRI DEL MAR":"EMBER | SEIRI DEL MAR","Explore the menu, discover your favourites and save the dishes you want to remember in My Seiri.":"Razišči meni, odkrij svoje najljubše jedi in shrani tiste, ki si jih želiš zapomniti v Moj BLINKITA.","Where the Caribbean meets the table.":"Kjer se Karibi srečajo za mizo.","Explore the menus ↓":"Razišči menije ↓","Discover the menu":"Odkrij meni","Explore breakfast, lunch, dinner, desserts and drinks. Select any dish to view its details and save it to My Seiri.":"Razišči zajtrk, kosilo, večerjo, sladice in pijače. Izberi jed za ogled podrobnosti in jo shrani v Moj BLINKITA.","Menu preview based on supplied menu text. Prices shown in Belize dollars (BZD). USD estimates use BZ$2 = US$1. Taxes and service charges should be confirmed against the current menu before publication.":"Predogled menija temelji na posredovanem besedilu. Cene so prikazane v belizejskih dolarjih (BZD). Ocene v USD uporabljajo razmerje BZ$2 = US$1. Davke in stroške postrežbe je treba pred objavo preveriti v aktualnem meniju.","Saved favourites are stored in this browser on this device.":"Shranjeni priljubljeni izdelki ostanejo v tem brskalniku na tej napravi.","Open My Seiri on the main page ↗":"Odpri Moj BLINKITA na glavni strani ↗","Save to My Seiri":"Shrani v Moj BLINKITA","Continue exploring":"Nadaljuj z raziskovanjem"};const n=s=>s.replace(/\s+/g,' ').trim();const w=x=>{if(x.nodeType===3){const k=n(x.nodeValue);if(d[k])x.nodeValue=x.nodeValue.replace(k,d[k]);return}if(x.nodeType!==1||['SCRIPT','STYLE','NOSCRIPT'].includes(x.tagName))return;[...x.childNodes].forEach(w)};w(document.body);document.documentElement.lang='sl';const l=document.createElement('a');l.href='../ember.html';l.textContent='EN';l.lang='en';const host=document.querySelector('header nav,.nav,nav');if(host)host.append(l)})();</script></body>
+</html>
