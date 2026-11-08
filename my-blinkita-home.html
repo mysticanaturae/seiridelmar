@@ -111,5 +111,5 @@ const mainNav=document.getElementById('mainNav');
 menuButton.addEventListener('click',()=>{const open=mainNav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
 mainNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mainNav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
 </script>
-</body>
+<script id="blinkita-en-language-switch">(()=>{if(document.querySelector('[data-blinkita-lang-sl]'))return;const a=document.createElement('a');a.href='sl/my-blinkita-home.html';a.textContent='SL';a.lang='sl';a.dataset.blinkitaLangSl='1';a.style.cssText='margin-left:10px;padding:6px 8px;border:1px solid currentColor;font-size:.7em;letter-spacing:.1em';const nav=document.querySelector('.nav,.navlinks,nav');if(nav)nav.append(a)})();</script></body>
 </html>
