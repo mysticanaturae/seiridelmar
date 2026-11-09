@@ -364,7 +364,7 @@ document.getElementById('jp-whatsapp').addEventListener('click',()=>{
   $('tzDate').textContent=day+' '+shortMonths[m]+' '+y;
   $('tzNumberImage').src=numberSrc;$('tzGlyphImage').src=glyphSrc;
   $('tzModalTitle').textContent=name;$('tzModalDayName').textContent=name;
-  $('tzModalDate').textContent=['nedelja','ponedeljek','torek','sreda','četrtek','petek','sobota'][selected.getDay()]+', '+day+' '+months[m]+' '+y;
+  $('tzModalDate').textContent=['nedelja','ponedeljek','torek','sreda','četrtek','petek','sobota'][selected.getDay()]+', '+day+'. '+months[m]+' '+y;
   $('tzModalNumberImage').src=numberSrc;$('tzModalGlyphImage').src=glyphSrc;
   $('tzDatePicker').value=String(y).padStart(4,'0')+'-'+String(m+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
   const sign=signs[data.sign],same=day===today.getDate()&&m===today.getMonth()&&y===today.getFullYear();
