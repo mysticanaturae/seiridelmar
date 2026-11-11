@@ -203,6 +203,16 @@ header.green-shared-header #tzWidget{position:static!important;display:flex!impo
  header.green-shared-header #tzWidget .tz-calendar-link{font-size:.38rem!important}
 }
 </style>
+<style id="blinkita-wellness-menu-contrast">
+/* Explicit contrast for the wellness navigation, overriding legacy .nav/.navlinks rules. */
+header.green-shared-header nav#mainNav{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:clamp(8px,1vw,16px)!important;padding:8px 12px!important;background:#123d37!important;color:#fffdf5!important;border:1px solid rgba(215,187,119,.42)!important;border-radius:3px!important;box-shadow:0 5px 18px rgba(0,0,0,.12)!important}
+header.green-shared-header nav#mainNav a,header.green-shared-header nav#mainNav a:visited{color:#fffdf5!important;-webkit-text-fill-color:#fffdf5!important;opacity:1!important;text-decoration:none!important;font-weight:600!important}
+header.green-shared-header nav#mainNav a:hover,header.green-shared-header nav#mainNav a:focus-visible,header.green-shared-header nav#mainNav a[aria-current="page"]{color:#f0d69b!important;-webkit-text-fill-color:#f0d69b!important}
+header.green-shared-header nav#mainNav .nav-cta{background:#c2a05b!important;color:#173c37!important;-webkit-text-fill-color:#173c37!important;border:1px solid #c2a05b!important;padding:10px 13px!important}
+header.green-shared-header .menu{color:#fffdf5!important;-webkit-text-fill-color:#fffdf5!important;background:#123d37!important;border:1px solid #c2a05b!important}
+header.green-shared-header .menu-label{color:#fffdf5!important;-webkit-text-fill-color:#fffdf5!important}
+@media(max-width:1100px){header.green-shared-header nav#mainNav{display:none!important;position:absolute!important;top:100%!important;left:12px!important;right:12px!important;z-index:1002!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;padding:12px 18px!important;background:#123d37!important;color:#fffdf5!important;max-height:calc(100vh - 100px)!important;overflow:auto!important}header.green-shared-header nav#mainNav.open{display:flex!important}header.green-shared-header nav#mainNav a{display:flex!important;padding:13px 8px!important;border-bottom:1px solid rgba(255,255,255,.16)!important}header.green-shared-header nav#mainNav .nav-cta{justify-content:center!important;margin-top:10px!important}}
+</style>
 </head>
 <body>
 <div class="tz-modal-backdrop" id="tzBackdrop" role="dialog" aria-modal="true" aria-labelledby="tzModalTitle">
