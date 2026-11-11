@@ -157,7 +157,12 @@
 .featured-retreats{padding:clamp(54px,7vw,86px) 0;background:#f8f4eb}
 .featured-retreats .section-head{margin-bottom:30px}
 .retreat-date-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.retreat-date-card{position:relative;isolation:isolate;min-height:250px;padding:28px 25px;background:#fffdf8;border:1px solid rgba(18,56,59,.18);outline:1px solid rgba(194,160,91,.55);outline-offset:-7px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.retreat-date-card{position:relative;isolation:isolate;min-height:390px;padding:0 25px 25px;background:#fffdf8;border:1px solid rgba(18,56,59,.18);outline:1px solid rgba(194,160,91,.55);outline-offset:-7px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.retreat-date-card--image>img{display:block;width:calc(100% + 50px);height:175px;margin:0 -25px 20px;object-fit:cover}
+.retreat-date-card--image .retreat-date-copy{position:relative;flex:1}
+.retreat-date-card--image .retreat-ribbon{z-index:2;top:18px;right:-45px;width:185px;font-size:.48rem}
+.retreat-date-card--image .date{margin:10px 0 8px}
+.retreat-date-card--image .text-link{align-self:flex-start;margin-top:14px}
 .retreat-date-card:before{content:"";position:absolute;z-index:-1;top:0;right:0;width:76px;height:76px;background:linear-gradient(135deg,transparent 49%,rgba(194,160,91,.13) 50%)}
 .retreat-date-card .eyebrow{color:#987b43}
 .retreat-date-card .date{font:clamp(1.7rem,3vw,2.5rem)/1.1 var(--serif);letter-spacing:-.03em;margin:15px 0 8px}
@@ -265,6 +270,14 @@
 </div></div></section>
 
 
+
+<section class="featured-retreats" id="upcoming-retreats"><div class="wrap">
+<div class="section-head"><div><div class="eyebrow">BELIZE · 2027 · FIXED DATES</div><h2>Upcoming Group Retreats.</h2></div><p>Three distinct BLINKITA group retreats, each with its own focus and dates. Choose the experience that speaks to you and join a shared journey in Belize.</p></div>
+<div class="retreat-date-grid">
+<article class="retreat-date-card retreat-date-card--image"><img src="assets/blinkita/privateblinkita.jpg" alt="The Magickal Vitality group retreat" loading="lazy"><span class="retreat-ribbon">GROUP RETREAT · 2027</span><div class="retreat-date-copy"><div class="eyebrow">FEBRUARY · GROUP RETREAT</div><div class="date">21–28 February</div><h3>The Magickal Vitality</h3><p>A dedicated retreat for vitality, body awareness and a renewed relationship with yourself.</p></div><a class="text-link" href="wellness.html#retreats">Explore the retreat ↗</a></article>
+<article class="retreat-date-card retreat-date-card--image"><img src="assets/blinkita/energywellbeing.jpg" alt="Aqua Lemu Reiki group retreat" loading="lazy"><span class="retreat-ribbon">GROUP RETREAT · 2027</span><div class="retreat-date-copy"><div class="eyebrow">MAY · GROUP RETREAT</div><div class="date">16–23 May</div><h3>Aqua Lemu Reiki Retreat</h3><p>A restorative group experience centred on energy, balance, deep rest and reconnection.</p></div><a class="text-link" href="wellness.html#retreats">Explore the retreat ↗</a></article>
+<article class="retreat-date-card retreat-date-card--image"><img src="assets/blinkita/morning-ritual-experience.jpg" alt="Living Time Reset group retreat" loading="lazy"><span class="retreat-ribbon">GROUP RETREAT · 2027</span><div class="retreat-date-copy"><div class="eyebrow">NOVEMBER · GROUP RETREAT</div><div class="date">7–18 November</div><h3>Living Time Reset</h3><p>An immersive retreat exploring living time, awareness and the wisdom of the Maya Tzolk'in.</p></div><a class="text-link" href="wellness.html#retreats">Explore the retreat ↗</a></article>
+</div></div></section>
 
 <section class="journeys-section" id="blinkita-journeys"><div class="wrap">
 <div class="section-head"><div><div class="eyebrow">FIXED DATES · CONTINUOUS GROUP JOURNEYS</div><h2>BLINKITA Journeys.</h2></div><p>These are not retreats based in one place. They are immersive journeys through Belize and the wider Maya world, travelling between locations. Each journey follows set dates and takes place as one continuous experience.</p></div>
